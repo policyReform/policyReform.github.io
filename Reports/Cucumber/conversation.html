@@ -1,0 +1,334 @@
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta name=”robots” content=”noindex, follow”>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <title>Cucumber Report</title>
+  <link rel="stylesheet" href="logDesign.css">
+</head>
+
+<style>
+  body {
+    font-family: helvetica;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chat {
+    width: 53.333vw;
+    //border: solid 0.111vw #EEE;
+    display: flex;
+    flex-direction: column;
+    padding: 1.111vw;
+  }
+
+  .messages {
+    margin-top: 3.333vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .message {
+    border-radius: 2.222vw;
+    padding: 0.889vw 1.667vw;
+    margin-top: 0.556vw;
+    margin-bottom: 0.556vw;
+    display: inline-block;
+  }
+
+  .yours {
+    align-items: flex-start;
+  }
+
+  .yours .message {
+    margin-right: 25%;
+    background-color: #eee;
+    position: relative;
+  }
+
+  .yours .message.last:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: -0.778vw;
+    height: 2.222vw;
+    width: 2.222vw;
+    background: #eee;
+    border-bottom-right-radius: 1.667vw;
+  }
+
+  .yours .message.last:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: -1.111vw;
+    width: 1.111vw;
+    height: 2.222vw;
+    background: white;
+    border-bottom-right-radius: 1.111vw;
+  }
+
+  .mine {
+    align-items: flex-end;
+  }
+
+  .mine .message {
+    color: white;
+    margin-left: 25%;
+    background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  .mine .message.last:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -0.889vw;
+    height: 2.222vw;
+    width: 2.222vw;
+    background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+    background-attachment: fixed;
+    border-bottom-left-radius: 1.667vw;
+  }
+
+  .mine .message.last:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -1.111vw;
+    width: 1.111vw;
+    height: 2.222vw;
+    background: white;
+    border-bottom-left-radius: 1.111vw;
+  }
+</style>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+
+<body>
+ 
+
+  <div id="menuBar">
+
+    <div class="menu">
+      <span></span>
+    </div>
+    <nav class="navbar-menu">
+      <ul class="menu-listing">
+        <li>
+          <div id="mobileMenuIssueNote">You may need to rotate your device to see all menu options</div>
+        </li>
+        <li><a href="home.html">Home</a></li>
+        <li>Chapters</li>
+        <li><a href="Introduction.html">Introduction</a></li>
+        <li><a href="NCAAIndividualSports.html">I. NCAA Individual Sports</a></li>
+        <li><a href="StakeholderFeedback.html">II. Stakeholder Feedback</a></li>
+        <li><a href="Restructuring.html">III. Restructuring</a></li>
+        <li><a href="IndividualQualification.html">IV. Individual Qualification</a></li>
+        <li><a href="TeamQualification.html">V. Team Qualification</a></li>
+        <li><a href="Merge.html">VI. Demand for the Championship</a></li>
+        <li><a href="Schedule.html">VII. Schedule</a></li>
+        <li></li>
+        <li><a href="Citations.html">References</a></li>
+        <li><a href="Support.html">Endorsing the Report</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id='spin' class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+  
+  <div id="home" class="page">
+
+    <h1>A Conversation Between College Wrestling Fans</h1>
+    <div id="chat" class="chat">
+      <div class="yours messages">
+        <div class="message last">
+          Hey, I got our tickets to the NCAA Wrestling Tournament today!
+        </div>
+      </div>
+      <div class="mine messages">
+        <div class="message">
+          Awesome!
+        </div>
+        <div class="message last">
+          I am pretty excited to see it after hearing so much about it.
+        </div>
+      </div>
+      <div class="yours messages">
+        <div class="message">
+          Yeah, you will love it.
+        </div>
+        <div class="message last">
+          There is really nothing like it!
+        </div>
+      </div>
+    </div>
+    <button onclick="window.location.href='IndividualQualification.html#phoneConversation'">Return to Report</button>
+    <button id="convoBtn" onclick="getConversation()">Click here to continue the conversation</button>
+    <!--<br>
+  <center>
+    <input type="checkbox" id="scroller" name="scroller" value=True> Load whole conversation 
+  </center>
+-->
+  </div>
+  <script type="text/javascript">
+    var simulator = false;
+    //const checkbox = document.getElementById('scroller')
+    //checkbox.defaultChecked;
+
+    //checkbox.addEventListener('change', (event) => {
+    //if (event.currentTarget.checked) {
+    simulator = false;
+    //} else {
+    //simulator = true;
+    //}
+    //})
+
+    function pauser(timer) {
+      var pauseTime = simulator ? timer : 0;
+      setTimeout((function () {
+        return function () {
+          getConversation();
+        }
+      })(), pauseTime);
+    }
+    var counter = 0;
+    function sleep(milliseconds) {
+      //const date = Date.now();
+      //let currentDate = null;
+      //do {
+      //currentDate = Date.now();
+      //} while (currentDate - date < milliseconds);
+      //for(i=0;i< (milliseconds);i++){
+      //waiting
+      //}
+    }
+    function countSpaces(my_string) {
+      return (my_string.split(" ").length - 1);
+    }
+    function getReadingTime(myString) {
+      var words = countSpaces(myString) + 1;
+
+      return words * 300;
+    }
+
+    function hideButton() {
+      document.getElementById('convoBtn').style.visibility = 'hidden';
+    }
+
+
+    function getConversation() {
+      hideButton();
+      var convoCount = 0;
+      var conversations = [{ "person": "1", "text": "Hey, would you be able to explain something to me?", "pause": "5000" }, { "person": "2", "text": "Sure, what's up?", "pause": "1000" }, { "person": "1", "text": "I don't understand how qualifications for the NCAA Wrestling Championships works.", "pause": "1000" }, { "person": "1", "text": "Would you mind explaining it to me?", "pause": "1000" }, { "person": "2", "text": "Oh, yeah… no worries.  What do you want to know?", "pause": "2000" }, { "person": "1", "text": "Well, I saw the pre-allocations have been released.  What does that mean exactly.", "pause": "1000" }, { "person": "2", "text": "That is the number of bids pre-allocated to each conference.  Wrestlers are ranked based on a combination of three factors: Win Percentage, RPI, and Coaches rankings.  ", "pause": "1000" }, { "person": "2", "text": "They use these three metrics and determine the top wrestlers for each weight class and those wrestlers are given pre-allocations.", "pause": "1000" }, { "person": "1", "text": "Oh, got ya.  So it's just the number of wrestlers who were given bids in each conference?", "pause": "1000" }, { "person": "1", "text": "Why are they called pre-allocations and not allocations if the wrestlers earned the bids?", "pause": "1000" }, { "person": "1", "text": "Do you know where I can find the list of wrestlers?  The NCAA release only list the conferences and not the wrestlers.  ", "pause": "1000" }, { "person": "2", "text": "Well, not exactly.  A conference could get less than that.  But that is the amount they are expected to get.", "pause": "1000" }, { "person": "2", "text": "It's called pre-allocations because that's how many are allocated to the conference before the conference tournament starts but that doesn't mean that is how many the conference will get.", "pause": "1000" }, { "person": "1", "text": "Okay, now I am really confused.", "pause": "1000" }, { "person": "2", "text": "Well, the pre-allocations aren't really for the conference but rather the individuals in the conference.  The guys that earned the bids have to wrestle in the conference tournament.", "pause": "1000" }, { "person": "1", "text": "Wait... so it is just how many guys in each conference have already qualified to the NCAA tournament?  I thought you said it wasn't.  Again, why wouldn't they just put out the list of the individual wrestlers who qualified for the NCAA tournament?", "pause": "1000" }, { "person": "2", "text": "Well, no…  They didn't actually earn themselves a bid to the NCAA tournament.  They were just deemed worthy of a bid to the NCAA tournament.", "pause": "1000" }, { "person": "2", "text": "They don't release the name of the wrestlers who earned the bids because they are conference bids and not wrestler bids.", "pause": "1000" }, { "person": "1", "text": "…but I thought you said the pre-allocations weren't for the conference but were for the individuals in the conference.", "pause": "1000" }, { "person": "1", "text": "And what does being deemed worthy but not getting a bid mean?  That's such a strange thing...", "pause": "1000" }, { "person": "2", "text": "Well, yeah… but once the pre-allocations are earned they are transferable within the conference.", "pause": "1000" }, { "person": "2", "text": "Another wrestler could \"steal\" the bid from the wrestler who earned it.", "pause": "1000" }, { "person": "1", "text": "So a wrestler earns a pre-allocation bid?", "pause": "1000" }, { "person": "2", "text": "Yes.", "pause": "1000" }, { "person": "1", "text": "And then that pre-allocation just goes to the conference to give out?", "pause": "1000" }, { "person": "2", "text": "As long as the wrestler who earned the pre-allocation competes in the conference tournament, yes.  But if the wrestler doesn't compete in the conference tournament then the conference loses the pre-allocation and the bid will be added back in as an at-large bid.", "pause": "1000" }, { "person": "1", "text": "Okay… so when does it become an allocation?", "pause": "1000" }, { "person": "2", "text": "Well, the allocations are determined based on placement in the conference tournament.", "pause": "1000" }, { "person": "2", "text": "So if a conference has one pre-allocation bid then the wrestler to win the conference gets the bid to the NCAA tournament.", "pause": "1000" }, { "person": "1", "text": "Okay, that makes sense.", "pause": "1000" }, { "person": "2", "text": "And if the conference has 10 bids to the NCAA tournament then the wrestlers who place in the top-10 earn the bids to the NCAA tournament.", "pause": "1000" }, { "person": "1", "text": "But tournaments don't place top-10…", "pause": "1000" }, { "person": "2", "text": "No, but they will hold special placement matches to determine who gets those extra bids if they need to do so.", "pause": "1000" }, { "person": "1", "text": "So wrestlers earn the bids but they may not use the bid they earned?", "pause": "1000" }, { "person": "2", "text": "Yes.", "pause": "1000" }, { "person": "2", "text": "But if they place high enough in the conference then they get the bid.", "pause": "1000" }, { "person": "1", "text": "So what happenes if the wrestler doesn't place high enough?", "pause": "1000" }, { "person": "2", "text": "Well, there are always a few spots reserved for at-large bids to be given out after the conference tournaments for guys who didn't earn a bid.  At least three spots but sometimes a few more.", "pause": "1000" }, { "person": "1", "text": "So, if a wrestler who earned a bid in pre-allocation but fails to earn a bid through allocation can earn an at-large bid?", "pause": "1000" }, { "person": "2", "text": "Yes.  Exactly.", "pause": "1000" }, { "person": "1", "text": "If the wrestler is just going to get in anyways why not just give them to the wrestler?  Why give it to them, let someone else take it, and then just give them one anyways.", "pause": "1000" }, { "person": "2", "text": "Well, they aren't guaranteed to get in…", "pause": "1000" }, { "person": "2", "text": "Like… Let's say that the top three wrestlers in the country all medical forfiet out of the conference tournament because they are banged up and don't want to aggrevate injury.  Then those guys would all be guaranteed to get in but if the 10th best wrestler didn't earn a bid they wouldn't get an at-large because there weren't any at-large bids left to give.", "pause": "1000" }, { "person": "1", "text": "So wrestlers individually earn the bids. ", "pause": "1000" }, { "person": "2", "text": "Yup.", "pause": "1000" }, { "person": "1", "text": "And they are tied to the wrestler who earned the bid.", "pause": "1000" }, { "person": "2", "text": "Yeah.", "pause": "1000" }, { "person": "1", "text": "But they go the conference the wrestler is in?", "pause": "1000" }, { "person": "2", "text": "Yeah…", "pause": "1000" }, { "person": "1", "text": "And they can be stolen by another wrestler in that conference.", "pause": "1000" }, { "person": "2", "text": "Correct.", "pause": "1000" }, { "person": "1", "text": "But the conference only got that bid because of the wrestler who had it stolen?", "pause": "1000" }, { "person": "2", "text": "Yeah, that's how it works.", "pause": "1000" }, { "person": "1", "text": "So what's the point of pre-allocation?", "pause": "1000" }, { "person": "1", "text": "Like, if the bids are tied to wrestlers… why do pre-allocations?", "pause": "1000" }, { "person": "2", "text": "Well some conferences are just much stronger than others and have more teams.  So you have to give them more bids.", "pause": "1000" }, { "person": "1", "text": "But you're not giving them to the guys who earned them… ", "pause": "1000" }, { "person": "2", "text": "Yeah, you are.  ", "pause": "1000" }, { "person": "1", "text": "You said they could be stolen.", "pause": "1000" }, { "person": "2", "text": "Yeah, they can.", "pause": "1000" }, { "person": "1", "text": "So they can be stolen by wrestlers that were not 'deemed worthy' of a bid before the conference tournament started?", "pause": "1000" }, { "person": "2", "text": "Yeah, but some kids have a good conference tournament and so they get to steal a bid.", "pause": "1000" }, { "person": "1", "text": "But didn't you say a kid could earn a bid just because one of their opponents happened to default out of the tournament?", "pause": "1000" }, { "person": "2", "text": "Yeah, but only if they are in a really tough conference.", "pause": "1000" }, { "person": "1", "text": "Okay... are you saying...", "pause": "1000" }, { "person": "1", "text": "If I am the 8 seed and matched up with the 1 seed...", "pause": "1000" }, { "person": "1", "text": "and the 1 seed defaults to me...", "pause": "1000" }, { "person": "1", "text": "and we have six pre-allocations...", "pause": "1000" }, { "person": "1", "text": "I have now earned a bid to the NCAA tournament?", "pause": "1000" }, { "person": "2", "text": "Sure.  Probably has happened", "pause": "1000" }, { "person": "1", "text": "So if I win a wrestle-off to a teammate who earned a bid for the conference tournament do I then steal his bid?", "pause": "1000" }, { "person": "2", "text": "Ha ha... No.  Only other teams can steal bids.  I mean, you could steal someone else's bid but the bid earned by your teammate wouldn't go to the conference anymore.  So there would be one less pre-allocation for the conference unless the kid to win the wrestle off himself had a really high RPI and Win Perc.", "pause": "1000" }, { "person": "1", "text": "So are all the conferences about the same size?  Do they all get a similar number of bids so it all comes out in the wash?", "pause": "1000" }, { "person": "2", "text": "Oh, no.  Not even close.", "pause": "1000" }, { "person": "2", "text": "One conference has 6 teams;  another has 17 teams.", "pause": "1000" }, { "person": "2", "text": "But there has been a lot of consolidation into large regional conferences.  I think people think they have a better shot at getting a bid if they are in a larger conference.", "pause": "1000" }, { "person": "1", "text": "So my bid can be stolen by anyone else in my conference.", "pause": "1000" }, { "person": "1", "text": "But it can't be stolen by my teammate", "pause": "1000" }, { "person": "1", "text": "And it can't be stolen by any of the many wrestlers outside of the conference", "pause": "1000" }, { "person": "1", "text": "But my teammate and the wrestlers in other conferences might actually be better wrestlers than the kid who lucked into stealing my bid?", "pause": "1000" }, { "person": "1", "text": "I don't get the point of this system.", "pause": "1000" }, { "person": "2", "text": "It's just the way it is.", "pause": "1000" }];
+
+      var i = counter;
+      if (i == conversations.length) return;
+      //if(conversations[i].person == 1){
+
+      //console.log(conversations[i].text);
+      var message = "<div class=\"message last\">" + conversations[i].text + "</div>";
+      var chatElm = document.getElementById("chat");
+      var lastChildrenNode = chatElm.lastElementChild;
+
+      if (lastChildrenNode.classList.contains("mine")) {
+        //console.log("last is mine.");
+        if (conversations[i].person == 1) {
+          //Last message was mine and new message is mine
+          lastChildrenNode.lastElementChild.classList.remove("last");
+          lastChildrenNode.insertAdjacentHTML('beforeend', message);
+        } else {
+          //last message was mine but new message is yours
+          message = "<div class=\"yours messages\">" + message + "</div>";
+          chatElm.insertAdjacentHTML('beforeend', message);
+        }
+      } else {
+        console.log("this is yours");
+        if (conversations[i].person == 1) {
+
+          message = "<div class=\"mine messages\">" + message + "</div>";
+          chatElm.insertAdjacentHTML('beforeend', message);
+        } else {
+
+          lastChildrenNode.lastElementChild.classList.remove("last");
+          lastChildrenNode.insertAdjacentHTML('beforeend', message);
+
+        }
+      }
+      if (i < conversations.length) {
+        if (simulator) window.scrollTo(0, document.body.scrollHeight);
+        if (conversations[i].person == conversations[i + 1]) {
+          //if the next text is from the same person, then the next delay should be shorter for a rapid fire of multiple texts in a row.
+
+          pauser(getReadingTime(conversations[i].text) / 3);
+
+        } else {
+          pauser(getReadingTime(conversations[i].text));
+        }
+
+        console.log(simulator, 'simulator');
+        //setInterval(getConversation(),conversations[i].pause);
+        counter++;
+      }
+
+
+    }
+
+
+
+  </script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+
+  <script src="log.js"></script>
+
+
+  <script>window.onload = function () {
+      onLoad();
+      getConversation();
+    };</script>
+
+</body>
+
+
+
+
+
+</html>

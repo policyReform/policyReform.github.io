@@ -1,0 +1,1958 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name=”robots” content=”noindex, follow”>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <title>Cucumber Report</title>
+    <link rel="stylesheet" href="logDesign.css">
+</head>
+
+<style>
+    .wrap {
+
+        //max-width: 90.938vw;
+        margin-left: auto;
+        margin-right: auto;
+        //padding-left: 0.133vw;
+        //padding-right: 0.133vw;
+
+    }
+
+    body {
+        //background-color: #eee;
+        font-family: Tahoma, Arial, sans-serif;
+        margin: 0;
+        padding: 10%;
+    }
+
+    section {
+        //margin: 0 0.417vw;
+    }
+
+    .hidden {
+        font-size: 0;
+    }
+
+    .header-text {
+        color: white;
+        background: linear-gradient(blue, navy);
+        border: double 0.260vw white;
+        border-radius: 1em;
+        text-align: center;
+        padding: 0.260vw 0;
+    }
+
+    .header-text h1,
+    .header-text h6 {
+        margin: 0;
+    }
+
+    .header-text h1 {
+        font-size: 1.5em;
+    }
+
+    .half-circle-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .bottom-circle {
+        margin-top: -0.260vw;
+        transform: rotate(180deg);
+    }
+
+    .top-circle {
+        margin-bottom: -0.260vw;
+    }
+
+    .half-circle {
+        height: 2.604vw;
+        /* Alter here for height of circle segment */
+        overflow: hidden;
+    }
+
+    .half-circle>div {
+        width: 20.833vw;
+        /* Alter here for circle diameter */
+        height: 20.833vw;
+        /* Alter here for circle diameter */
+        border: 0.260vw double white;
+        border-radius: 50%;
+        background: navy;
+    }
+
+    .tournament {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tournament .round {
+        font-size: .75em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 10.417vw;
+        list-style: none;
+        padding: 0;
+    }
+
+    .tournament .round .spacer {
+        flex-grow: 2;
+    }
+
+    .tournament .round .spacerMinus {
+        flex-grow: -2;
+    }
+
+    .tournament .round .spacer:first-child,
+    .tournament .round .spacer:last-child {
+        flex-grow: 1;
+    }
+
+    .centerText {
+        text-align: center;
+    }
+
+    .first-four {
+        border: 0.052vw solid #888;
+        border-radius: 1em;
+        background-color: lightcyan;
+        padding: 0 1em;
+    }
+
+    .tournament-header {
+        text-align: center;
+        font-weight: bold;
+        border-radius: 1em;
+        border: 0.052vw solid black;
+        background-color: rgb(243, 241, 241);
+        color: rgb(32, 31, 31);
+    }
+
+    .first-four-winner li.game-left,
+    .round-1 li.game-left,
+    .round-2 li.game-left,
+    .round-3 li.game-left,
+    .round-4 li.game-left,
+    .semi-final li.game-left {
+        padding-left: 0.5em;
+    }
+
+    .first-four-winner li.game-right,
+    .round-1 li.game-right,
+    .round-2 li.game-right,
+    .round-3 li.game-right,
+    .round-4 li.game-right,
+    .semi-final li.game-right {
+        padding-right: 0.5em;
+    }
+
+    .region {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .region-right {
+        text-align: right;
+        padding-right: 0.260vw;
+    }
+
+    .region-left {
+        text-align: left;
+        padding-left: 0.260vw;
+    }
+
+    ul.seed li.game-left span:first-child,
+    ul.seed li.game-right span:last-child {
+        font-size: 0.7em;
+    }
+
+    li.game-right {
+        text-align: right;
+        border-left: 0.052vw solid #aaa;
+    }
+
+    li.game-left {
+        border-right: 0.052vw solid #aaa;
+    }
+
+    li.game-bottom {
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-top {
+        border: none;
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-left.spacer {
+        border-right: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-right: .25em;
+    }
+
+    li.game-right.spacer {
+        border-left: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-left: .25em;
+        text-align: left;
+    }
+
+    .final {
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border: 0.052vw solid #aaa;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-weight: bold;
+    }
+
+    .finals .centered {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .finals .centered>input {
+        display: block;
+        width: 4em;
+        margin: 0 auto 0 auto;
+        text-align: center;
+    }
+
+    .body-first-child {
+        margin-top: -2.344vw;
+    }
+
+    .extra-padding {
+        padding-top: 2.344vw;
+    }
+
+    table.standings {
+        border-collapse: collapse;
+    }
+
+    table.standings td,
+    table.standings th {
+        border: 0.052vw solid #ccc;
+    }
+
+    .standings {
+        margin: 0 auto;
+    }
+
+    .centerDiv {
+        margin: 0 auto;
+    }
+
+
+
+
+    DIV.conf {
+        border: 0.104vw solid lightblue;
+        text-align: center;
+        display: flex;
+        width: 100%;
+        float: none;
+        justify-content: center;
+        display: inline-flexbox;
+        align-items: center;
+    }
+
+    #teamsInConferences {
+        border: 0.052vw 0vw solid #000000;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        float: none;
+    }
+
+
+
+
+    table.standings {
+        table-layout: auto;
+        //float:left;
+        //background:yellow;
+        //width: 470;
+        margin: 3%;
+    }
+
+    table.conf {
+        table-layout: auto;
+
+        //float: left;
+        //background:yellow;
+        width: 90%;
+        margin: 0.8%;
+    }
+
+    .active {
+        background-color: #E6ECE9;
+        //color: black;
+        //border-style: dotted;
+    }
+</style>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name=”robots” content=”noindex, follow”>
+<link rel="stylesheet" href="logDesign.css">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+
+<body>
+    
+
+    <div id="menuBar">
+
+        <div class="menu">
+            <span></span>
+        </div>
+        <nav class="navbar-menu">
+            <ul class="menu-listing">
+                <li>
+                    <div id="mobileMenuIssueNote">You may need to rotate your device to see all menu options</div>
+                </li>
+                <li><a href="home.html">Home</a></li>
+                <li>Chapters</li>
+                <li><a href="Introduction.html">Introduction</a></li>
+                <li><a href="NCAAIndividualSports.html">I. NCAA Individual Sports</a></li>
+                <li><a href="StakeholderFeedback.html">II. Stakeholder Feedback</a></li>
+                <li><a href="Restructuring.html">III. Restructuring</a></li>
+                <li><a href="IndividualQualification.html">IV. Individual Qualification</a></li>
+                <li><a href="TeamQualification.html">V. Team Qualification</a></li>
+                <li><a href="Merge.html">VI. Demand for the Championship</a></li>
+                <li><a href="Schedule.html">VII. Schedule</a></li>
+                <li></li>
+                <li><a href="Citations.html">References</a></li>
+                <li><a href="Support.html">Endorsing the Report</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id='spin' class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    <div id="home" class="page">
+
+        <center>
+            <a href="Introduction.html" class="previous">&laquo; Previous</a>
+            <a href="StakeholderFeedback.html" class="next">Next &raquo;</a>
+            <hr>
+        </center>
+        <h1>I. Comparative Analysis of Individual Sports within the NCAA</h1>
+
+
+        <div id="lessonslearned"></div>
+        <h5>Lessons Learned: Drawing on the Success of other NCAA Individual Sports</h5>
+        <p>The NCAA sponsors and conducts numerous sports and championships, each with its own unique policies,
+            proposals, and structures. This provides a laboratory for natural experiments within the collegiate
+            framework. By reviewing all of these sports and drawing on lessons learned from each one, it is possible to
+            build a holistic model that serves the various stakeholders in wrestling, based on established best
+            practices. This approach will require the least significant changes to NCAA policy or administration and
+            allowing for expedited adoption of any changes.</p>
+
+
+
+        <p>This excercise will provide insight into how different sports have addressed structuring competition and
+            championships for these individual sports.</p>
+        <p>The analysis will be limited to a high level comparison of the basic frameworks utilized for NCAA individual
+            sports at Division I schools.</p>
+
+        <div id="types"></div>
+        <h3>A. Types of Individual Sports</h3>
+        <p>The selected sports to be included within the review will be the those sports defined by the NCAA as
+            individual
+            sports within the NCAA Manual <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="2021-22 NCAA Division-I Manual, 17.02.18.2 Individual Sports.">(17.02.18.2)</cite>.</p>
+        <p>It should be noted that the NCAA's definition and taxonomy used deviates from the standards established by
+            researchers and scholars when classifying sports.</p>
+        <p>While there are various classifications used for sport, depending on the objective of the research (<cite
+                data-bs-toggle="tooltip"
+                title="Shared Space: How North American Olympic Broadcasters Framed Gender on Instagram.">Johnson, et
+                al., 2022; </cite> <cite data-bs-toggle="tooltip"
+                title="Shared Space: How North American Olympic Broadcasters Framed Gender on Instagram.">Niebauer, et
+                al., 2018;</cite> <cite data-bs-toggle="tooltip"
+                title="Task Force 8: classification of sports.">Mitchell, et al., 2005</cite>, etc.), the two most
+            common high level classifications each break
+            sports into three distinct groups:</p>
+
+        <ol>
+            <li><strong>Participation Composition Method</strong> (<cite data-bs-toggle="tooltip"
+                    title="Comparative study of will to win among individual, team and dual sports players. ">Singh &
+                    Singh, 2018; </cite><cite data-bs-toggle="tooltip"
+                    title="Dual & Team Sports: Definition & Comparison.">Nemeth, 2017; </cite><cite
+                    data-bs-toggle="tooltip" title="What Is the Difference Between Individual and Dual Sports?">Naar,
+                    2021</cite>):</li>
+            <ul>
+                <li><i>Individual Sports</i> - Sports requiring no partner or competitor.  Examples: Running,
+                    Swimming, Figure Skating, Shooting, Gymnastics, Equestrian, Weightlifting.</li>
+                <li><i>Dual Sports</i> - Sports in which opponents compete against each other head-to-head without the
+                    support of a team structure in the competition.  Examples: Badminton, Fencing, Squash, Tennis, <u>Wrestling</u>.</li>
+                <li><i>Team Sports</i> - Sports where two opposing teams of competitors compete head-to-head.  Examples:
+                    Soccer, Basketball, Football, Ice Hockey, Baseball.</li>
+            </ul>
+            <br>
+            <li><strong>Objective Method</strong> (<cite data-bs-toggle="tooltip" title="Visual Encyclopedia.">Kruger,
+                    1995; </cite><cite data-bs-toggle="tooltip" title="A Brief Way to Classify the Sports">Sullivan,
+                    2010</cite>):</li>
+            <ul>
+                <li><i>Achivement Sports</i> - A sport whereby competitors display their abilities.  Examples: Golf,
+                    Gymnastics, Long Jump, Archery, Diving, Bowling. </li>
+
+                <li><i>Opponent sports</i> - A sport whereby competition is held between two competing sides.  Examples:
+                    Tennis, Boxing, Soccer, Baseball, <u>Wrestling</u>, Fencing, Volleyball, Football, Basketball.</li>
+
+                <li><i>Racing sports</i> - A sport where the objective is to be the fastests or the first to reach a
+                    target
+                    or objective.  Examples: Swimming, Marathon, Orientiering, Rock Climbing, Rowing, Skiing, Cycling,
+                    Biathlon, Lug.
+                </li>
+            </ul>
+        </ol>
+
+
+
+        <p>In order to best categorize the sports within the NCAA model, a different categorization of the sports has
+            been developed for this specific use case drawing on the framework developed by the methods listed above.
+        </p>
+
+        <h5 id="standard">1. Standards-Based Sports</h5>
+
+        <p>Within these sports an athlete will compete against a standard (score, time, distance, etc.) with
+            those
+            standards compared to other athletes to determine standing within the competition. This group is further
+            broken
+            down into two subsets based on how
+            those sports conduct competition:</p>
+        <ul>
+            <h5>Individual Competition, Standards-Based</h5>
+
+            <p><i>Sports where athletes compete to establish a standard individually (one at a time, or in a specific
+                    lane free from opponents). This standard is then used to compare their performance against other
+                    athletes at
+                    an event or nationally to determine the success of the athlete in competition.</p>
+            <p>It would be possible for an athlete to
+                compete in this sport to establish a standard without an opponent being present and it could accurately
+                represent the ability of the athlete. In these sports, the standard can
+                often be compared not only against athletes at the event or nationally but also across athletes from
+                different seasons of competition due to the uniformity of the conditions in which an athlete
+                competes to establish a standard.</i></p>
+            <ul>
+                <li>Bowling</li>
+                <li>Gymnastics</li>
+                <li>Rifle</li>
+                <li>Skiing</li>
+                <li>Swimming and Diving</li>
+                <li>Track and Field (Indoor)</li>
+                <li>Track and Field (Outdoor)</li>
+            </ul>
+
+            <br>
+            <h5>Co-Competition, Standards-Based</h5>
+
+            <p><i>Sports where athletes compete alongside multiple athletes at the same time and in doing so may end up
+                    impeding the progress of others while everyone competing is trying to be the best performer against
+                    the standard.</p>
+            <p>Though athletes could compete in this sport without an opponent, competition is designed to
+                compete on a course that includes multiple athletes at a time.</i></p>
+            <ul>
+                <li>Cross Country</li>
+                <li>Golf</li>
+                <li>Track (Indoor) - Distance events only</li>
+                <li>Track (Outdoor) - Distance events only</li>
+                <li>Triathlon</li>
+            </ul>
+        </ul>
+
+        <h5 id="Competitor">2. Competitor Dependent</h5>
+        <p><i>Sports where athletes compete directly against an opponent. There is no standard in which an athlete is
+                measured but rather an athlete's goal is to defeat their individual opponent directly. Competition
+                is not
+                possible
+                without opponent engagement.</i></p>
+        <ul>
+            <ul>
+                <li>Fencing</li>
+                <li>Tennis</li>
+                <li>Wrestling</li>
+            </ul>
+        </ul>
+
+        <h4>Analysis</h4>
+        <p>As a direct competition individual sport, wrestling is dependent on having a competitor in a way most
+            individual sports are not. Tennis and Fencing are the only other individual sports where direct competition
+            with an opposing athlete decides the outcome and there are not any outside standards which are taken into
+            consideration to determine success as a competitor.</p>
+
+        <br>
+        <div id="regSeason"></div>
+        <h3>B. Regular Season Competition</h3>
+
+        <p>Regular Season competition for individual sport is divided into two distinctly different groups
+            based
+            on how each sport documents and recognizes competitions between opposing teams.</p>
+        <ul>
+            <h5>Team Win Loss Records Not Maintained</h5>
+            <p>These are sports that are conducted as a collection of individual competitions. For these sports, teams
+                do not record wins or loses based on their competitions throughout the season, though they may
+                sometimes compete in events with only one other team in attendance.</p>
+            <ul>
+                <li>Cross Country</li>
+                <li>Golf<sup>1</sup></li>
+                <li>Skiing</li>
+                <li>Track and Field (Indoor)</li>
+                <li>Track and Field (Outdoor)</li>
+                <p style="font-size: small"><sup>1</sup>Men's golf records win loss records from multi-team events for
+                    administrative
+                    selection purposes only. This is
+                    known colloquially as <i>the 500 rule</i>.</p>
+
+            </ul>
+            <br>
+            <h5>Team Win Loss Records Maintained</h5>
+            <p>Sports maintaining team head-to-head win loss records list their team win loss records on their athletic
+                website
+                and hold
+                team head-to-head direct competitions against another team in a dual competition format.</p>
+            <p>A primary characteristic of this group is that they hold competitions where a winning team in a
+                head-to-head competition will record a win on the team's record and the losing team will record a loss
+                (though ties may also be recorded depending on the sport).</p>
+            <ul>
+                <li>Bowling</li>
+                <li>Fencing</li>
+                <li>Gymnastics</li>
+                <li>Swimming and Diving</li>
+                <li>Tennis</li>
+                <li>Wrestling</li>
+            </ul>
+            <br>
+
+            <h5>Analysis</h5>
+
+            <p>While half of the individual sports maintain team win loss records and hold competitions in a head-
+                to-head format between teams, there is significant variation in how formal the structure is
+                within the sports maintaining win loss records.</p>
+
+            <p>Most of these sports have formalized the direct head-to-head competition format within their
+                rulebooks
+                with
+                established policies and procedures for administering and scoring these competitions, though not every
+                individual program has adopted the recognition of these results on the team basis and utilizes the team
+                win loss record.</p>
+            <p>The following sports use direct head-to-head team competitions during the season but
+                there is not a culture of widespread adoption of the team win loss record; some
+                programs (including nationally ranked programs) choose not to acknowledge dual team results within their
+                schedules, media releases, or results:</p>
+            <ul>
+                <li>Fencing</li>
+                <li>Gymnastics</li>
+                <li>Swimming and Diving</li>
+            </ul>
+            <br>
+            <p>Furthermore, the definition of direct head-to-head competition, as adopted within Gymnastics,
+                is less rigid compared to other sports.</p>
+            <p>While records are maintained for the head-to-head competitions with other teams, Men's Gymnastics permits
+                Virtual Dual Meets in which two teams compete against one another through a video feed from each team's
+                home venue. This system allows for athletes to compete at their home facility, without ever needing to
+                be in the same
+                facility as their opponents, while being judged for their individual performances by the same judge(s)
+                remotely.
+            </p>
+            <p>It wasn't until the 2021-22 Season when NCAA Men's Gymnastics formalized dual meets
+                in the rulebook as a direct head-to-head competition. It was at this time that the sport adopted the
+                requirement for opposing teams to alternate their
+                performance on each event to maximize the team competition aspect. This change
+                sought to make
+                it easier for fans to follow
+                team competitions <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Dual meet format, team scoring modified in men's gymnastics">(<i>Johnson, 2021</i>)</cite>.
+            </p>
+            <p>Though Women's gymnastics logs team results for all dual (two teams), triangular (three teams),
+                and quad (four team) meets on team records only dual meets are a direct head-to-head with alternating
+                team
+                competition within an
+                event. (Example: A quad event would have the fourth-place team in the final standings finish 0-3 since
+                they scored below three other teams--despite not facing those teams head-to-head in the dual competition
+                format.)</p>
+            <p>Despite the formalization of head-to-head team competitions within individual sports, only
+                three sports have adopted the use of rankings specifically for head-to-head team competition utilized by
+                member schools and reported on the NCAA website:</p>
+            <ul>
+                <li>Fencing <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Division I Fencing Rankings">(National Collegiate Athletic Association, n.d. -p)</cite>
+                </li>
+                <li>Tennis <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Division I Men's Tennis Rankings">(National Collegiate Athletic Association, n.d.
+                        -o)</cite></li>
+                <li>Wrestling <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Division I, College Wrestling Rankings: NWCA Coaches Poll">(National Collegiate Athletic
+                        Association, n.d. -q)</cite>
+                </li>
+            </ul>
+
+            <br>
+            <p>While many individual sports utilize the team head-to-head competition format, the
+                adoption of ranking based on these direct head-to-head competitions is unique to
+                competitor dependent sports.</p>
+
+
+            <p>It's logical for competitor dependent sports to have an increased emphasis on head-to-head matchups as
+                these sports
+                are dependent on specific matchups between teams and individuals. While in standards-based
+                sports the team rankings are largely
+                a comparison of individual athletes within each sport's standard metric and attributing a points
+                value to the individual athlete's national standing. The individual matchups between individual athletes
+                that may take place within a competition are of little significance for standards-based sports.</p>
+            <p>Without standards to rank against, the team ranking based on team competitions and their subsequent
+                results becomes more
+                valuable
+                for fans. As is the case in team sports where the bracketed team advancement format is standard, these
+                rankings can deviate from national finish significantly, as championship finish is based on unique
+                matchups that athletes
+                and teams may, or may not, encounter during competition.</p>
+        </ul>
+
+
+        <div id="champPaticipation"></div>
+        <h3>C. Athlete Championship Participation</h3>
+        <p>Each individual sport where the NCAA sponsors a championship has its own process for qualification to the
+            championship(s). Some sports have qualification for teams, others for individual athletes, with many
+            having
+            qualification for both teams and individuals.</p>
+
+        <h5>Comparison of Individual Sports Qualifications</h5>
+        <p>The below table provides a high-level comparison of the qualification processes for each individual sport.
+            The table includes information on the number of athletes to
+            earn a bid to
+            an NCAA Championship by virtue of being a member of a top performing team as well as the number of
+            individuals to earn a bid due only to their individual performance. Note: For those sports where the
+            individual and team
+            championships for the sport are held separately, an athlete could be double counted--once as a team
+            qualifier and again as
+            an individual qualifier.</p>
+
+        <ul>
+            <li>Primary Postseason Qualification Method </li>
+            <ul>
+                <li><Strong>Team Member Qualifier</Strong> - An athlete that has qualified for postseason competition
+                    in
+                    an
+                    NCAA Championship because of their team's performance.</li>
+                <li><Strong>Individual Qualifier</Strong> - An athlete that has qualified for postseason competition in
+                    an
+                    NCAA Championship because of their performance as an individual and not due to the performance
+                    of
+                    their team.</li>
+            </ul>
+            <li>Conference Champion Automatic Qualification:
+                <ul>
+                    <li><strong>Individual</strong> - NCAA Championship bids are guaranteed for individual athletes
+                        who win a recognized conference championship in the sport.</li>
+                    <li><strong>Team</strong> - NCAA Championship bids are guaranteed for teams winning a recognized
+                        conference's team championship in the sport.</li>
+                    <li><strong>--</strong> - the sport does not award NCAA Championship bids for conference
+                        championships.</li>
+                </ul>
+        </ul>
+
+
+
+
+        <table id="bidBreakdownTable" class="standings conf" style="text-align:center">
+            <tbody>
+                <tr style=\"text-align:center\">
+                    <th>Sport</th>
+                    <th>Total Qualifiers</th>
+                    <th>Team Member Qualifiers</th>
+                    <th>Individual Qualifiers</th>
+                    <th>Primary Postseason Qualification Method</th>
+                    <th>Conference Champion Automatic Qualification</th>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Women's Bowling Pre-Championship Manual, Section 2•1 Championships Format">Bowling,
+                            Women</cite></td>
+                    <td>160</td>
+                    <td>160</td>
+                    <td>0</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Cross Country Pre-Championship Manual, Section 2•1 Championships Format">Cross
+                            Country, Men</cite> </td>
+                    <td>255</td>
+                    <td>217</td>
+                    <td>38</td>
+                    <td>Team Member Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Cross Country Pre-Championship Manual, Section 2•1 Championships Format">Cross
+                            Country, Women</cite> </td>
+                    <td>255</td>
+                    <td>217</td>
+                    <td>38</td>
+                    <td>Team Member Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Fencing Pre-Championship Manual, Section 2•1 Championships Format">Fencing,
+                            Coed</cite> </td>
+                    <td>144</td>
+                    <td>0</td>
+                    <td>144</td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Golf, Men Pre-Championship Manual, Section 2-3 Selection Info">Golf,
+                            Men</cite></td>
+                    <td>450</td>
+                    <td>405</td>
+                    <td>45</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Women's Golf Pre-Championship Manual, Section 2-3 Selection Info">Golf,
+                            Women</cite></td>
+                    <td>396</td>
+                    <td>360</td>
+                    <td>36</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Men's Gymnastics Pre-Championship Manual, Section 2•1 Championships Format">Gymnastics,
+                            Men</cite></td>
+                    <td>200</td>
+                    <td>165</td>
+                    <td>35</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Women's Gymnastics Pre-Championship Manual, Section 2•1 Championships Format">Gymnastics,
+                            Women</cite></td>
+                    <td>616</td>
+                    <td>540</td>
+                    <td>76</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Rifle Pre-Championship Manual, Section 2•1 Championships Format">Rifle,
+                            Coed</cite></td>
+                    <td>48</td>
+                    <td>40</td>
+                    <td>8</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Skiing Pre-Championship Manual, Section 2-3 Selection Info">Skiing,
+                            Coed</cite></td>
+                    <td>148</td>
+                    <td>0</td>
+                    <td>148</td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Swimming and Diving Pre-Championship Manual, Section 2-1 Selection Info">Swimming
+                            and Diving, Men</cite></td>
+                    <td>270<sup>c</sup></td>
+                    <td>0</td>
+                    <td>270<sup>c</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Swimming and Diving Pre-Championship Manual, Section 2-1 Selection Info">Swimming
+                            and Diving, Women</cite></td>
+                    <td>322<sup>c</sup></td>
+                    <td>0</td>
+                    <td>322<sup>c</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Indoor Track and Field Pre-Championship Manual, Section 2-1 Selection Info">Track
+                            and Field (Indoor), Men</cite></td>
+                    <td>368<sup>b</sup></td>
+                    <td>0</td>
+                    <td>368<sup>b</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Indoor Track and Field Pre-Championship Manual, Section 2-1 Selection Info">Track
+                            and Field (Indoor), Women</cite></td>
+                    <td>368<sup>b</sup></td>
+                    <td>0</td>
+                    <td>368<sup>b</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Outdoor Track and Field Pre-Championship Manual, Section 2-1 Selection Info">Track
+                            and Field (Outdoor), Men</cite></td>
+                    <td>960<sup>b</sup></td>
+                    <td>0</td>
+                    <td>960<sup>b</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Outdoor Track and Field Pre-Championship Manual, Section 2-1 Selection Info">Track
+                            and Field (Outdoor), Women</cite></td>
+                    <td>960<sup>b</sup></td>
+                    <td>0</td>
+                    <td>960<sup>b</sup></td>
+                    <td>Individual Qualifier</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Fencing Pre-Championship Manual, Section 2•1 Championships Format">Tennis,
+                            Women</cite> </td>
+                    <td>704</td>
+                    <td>576</td>
+                    <td>128</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Tennis Pre-Championship Manual, Section 2•1 Championships Format">Tennis,
+                            Men</cite> </td>
+                    <td>704</td>
+                    <td>576</td>
+                    <td>128</td>
+                    <td>Team Member Qualifier</td>
+                    <td>Team</td>
+                </tr>
+                <tr>
+                    <td><cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="2021-22 NCAA Wrestling Pre-Championship Manual, Section 2-3 Selection Info">Wrestling,
+                            Men</cite></td>
+                    <td>330</td>
+                    <td>0</td>
+                    <td>330</td>
+                    <td>Individual Qualifier</td>
+                    <td>Individual</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <span class="footnote"><sup>b</sup>NCAA Track and Field qualifiers often qualify for multiple events. The
+                figure shown is the
+                maximum
+                number of possible individuals, should each event have a completely unique field of athletes with no
+                athlete competing in more than one event.</span>
+            <br>
+            <span class="footnote"><sup>c</sup>In NCAA Swimming and Diving the number is the maximum number of
+                individual athletes using the
+                NCAA's
+                mathematical formula to account for athletes qualified for multiple events.</span>
+            <br>
+            <span class="footnote"><sup>d</sup>Athletes competing in relays (track and swimming) and doubles in tennis
+                have been recognized as
+                individual
+                qualifiers as the performance of individual athletes in these sport specific competitions earned these
+                bids, though
+                teams control the choice of entrants for these events.</li>
+        </ul>
+
+
+        <p>It should be noted, qualifiers for team competitions were based on the traveling squad size and assume that
+            no
+            athletes are added or removed from the squad throughout the event. Though most sports permit changing
+            the squad through the championship where there are multiple rounds of competition. And thus, in practice,
+            the number of
+            qualifiers through the team qualification process could be
+            greater than the number shown.</p>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <Strong>Helper: &nbsp;</Strong><i> &nbsp;How does an individual sport have team qualifiers
+                            without
+                            team head-to-head competitions? (click to expand)</i>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <h5>Example of Team Member Qualification</h5>
+
+                        <p>Without a familiarity of other individual sports, it may seem counter-intuitive to learn that
+                            many sports, especially
+                            those not utilizing a head-to-head dual format would have a qualification process where
+                            athletes qualify for the NCAA Championship by virtue of their team's
+                            performance.</p>
+                        <p>To better illustrate this system in the context of wrestling, the current cross country
+                            qualification model will be
+                            explored as though it were the qualification system utilized by wrestling withing the
+                            current wrestling framework.
+                        </p>
+                        <p>This process would not change how the wrestling qualification tournaments are conducted or
+                            how the NCAA Wrestling Championship is conducted. They each would still be individual
+                            tournaments where athletes compete in a bracket and team scores are calculated based on a
+                            mathematical formula derived from the results of the individual athletes in the field. The
+                            only
+                            difference would be which athletes (and teams) advance from the qualifying tournaments to
+                            the
+                            championship.</p>
+                        <p>When applying the Cross Country model, the teams that finished in the qualification tier
+                            based on wreslting's
+                            mathematical team points scoring system used to determine the team
+                            championship would qualify their team to the NCAA Championships.</p>
+
+
+
+                        <p>For this example, each wrestling qualifier would be designated as either a large
+                            qualifier or a small qualifier. This distinction would dilineate events based on the number
+                            of participating teams and would determine the number of teams and individuals to earn
+                            automatic bids at the event. Any event with seven or fewer participating teams would be
+                            classified as a small qualifier with all other events being classified as a large qualifier.
+                        </p>
+
+
+                        <h6>Team Automatic Qualification</h6>
+
+
+
+                        <p>Any team to win the qualifying event's team championship (utilizing the current wrestling
+                            team scoring rules) earns automatic team qualification for the NCAA Championship. If the
+                            event
+                            was classified as a large qualifier, the team runner-up would also earn automatic
+                            qualification
+                            to the NCAA Championship.
+                        </p>
+
+                        <p>Automatic qualification for a team means that the team would be entitled to
+                            send ten (10) athletes to the NCAA Championship--one in each weight class. These athletes
+                            could be any athlete from their roster and need not be the same ones that competed in the
+                            qualifying event.</p>
+                        <p>Twelve teams would earn automatic bids--accounting for 120 athletes earning bids.</p>
+
+                        <p>Below is the actual results from one of wrestling's large Conference Qualifiers from this
+                            season. This represents the placement at the qualifying event for the athletes who would
+                            have earned automatic qualification for their team's weight class to the
+                            NCAA Championship in 2022 by virtue of their team's performance.</p>
+                        <center>
+
+                            <i>Individual Athlete Placement a Each Weight in Qualifying Event</i>
+                            <table id="bidBreakdownTable" class="standings " style="text-align:center">
+                                <tbody>
+                                    <tr style=\"text-align:center\">
+                                        <th>Weight</th>
+                                        <th>Qualifier Championship Team</th>
+                                        <th>Qualifier Runner-Up Team</th>
+                                    </tr>
+                                    <tr>
+                                        <td>125</td>
+                                        <td>7th</td>
+                                        <td>4th</td>
+                                    </tr>
+                                    <tr>
+                                        <td>133</td>
+                                        <td>7th</td>
+                                        <td>6th</td>
+                                    </tr>
+                                    <td>141</td>
+                                    <td>2nd</td>
+                                    <td>6th</td>
+                                    <tr>
+                                        <td>149</td>
+                                        <td>5th</td>
+                                        <td>2nd</td>
+                                    </tr>
+                                    <tr>
+                                        <td>157</td>
+                                        <td>5th</td>
+                                        <td>4th</td>
+                                    </tr>
+                                    <tr>
+                                        <td>165</td>
+                                        <td>1st</td>
+                                        <td>5th</td>
+                                    </tr>
+                                    <tr>
+                                        <td>174</td>
+                                        <td>2nd</td>
+                                        <td>3rd</td>
+                                    </tr>
+                                    <tr>
+                                        <td>184</td>
+                                        <td>2nd</td>
+                                        <td>4th</td>
+                                    </tr>
+                                    <tr>
+                                        <td>197</td>
+                                        <td>3rd</td>
+                                        <td>4th</td>
+                                    </tr>
+                                    <tr>
+                                        <td>285</td>
+                                        <td>3rd</td>
+                                        <td>6th</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </center>
+
+
+                        <h6>Team At-Large Qualification</h6>
+                        <p>After each of the qualifying events allocated their team auto-bids, team at-large bids would
+                            be
+                            awarded by the NCAA Wrestling Selection Committee to the best performing teams during the
+                            season who
+                            failed to place high enough at their qualifier to earn a team bid to the National
+                            Championship.
+                        </p>
+                        <p>These teams would also each be awarded bids for all ten (10) of their weight classes at the
+                            NCAA Championship.</p>
+                        <p>Seven (7) teams would be awarded at-large team bids--accounting for 70 athletes earning bids.
+                        </p>
+
+                        <h6>Individual Automatic Qualification</h6>
+                        <p>After all team bids have been awarded, individual bids are then given out to the highest
+                            placing individuals at each of the
+                            qualifying events that are not on a qualified team. Large qualifying events would award
+                            twenty bids (two bids at each weight class) and smaller qualifiers would award ten bids (one
+                            bid per weight class). </p>
+                        <p>Twelve bids would be awarded at each weight class--accounting for 120 athletes earning bids.
+                        </p>
+
+                        <p>Example: In the 125 weight division at a large qualifier, the weight's runner-up and third
+                            place finisher were members of teams to earn automatic qualification. As a result, the
+                            weight's champion and fourth place finisher would each earn individual qualification by
+                            virtue of being the highest placed athletes at the weight to not yet earn a bid to the NCAA
+                            Championship.</p>
+
+                        <h6>Individual At-Large Qualification</h6>
+                        <p>Following the determination of individual auto-bids, at-large bids would be awarded to
+                            individuals by the NCAA Wrestling Selection Committee. These bids would be awarded to the
+                            most deserving athletes based on their season's performance
+                            from any qualifier from the field of athletes who had not yet earned a bid to the NCAA
+                            Championship.</p>
+                        <p>Two athletes per weight class would earn an individual at-large bid--accounting for 20
+                            athletes earning bids.</p>
+
+                        <h6>NCAA Championship</h6>
+                        <p>With the field of 330 athletes now selected, the NCAA tournament would be conducted in the
+                            current format with each qualified athlete competing.</p>
+                        <p>The individuals to win the event would be recognized as National Champions and the best
+                            performing team (with all 10 weight classes represented with athletes) would be crowned the
+                            NCAA Team Champion using the same mathematical scoring system
+                            currently used.</p>
+                        <p><Strong>NOTE:</Strong> This is not a proposal for adoption. This is merely a representation
+                            of the processes utilized by Cross Country for team qualification to the NCAA Championship
+                            despite not competing in head-to-head dual competitions.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <h5>Analysis</h5>
+
+        <p>Despite the NCAA sponsoring 19 NCAA Division-I National Championships for individual sports,
+            individual athlete performance is the primary factor for inclusion in championship competition for only
+            eight (8) sports.</p>
+        <p>It's common for an athlete, even in individual sports, to be awarded an NCAA Championship opportunity by
+            virtue of their team's success.</p>
+        <p>This is in part due to the size of teams and needing to include a full line-up of athletes for team
+            competition
+            to accurately represent the team as opposed to determining a team's performance based on a sampling of a few
+            athletes from the team.</p>
+        <p>In the sports where championship opportunities are primarily earned based on an athlete's individual
+            performance, it is nearly exclusively standards-based sports where the competition is timed. Additionally,
+            for many of these sports there are too many events to make team qualification feasible.</p>
+        <p>In each individual sport, outside of wrestling, an athlete must be one
+            of the top athletes in the country and not simply the best performer in their conference to qualify
+            for the national championship based on their individual performance.</p>
+
+        <p>While conference championship teams earning a postseason bid is common in NCAA sports and is the default
+            process administrators and fans think of when they think of the qualification process for NCAA
+            championships, the process of individual (athlete) conference champions earning bids is an outlier unique
+            only to
+            wrestling.</p>
+        <p>The basic structure utilized by most sports within the NCAA is that conference championships earn teams
+            qualification to the championship and individual athletes qualify either directly through season
+            qualification or through a regional qualifier.</p>
+
+
+        <div id="teamChampionships"></div>
+        <h3>D. Team Championships</h3>
+        <p>In NCAA competition, there are two primary methods for determining Team Champions in individual sports. Note:
+            Not all
+            individual sports recognized by the NCAA have a championship administered by the NCAA.</p>
+        <ul>
+            <h5>Placement, Competition against the Field</h5>
+            <p>Team Score calculated based on individual athletes' performance against
+                other athletes in the championship field and the athlete's subsequent placement within the field.</p>
+            <ul>
+                <li>Cross Country</li>
+                <li>Fencing</li>
+                <li>Gymnastics, Men</li>
+                <li>Skiing</li>
+                <li>Swimming and Diving</li>
+                <li>Track and Field (Indoor)</li>
+                <li>Track and Field (Outdoor)</li>
+                <li>Wrestling</li>
+            </ul>
+            <br>
+            <h5>Bracket, Head to Head Competition</h5>
+            <p>Bracketed system where teams compete in head-to-head competition with the winning team advancing in the
+                competition.</p>
+            <ul>
+                <li><a href="https://www.ncaa.com/_flysystem/public-s3/files/2022-04/BRACKET_WBW_ChampionshipBracket_2022_FINALS_COLUMBUS.pdf"
+                        target="_blank">Bowling, Women</a></li>
+
+                <li><a href="https://golfweek.usatoday.com/wp-content/uploads/sites/87/2021/05/thumbnail_IMG_6612.jpg"
+                        target="_blank">Golf, Men</a></li>
+                <li><a href="https://s3.amazonaws.com/olemisssports.com/custompages/gallery/WG_NCAAChamp_Round4/ncaaWGD4_0625.jpg"
+                        target="_blank">Golf, Women</a></li>
+                <li><a href="https://www.ncaa.com/_flysystem/public-s3/files/2021_WGYM_Bracket_Finals_Regionals%20.pdf"
+                        target="_blank">Gymnastics, Women</a></li>
+                <li><a href="https://www.ncaa.com/brackets/print/tennis-men/d1/2021" target="_blank">Tennis, Men</a>
+                </li>
+                <li><a href="https://www.ncaa.com/brackets/print/tennis-women/d1/2021" target="_blank">Tennis, Women</a>
+                </li>
+            </ul>
+        </ul>
+        <h5>Analysis</h5>
+        <h6>Conclusive Championships</h6>
+        <p>Most team championships in individual sports are determined by calculating a team score based
+            on the placement of individual athletes at the competition. This system has been widely adopted for its
+            ease of implementation and
+            administration.</p>
+        <p>While this system is easily implemented and allows for a team competition to be overlaid upon individual
+            competition, one of the major drawbacks of this system is the lack of a guarantee that there will be a conclusive championship winner.</p>
+        <p>The placement based scoring systems have a propensity for ties. While
+            ties have
+            happened in many sports at the NCAA Championships using the placement based points system, resulting in no
+            conclusive Champion being determined, the 1970 NCAA Men's
+            Outdoor Track and Field
+            Championship is notably the only instance where three schools (BYU, Kansas, and Oregon) tied to share a
+            single NCAA Team Championship
+            <cite data-bs-toggle="tooltip" data-bs-placement="top" title="Outdoor Track and Field Championship
+                Records.">(National Collegiate Athletic Association, n.d. -d)</cite>.
+        </p>
+        <h6>Team Composition</h6>
+        <p>The main delineator between individual sports using the placement based process is in what constitutes a
+            team.
+        </p>
+        <p>Some sports base their
+            team championship competition on a complete lineup while other sports, like wrestling, base the team
+            competition on only a subset of
+            competitors that have qualified for the championship. Which in turn makes the
+            qualification, or lack of qualification, of an athlete have a
+            direct and potentially significant impact on the subsequent team results at the national championships.</p>
+        <p>For every sport, other than wrestling, where team championships are determined based on only a subset of
+            competitors, qualification is determined at a national level through uniform standards (time, distance,
+            etc), or through regional qualification (Regionals, Zones, Pre-Championship) events.</p>
+
+        <p>This makes wrestling a significant outlier as it does not determine qualification based on national standards
+            or regional placement but rather on conference placement.</p>
+
+        <p>Since conference affiliation is self-selected by each school, or by each individual team as is largely the case
+            within wrestling where 58% of wrestling programs are affiliate members of conferences, this means that
+            individual teams have a great deal of freedom to select their conference membership specifically based on
+            the path that such conference membership will give their athletes in qualifying for the national
+            championships.</p>
+        <p>The sports where only a subset of a team's lineup will compete within the team competition are
+            nearly exclusively sports where the competition is timed. The only sports not timed to determine team
+            standings based on only a subset of athletes from a team are Fencing and Wrestling. Though Fencing utilizes regional qualifiers where competition is conducted within a full round-robin format which produces a complete result against the field. This makes the final placements of athletes at the Fencing regional championships more similar to
+            the placements within a timed race and less opponent dependent than wrestling's advancement tournaments.</p>
+        <h6>Competition Consistency</h6>
+        <p>It's notable to mention that some individual sports lack consistency in their team competition methods.
+            Several sports use a championship method that is different than the primary competition
+            method
+            utilized during the season. Wrestling and Fencing are the only sports to emphasize team competition during
+            the regular season but shift to an individual format for determining team championships. While Golf does the
+            inverse and does not use the team competition format during the regular season but uses the method for
+            determining the team champion.</p>
+
+        <center>
+            <figure>
+                <blockquote>
+                    <p>“It's weird to use a team centric format for regular season, break out
+                        individual results for the postseason, and then recombine to make a team award at the end...”
+                    </p>
+
+                    <figcaption>-
+                        Division I Fencing Coach #2, regarding the Fencing competition structure.
+                    </figcaption>
+                </blockquote>
+            </figure>
+        </center>
+        <p>Though the Fencing National Team Championship is determined within an individual
+            competition format, Conference Championships are conducted in a team dual format<sup>2</sup> held at one
+            competition
+            site (<cite data-bs-toggle="tooltip" data-bs-placement="top" title="CCFC Championship Results">Central
+                Collegiate Fencing Conference, n.d.;</cite> <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Stanford Wins Inaugural MPSF Fencing Championship.">Mountain Pacific Sports Federation,
+                2022;</cite> <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Championshpip Central, Ivy League Fencing">Ivy League, n.d.;</cite> <cite
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Championshpip Central, Ivy League Fencing">ACC,
+                n.d.</cite>).</p>
+        <p>This creates the unique sitution where the two major championships (conference and NCAA) are conducted under
+            differing competion models. </p>
+
+        <p>This deviation in championship formas is the result of programs within
+            conferences setting their prefered competition format for their championships, while not all NCAA fencing
+            programs belong to a conference.</p>
+
+        <p>Moreover, in the ACC, Central Collegiate Conference, and Ivy League, the conference championships exhibit an even greater departure from the norm. These conferences segregate their teams by gender, resulting in separate women's and men's team championships, despite fencing being a coed sport within the NCAA (<cite data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Notre Dame Wins Team Titles at 2022 ACC Fencing Championships.">Atlantic
+                Coast Conference, 2022;</cite> <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="CCFC Championship Results">Central Collegiate Fencing Conference, n.d.;</cite> <cite
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Ivy Fencing Record Book">Ivy League,
+                2021</cite>). Schools within these three conferences have won 18 of the 32 championships held since the
+            sport adopted the coed championship format <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="NC Fencing Championship History">(National Collegiate Athletic Association, n.d. -x)</cite>.</p>
+
+
+
+
+        <center>
+            <figure>
+                <blockquote>
+                    <p>“When we compare the NCAA competition to conference championships like ACCs or Ivies, the
+                        conference
+                        events [using the dual team format] are far more exciting.”</p>
+
+                    <figcaption>-
+                        Division I Fencing Coach #4
+                    </figcaption>
+                </blockquote>
+            </figure>
+        </center>
+
+        <ul>
+            <ul>
+                <p style="font-size: small"><sup>2</sup> Within fencing, events contested utilizing a team dual format
+                    are called <i>team
+                        relays</i> (<cite data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="USA Fencing Rules for Competition.">USA Fencing, 2020</cite>).
+                </p>
+            </ul>
+        </ul>
+        <div id="adjustments"></div>
+        <h3>E. Adjustment of Results for Ineligible Athletes</h3>
+        <p>For individual sports, when an athlete, who competed at an NCAA Championship, is ruled ineligible, the
+            remedy is to vacate that athlete's results from the championship results <cite data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="2021-22 NCAA Division-I Manual, 31.2.2.3.a articipation While Ineligible - Individual Competition">(31.2.2.3.a)</cite>.
+            Depending on the sport, there are two possible additional considerations based on the unique nature of those
+            sports and how the championships are administered.
+        </p>
+        <ul>
+            <h5>Placement and Results Altered</h5>
+            <p>Individual Sports where the placement of athletes is adjusted after the vacation of an ineligible
+                athlete's
+                results.</p>
+            <ul>
+                <li>Cross Country</li>
+                <li>Golf</li>
+                <li>Gymnastics</li>
+                <li>Track and Field (Indoor)</li>
+                <li>Track and Field (Outdoor)</li>
+                <li>Rifle</li>
+                <li>Swimming and Diving</li>
+                <li>Skiing</li>
+            </ul>
+            <p>Examples: (1) The individual champion is ruled ineligible making the runner-up the
+                recognized Champion; (2) the Championship team has an athlete competing at the championship ruled
+                ineligible; the team runner-up will become the team champion.</p>
+            <br>
+            <h5>Placement and Results Not Altered</h5>
+            <p>Individual Sports where placement of athletes or teams will NOT be adjusted if there is an ineligible
+                athlete. The individual athlete will be removed from the standings but there will not be any adjustment
+                to placements or standings.</p>
+            <ul>
+                <li>Bowling</li>
+                <li>Fencing</li>
+                <li>Tennis</li>
+                <li>Wrestling</li>
+            </ul>
+            <p>Example: If an individual or team champion is ruled ineligible the runner-up will not become the
+                champion. There will be no champion recognized for the season.</p>
+        </ul>
+
+        <br>
+        <h5>Analysis</h5>
+        <p>Three of the four sports that do not adjust team scores or placements when an ineligible athlete competes in
+            a championship are sports classified earlier as
+            competitor dependent sports where direct matchups are necessary to conduct competition and thus makes it
+            difficult to simply omit an athlete's results as their omission would impact subsequent results.</p>
+        <p>The only other sport that does not alter results for ineligible athletes is Women's Bowling which is one of
+            the few standards-based sports to utilize a bracketed team competition with head-to-head results determining
+            the
+            national champion.</p>
+
+        <p>As a result of using the head-to-head team competition and bracket, the competition for Women's Bowling is
+            competitor dependent in nature. This makes all competitor dependent Championship formats run the risk of not
+            having a recognized champion should an ineligible athlete compete. </p>
+
+        <div id="primaryComparisons"></div>
+        <h3>F. Primary Comparisons</h3>
+        <p>Based on the analysis of individual sports there are a few sports that share the most structural qualities
+            with wrestling.</p>
+        <ul>
+            <h5>Fencing</h5>
+            <p>The sport that best aligns with wrestling is fencing.</p>
+            <p>Both sports are competitor dependent and primarily compete in dual meets during the season before
+                pivoting to an individual model for the postseason. Postseason qualification is only for individual
+                athletes without any consideration for team membership and a mathematical model is used for determining
+                the team title based on the results of the subset of athletes who compete at the championships.</p>
+            <p>While fencing uses a regional model for qualification through four regional qualifiers, the wrestling
+                model is technically conference centric as it is written. But in application, with only seven wrestling
+                conferences and a qualification system that awards different numbers of bids to each conference, the
+                system mirrors fencing's regional model almost directly. Both sports have an average of 11 teams at
+                each qualifier. </p>
+            <p>The individual centric model of the two sports is nearly identical.</p>
+            <p>The competition format at the championship would be the most significant difference with wrestling
+                utilizing an advancement tournament and fencing using round-robin pools that advance into a round-robin
+                finals.</p>
+            <p>However, both championship formats are individual centric formats that overlay a team score to implement
+                a team championship aspect for the event.</p>
+
+            <h5>Tennis</h5>
+            <p>Tennis is the sport that next best aligns with the structure of wrestling.</p>
+            <p>The major difference between wrestling and tennis is that tennis has chosen to adopt a team centric
+                model and continue that structure through the postseason.
+            </p>
+
+            <p>While tennis still has an individual championship, there is also an additional team championship, held
+                seperatley, based on dual
+                competitions and qualification to the event is awarded based on a team's conference dual results during
+                the
+                season.</p>
+            <p>Outside of the method for crowning the team champion, however, tennis and wrestling are very similar.</p>
+            <p>Tennis individual (singles and doubles) qualification is earned by being one of the best in the country
+                compared to
+                the qualification system in wrestling which is based on your conference affiliation and the depth of the
+                talent in the conference tournament.</p>
+            <p>Tennis's structure is team centric throughout the season though there are opportunities for individual
+                competition in a portion of the season, much like that of wrestling where most individual competitions
+                are not team
+                scored events.</p>
+            <p>The tennis structure mirrors that of other NCAA team sports such as basketball, soccer, lacrosse,
+                volleyball, baseball/softball which are structures that athletic departments are familiar with and
+                allows them to gauge performance more easily against established metrics.</p>
+            <p>The tennis championship structure is unique insofar as there are two separate championship
+                events held at the end of the season. The team championship and the individual championships are each
+                conducted at the end of the season with each having
+                their own
+                qualification processes. While wrestling simply overlays the team championship onto the individual
+                championship for only one championship event.</p>
+
+
+        </ul>
+
+        <div id="historicChanges"></div>
+        <h3>G. Historic Changes to Championship Formats</h3>
+        <p>Throughout the history of NCAA Championships, in all sports, there have been format changes made. Most are
+            minor changes such as the field size, qualification methods, or a move to (or away from) a conference or
+            regional system.
+        </p>
+        <p>However, for individual sports, there have been a few changes that have been significant. Many of these were
+            viewed as
+            bold changes at the time they were implemented and there was great concern about the risks with making such
+            changes.</p>
+        <ul>
+            <li><strong>NCAA Men's Tennis Championship</strong></li>
+            <p>Prior to 1977, the NCAA Men's Tennis Team Champion was determined based on a calculated point system
+                derived
+                from the number of wins individual athletes from each school earned throughout the championship <cite
+                    title="Division I Men's Tennis Championship History.">(National Collegiate Athletic Association,
+                    n.d. -z)</cite>. This
+                system
+                had been in use for 30 years, following the adoption in 1946. And on two occasions resulted in
+                co-national champions when teams tied for the top spot in the points standings.</p>
+
+            <p>Despite the tradition of the system, the sport's membership decided to take a team centric view
+                for the team
+                competition and have the team title determined based on a bracketed
+                single-elimination tournament of the top-16
+                teams through a dual-match format.</p>
+            <p>The adopted model proved to be successful. Not only was the format well recieved by athletes and coaches,
+                but the championship attendance at the finals climbed from 5,770 in the last year of the individual
+                centric format to 16,069 in the first year of the team dual format <cite
+                    title="Division I Men's Tennis Championship History.">(National Collegiate Athletic Association,
+                    n.d. -z)</cite>. With the best attended championship coming in 1993 when Stanford defeated the host
+                Georgia 5-3 in front of 34,184 fans.</p>
+            <p>The Division I championship field continued to expand until 1999 when
+                the field settled into its current format of 64 teams <cite
+                    title="Navy to Play North Carolina in NCAA Men’s Tennis Tournament.">(Patriot League, 2022)</cite>.
+                Teams now compete only once a day over the event
+                with most of the championship matches being held on the campus of the higher seeded team <cite
+                    title="Teams announced for 2022 NCAA Division I men’s tennis championship.">(National Collegiate
+                    Athletic Association, 2022m)</cite>.
+            </p>
+            <p>When the NCAA started conducting Women's Tennis Championships in 1982, the dual-match format was adopted
+                as
+                the method for determining the team champion and the field also grew to reach the current 64 team field
+                <cite title="Division I Women's Tennis Championship History.">(National Collegiate Athletic Association,
+                    n.d. -y)</cite>.
+            </p>
+            <p>In 1983, Division II and Division III Men's Tennis followed the lead taken by the Division I seven years
+                prior and the Division I Women the year before when they abandoned the individual centric model (<cite
+                    title="Division II Men's Tennis Championship Records Book.">National Collegiate Athletic
+                    Association, n.d. -aa; </cite> <cite
+                    title="Division III Men's Tennis Championship Records Book.">National Collegiate Athletic
+                    Association, n.d. -ab; </cite>). All NCAA Tennis Championships have utilized the dual team format
+                for determining their team champions ever since.</p>
+
+            <p>Based on the interviews conducted with Division I Tennis Coaches, this model of team qualification and
+                competition (conference
+                team champion automatic qualification to a single elimination national tournament), helps administrators
+                to better understand
+                the tennis program without needing to understand tennis. While the individual championship, conducted at
+                a different date and location than the team championship provides an avenue for individuals
+                to compete for their own national championships, ensuring that individual athletes are not dependent on
+                their team's performance for individual honors.</p>
+            <p>There are still a handful of active NCAA tennis coaches who either coached or competed under the old
+                individual
+                centric system.</p>
+
+
+
+            <li><strong>NCAA Men's Golf Championship</strong></li>
+            <p>For nearly 50 years, the NCAA Men's Golf Team Champion was decided by stroke play, a scoring method where
+                each stoke taken by an athlete is counted to determine the athlete's score <cite
+                    title="Men's Golf, Championship History.">(National Collegiate Athletic Association, n.d.
+                    -h)</cite>. Team scores are determined
+                by taking the sum number of strokes for the four (4) best performing golfers from each team of five (5)
+                declared athletes. Best cumulative
+                team score is then recognized as the team champion <cite
+                    title="How the NCAA men’s and women’s golf championships work">(McDonald, 2019)</cite>.</p>
+            <p>Despite the ease of administering this championship there was a desire to get more fan and media
+                engagement for collegiate golf.</p>
+            <p>A group of college
+                coaches felt the sport deserved and could generate more attention than it was receiving and
+                thus started a decade
+                long push to change the format of the championship to a team centric model with the goal of increasing
+                fan engagement <cite title="Since NCAAs adopted match play and attracted Golf Channel,
+                college golf has become must-see TV.">(Nichols, 2016)</cite>.</p>
+            
+            <p>The change that followed was the adoption of a team tournament bracket to determine the team champion.
+                While a separate individual
+                championship in the traditional stroke play format was preserved to ensure the best individual athletes
+                would still be honored <cite
+                    title="2022 Division I Men's Golf Championships, Pre-Championship 2021-22 Manual">(National
+                    Collegiate Athletic Association, n.d. -g)</cite>.</p>
+
+            <p>This proposal created factions within college golf and resulted in significant vocal opposition
+                from some coaches.</p>
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“We're here to determine a team champion. [You've seen] how big that [individual
+                                championship] trophy
+                                was last
+                                night. It's not nearly as big as [the team trophy].”</p>
+    
+                            <figcaption>- Bruce Heppler, Georgia Tech Head Men's Golf Coach
+                                <cite title="Proposed NCAA format change impacts match play.">(Herrington, 2013a)</cite>
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+                
+            <p>In this new team model, the top eight teams as determined based on play in early rounds of the
+                championship were seeded in a bracket and would compete head-to-head in a
+                single
+                elimination advancement tournament utilizing match play rules to determine the champion.</p>
+            <p>Under this scoring model, each team declares five players. For each match, one player from each
+                team is matched with a player from the opposing team to play head-to-head against each other. The lowest
+                score on each hole wins the hole. The golfer to win the most holes at the end of the round
+                earns one team point. The team to win three out of five individual matches is declared the head-to-head
+                team
+                winner <cite title="Men's golf championship gets a makeover">(National Collegiate Athletic Association,
+                    2008)</cite>.</p>
+            <p>The team to win the quarter-final, semi-final, and finals in this head-to-head team competition format is
+                crowned the
+                National
+                Champion.</p>
+            <p>Though a controversial move at the time, the implementation of the team bracket in 2009 for head-to-head
+                team competition is viewed as an overwhelming success within collegiate golf <cite
+                    title="How the NCAA Championship has become one of golf's best tournaments">(Ryan, 2018)</cite> for
+                delivering increased
+                engagement and
+                media exposure <cite
+                    title="Love it or hate it, match play has let college golf get its wish.">(Herrington, 2014)</cite>.
+            </p>
+            <p>Despite achieving the desired goals, those within college golf openly acknowledge that there are doubts
+                the
+                team to win the
+                national title is the best team in a given season <cite
+                    title="Oklahoma State will go down as one of the best, despite falling short of NCAA Championship.">(Ringler,
+                    2019b)</cite>.</p>
+            <p>The new championship process of determining the national team championship is based on a smaller sample
+                size of holes and thus is more likely to skew from the result in the
+                longer format of stroke play.
+            </p>
+            <p>Any slight deviation from expected performance by an athlete can significantly skew the results in the
+                new 18 hole head-to-head team
+                competition format compared to the 56 and 72 hole formats that have been
+                used for stroke play.</p>
+            <p></p>
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>"Having one-on-one [team] matches is great for TV, great for the crowds and it makes for an
+                            exciting
+                            atmosphere. Being a part of it last year was one of the most exciting things I've
+                            experienced in my whole career."</p>
+
+                        <figcaption>- Rob Bradley, Head Men's Golf Coach, Purdue University <cite
+                                title="NCAA format creates more interest in college golf.">(Carmin, 2014)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+            <p>For some people this is a feature of the system. Golf often had teams entering the championship that were
+                expected to win the National Championship. And the team race would often be anti-climatic when the team
+                race was decided early by a large margin <cite
+                    title="Match play proposed for NCAA women's championship.">(Herrington, 2013b)</cite>. Match play
+                provides more drama and more excitement. Not only are upsets more likely in the format but the format
+                does not have competition continuing when the team result is already decided. The competition ends with
+                the deciding result. Meaning the matches always end with a sudden victory.</p>
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“I’ve spoken to several college coaches, many of whom were around before the switch to match
+                            play and after. The drama of their NCAA Championship experiences was a theme that often
+                            arises in conversations, and most of the memorable moments have happened in the
+                            post-match-play era. Though I never saw any of them take place in person, and only heard the
+                            details secondhand through coaches and players, those stories are among the best I’ve heard
+                            during the time I’ve spent on tour. There’s something fascinating about a match whose legend
+                            increases with time, as though a seed was planted on the day itself and its notoriety grew
+                            with the reputation of its combatants.”</p>
+
+                        <figcaption>- Shane Ryan, <cite
+                                title="How the NCAA Championship has become one of golf's best tournaments">(GolfDigest,
+                                2018)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+            <p>While there are others among the "old guard" who believe the change has robbed deserving teams with the
+                most consistent play of their championships <cite
+                    title="Match play is good for golf, but bad for Oklahoma State">(Slavin, 2019)</cite>, the coaches
+                and administrators of the teams that have missed out on national championships from the change are
+                themselves supporters of the new team based competition format <cite
+                    title="Love it or hate it, NCAA Championship match play format here to stay">(MacLeod, 2019)</cite>.
+            </p>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“Match play is good for television, but the Kardashians have great ratings too. Are you just
+                            shooting for entertainment or does it have a point.”</p>
+
+                        <figcaption>- Tom Jones, Oklahoma State 4x All-American, 1974-1977 <cite
+                                title="Love it or hate it, NCAA Championship match play format here to stay">(MacLeod,
+                                2019)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+            <p>The overwleming majority of coaches, athletes, and administrators view the increase in standing within
+                their athletic
+                departments and
+                increased interest in collegiate golf by golf fans due to the exciting nature of the head-to-head
+                match-ups worth the change <cite
+                    title="Since NCAAs adopted match play and attracted Golf Channel, college golf has become must-see TV">(Nichols,
+                    2016)</cite>. And as a result, the opposing factions
+                have largely faded and become more nuanced with each passing season. The sport membership has continued
+                to support the continuation of the new
+                format. </p>
+
+
+
+
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“I saw more drama, passion and excitement in one year of match play than I had seen in
+                            the past seven years of stroke-play championship.”</p>
+
+                        <figcaption>- Donnie Wagner, NCAA’s Associate Director
+                            of
+                            Championships and Alliances <cite
+                                title="Since NCAAs adopted match play and attracted Golf Channel, college golf has become must-see TV.">(Nichols,
+                                2016)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+            <li><strong>NCAA Women's Golf Championship</strong></li>
+            <p>While Men's Golf adopted the match play format for championship competition in 2009, the women did not.
+            </p>
+            <p>There was not support within women's golf to make the change proposed by the men. And even after the
+                men's adoption which was viewed as successful, there was a lot of doubt that the same benefits would
+                come to women's golf if the model were adopted. It was accepted that the men already had a larger
+                following than the
+                women's game and there were doubts that a team centric format change would cultivate a fan base for
+                women's golf.</p>
+            <p>Despite doubts, observing the continued success of the men's championship the women's championship
+                decided to adopt a bracketed, head-to-head, team championship for women's
+                golf to start at the 2015 Championship <cite
+                    title="New format approved for Division I women’s golf Championship">(Johnson, 2013)</cite>.</p>
+            <p>As with the men's game, the women's game has viewed the change as a success.</p>
+            <p>Based on the observable benefits of the men's and women's NCAA championships, there are now calls for the
+                Olympics to adopt the model to incorporate the team
+                dynamic to increase interest in the Olympic golf competition based on the brands of the participating
+                nations the way NCAA golf benefits from the brands of the participating schools (<cite
+                    title="NCAA golf provides the sport’s best format. Let’s bring it to the pro game">Robbins, 2017;
+                </cite> <cite title="The Olympics golf format is all wrong, but there’s an easy
+                    solution">Dethier, 2021</cite>).</p>
+
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“[The team dual format] appeals more to a larger audience, even more than I would’ve
+                            guessed.”</p>
+
+                        <figcaption>- Kelley Hester, Head Women's Golf Coach, Clemson University <cite title="Since NCAAs adopted match play and attracted Golf Channel,
+                                        college golf has become must-see TV.">(Nichols, 2016)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“It has been amazing to me how many people watched [the dual format], talked about it. How
+                            many people talked about their daughters watching. For me, that’s the most tangible part of
+                            it. I don’t think people had any idea how good the product was.”</p>
+
+                        <figcaption>- Pat Goss, Director of Golf, Northwestern University <cite title="Since NCAAs adopted match play and attracted Golf Channel,
+                                        college golf has become must-see TV.">(Nichols, 2016)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+
+
+
+
+
+            <li><strong>NCAA Fencing</strong></li>
+            <p>Prior to the 1990 championship, the NCAA crowned two national champion fencing programs each year, one
+                for
+                men and one for women. But in 1990 the championships were combined to make the sport coed (<cite
+                    title="Penn State Fencing’s Quiet Dynasty.">Doon, 2015;</cite> <cite
+                    title="NCAA Fencing Championships (1941 to 2019)">Masin, 2019</cite>). While competition between
+                competitors remained gender specific within each event (men vs men; women vs women), the
+                team competition was based on the cumulative results of both genders combined.</p>
+            <p>This change was significant given that the men's championship had been conducted since 1941 <cite
+                    title="USA Fencing: Celebrating 130 Years of Fencing in America">(Jomantas, 2021)</cite> and the
+                women's championship since 1982 <cite
+                    title="Women's Fencing National Finishes (1982-1989), WSU Fencing National Finishes (1990-present).">(Wayne
+                    State Athletics, n.d.)</cite>. But the change was viewed as a possible solution to the problem of
+                declining sponsorship and was made in an effort to preserve NCAA championship competition <cite
+                    title="Who are those masked men?">(O'Brien, 1990)</cite>.</p>
+            <p>By making the sport
+                coed, it
+                was thought, gender equity could be solved. Program resources could be consolidated (i.e. sharing
+                coaches and travel expenses), and thus more programs, specifically men's programs,
+                would be preserved by binding the men and women together.
+            </p>
+            <p>Despite the best of intentions, the proposed benefits of this change never materialized.
+                In fact, it created a new and unique problem.</p>
+
+            <p>School administrators made the decision to eliminate or not expand sponsorship for male athletes and
+                in doing so eliminated their female athletes from ever being able to compete for a team championship.
+            </p>
+            <p>A total of 44 NCAA schools sponsor fencing (2021-2022 season), though eleven of these schools,
+                one-quarter of all
+                schools, are mathematically eliminated from winning a national title even before qualification
+                starts. This is as a result of only fielding a team of women. And since there are no teams that only
+                field men, the <i>NCAA External Gender Equity
+                    Review</i> noted
+                this championship structure does not prevent any male athletes from the opportunity to compete for a
+                national team championship but prevents many women from the same opportunity <cite
+                    title="NCAA External Gender Equity Review, Phase II.">(Kaplan Hecker & Fink LLP, 2021-b)</cite>.</p>
+
+            <p>For these women's programs, the team competition is
+                not a consideration; the championships are merely
+                an individual championship.</p>
+            <p>Fencing's unique situation is emblematic of the multitude of factions found within every
+                sport and how the decisions made by some, even if well intended, can adversley impact others.</p>
+
+            <p>Some programs within fencing prefer the team centric model of competing for a team championship while
+                other programs are much more focused on individual competitions, be it due to philosophical
+                perspectives, budget constraints, or
+                administrative directives. Which will make the undertaking to solve the gender equity issues difficult
+                while working to satisfy all of the current stakeholder's interests <cite
+                    title="Report of the NCAA Men's and Women's Fencing Committee March 28, 2022.">(National Collegiate
+                    Athletic Association, 2022p)</cite>. </p>
+
+
+
+
+            <li><strong>NCAA Women's Gymnastics</strong></li>
+
+
+            <p>After successfully drawing viewers to gymnastics dual meets on the Pac-12 Network and SEC Network, NCAA Women's Gymnastics decided to alter the format of the NCAA Championships by narrowing down the field of teams competing in the finals. In the past, six teams would compete in the finals for the National Championship. However, this process failed to impress media partners and fans who tuned in to watch the NCAA Championship from home <cite
+                    title="NCAA gymnastics changed its postseason, hoping for its own March Madness moments">(Giambalvo,
+                    2019)</cite>.</p>
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“Gymnastics ranks behind only football and men's basketball in viewership [on the Pac-12
+                            Network]. And it's a close third.”</p>
+
+                        <figcaption>- Kirk Reynolds, Pac-12 Vice President of Communications <cite
+                                title="Utah gymnastics: Gymnastics an easy sell for Pac-12 Networks">(Wodraska,
+                                2015)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+            <p>Following the team scores was difficult due to the imbalance in number of teams and competing events.
+                Some teams had byes, or off-rounds, where they wouldn't be
+                competing in the rotation. Fans could never be sure of an accurate representation of the
+                team standings based on the team scores at any moment in the competition.</p>
+
+            <p>The move to eliminate two teams from the finals and four teams from the semi-finals was one of the rare
+                moments when programs proposed and then supprted the decision to diminish opportunities for themselves and their athletes.</p>
+                <p>The NCAA carefully considered the implications of eliminating two teams from the finals and four teams from the semi-finals, recognizing that it would restrict opportunities for programs and athletes. However, research indicated that the change would generate more interest in the sport overall, not just in the finals, and would benefit programs that typically wouldn't qualify for the championship. This decision was also buoyed by the addition of a new early round featuring two team play-in dual meets, which expanded opportunities for programs with limited championship experience.</p>
+           
+            <p>This addition to the championship was made at the request of schools with more limited success who cited
+                team qualification
+                to the NCAA team championships as a significant accomplish as measured by their athletic departments.
+                Participation in the team championship event (as opposed to having an elite athlete qualify for the
+                individual
+                championship) has
+                been viewed as a strong defense against reducing gymnastics program funding or dropping gymnastics
+                program all
+                together while also aiding in fundraising efforts for the program.</p>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“When faced with making hard decisions, like eliminating a program due to budget issues, it
+                            is easier
+                            to eliminate a [individual centric] sport carried by a few elite athletes.
+                            Upset fans
+                            point to the success of those few athletes as proof the program should remain, but a few
+                            athletes
+                            aren't representative of the state of the program. Those few athletes will find other
+                            opportunities
+                            to compete, and often with even better programs, so fans won't fight the decision in the way
+                            you see when everyone a part of the program feels like they contribute to the success
+                            will fight.”</p>
+
+                        <figcaption>- Division I Athletic Director #2
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+            <p>These competitive first round matchups at the NCAA championship provide a forum for the teams to compete
+                in the championship against peer programs with the winner advancing the tougher second round.</p>
+            <p>Being competitive in the first round of the NCAA Championships or advancing to the second round of the
+                tournament increases the perception to key stakeholders of the program that the program is competitive
+                nationally.
+            </p>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“We've got to do a better job of making it easily understandable to our peers, our
+                            administrators, our other coaches in our department, as well as the general public. Our
+                            uniqueness should be what we do, not necessarily how we do it.”</p>
+
+                        <figcaption>- Greg Marsden, Retired Women's Gymnastics Coach, 7x National Coach of the Year
+                            <cite
+                                title="NCAA gymnastics changed its postseason, hoping for its own March Madness moments">(Giambalvo,
+                                2019)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+            <p>These changes proved successful in producing a significant increase in fan engagement and championship
+                viewership which peaked at 1.1 million viewers in 2022 under the new format (<cite
+                    title="NCAA Women’s Gymnastics Dominates ESPN Social Media Engagement">Christovich,
+                    2002;</cite> <cite title="NCAA Gymnasics Final Peaked at 1.1 Million Viewers">Hruby, 2022;</cite>
+                <cite title="NCAA gymnastics championship broadcast was a quantum leap forward">Moore, 2021</cite>).
+            </p>
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“[The dual meet's back and forth format is] television
+                            heaven”</p>
+
+                        <figcaption>- Kathy Johnson Clarke, Olympic medalist and ESPN analyst <cite
+                                title="NCAA gymnastics changed its postseason, hoping for its own March Madness moments">(Giambalvo,
+                                2019)</cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+        </ul>
+
+
+        <hr>
+        <center>
+            <a href="Introduction.html" class="previous">&laquo; Previous</a>
+            <a href="StakeholderFeedback.html" class="next">Next &raquo;</a>
+        </center>
+        <script>
+
+            function accordChange(btn) {
+                console.log('btn', btn);
+                //console.log(btn.getAttribute('data-bs-target'));
+                var itm = document.getElementById(btn.getAttribute('data-bs-target').replace('#', '').trim());
+                //if(itm.classList.contains('show')){
+                //console.log('remove');
+                // itm.classList.remove('show');
+                //}else{
+                //    itm.classList.add('collapsing');
+                //    console.log('add');
+                // }
+
+            }
+            function tabClicked(el) {
+
+                //console.log(el);
+                var current = el.parentElement;
+                var nextSibling = current.nextElementSibling;
+                var prevSibling = current.previousElementSibling;
+
+                current.classList.add("active");
+
+                var cElm = document.getElementById(current.getAttribute('name'));
+
+                cElm.style.display = 'block';
+                cElm.style.visibility = 'visible';
+
+                while (nextSibling != null) {
+                    nextSibling.classList.remove("active");
+                    let nxt = document.getElementById(nextSibling.getAttribute('name'));
+
+                    nxt.style.display = "none";
+                    nxt.style.visibility = "hidden";
+                    nxt.classList.remove("active");
+
+                    nextSibling = nextSibling.nextElementSibling;
+                }
+                while (prevSibling != null) {
+                    prevSibling.classList.remove("active");
+                    let prv = document.getElementById(prevSibling.getAttribute('name'));
+
+                    prv.style.display = "none";
+                    prv.style.visibility = "hidden";
+                    prv.classList.remove("active");
+
+                    prevSibling = prevSibling.previousElementSibling;
+                }
+            }
+
+
+
+
+        </script>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+
+    <script src="log.js"></script>
+    <script type="text/javascript" src="canvas.js"></script>
+
+    <script src="surveyData.js"></script>
+
+    <script>window.onload = function () {
+            onLoad();
+            //loadSurvey();
+            //tabClicked(document.getElementById('firstSurveyQuestion'));
+            //tabClicked(document.getElementById('respondentData'));
+        };
+
+        window.onresize = function () {
+            //loadSurvey();
+        }</script>
+
+</body>
+
+
+
+
+
+</html>

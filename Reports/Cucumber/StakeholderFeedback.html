@@ -1,0 +1,829 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name=”robots” content=”noindex, follow”>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <title>Cucumber Report</title>
+    <link rel="stylesheet" href="logDesign.css">
+</head>
+
+<style>
+    .wrap {
+
+        //max-width: 90.938vw;
+        margin-left: auto;
+        margin-right: auto;
+        //padding-left: 0.133vw;
+        //padding-right: 0.133vw;
+
+    }
+
+    body {
+        //background-color: #eee;
+        font-family: Tahoma, Arial, sans-serif;
+        margin: 0;
+        padding: 10%;
+    }
+
+    section {
+        //margin: 0 0.417vw;
+    }
+
+    .hidden {
+        font-size: 0;
+    }
+
+    .header-text {
+        color: white;
+        background: linear-gradient(blue, navy);
+        border: double 0.260vw white;
+        border-radius: 1em;
+        text-align: center;
+        padding: 0.260vw 0;
+    }
+
+    .header-text h1,
+    .header-text h6 {
+        margin: 0;
+    }
+
+    .header-text h1 {
+        font-size: 1.5em;
+    }
+
+    .half-circle-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .bottom-circle {
+        margin-top: -0.260vw;
+        transform: rotate(180deg);
+    }
+
+    .top-circle {
+        margin-bottom: -0.260vw;
+    }
+
+    .half-circle {
+        height: 2.604vw;
+        /* Alter here for height of circle segment */
+        overflow: hidden;
+    }
+
+    .half-circle>div {
+        width: 20.833vw;
+        /* Alter here for circle diameter */
+        height: 20.833vw;
+        /* Alter here for circle diameter */
+        border: 0.260vw double white;
+        border-radius: 50%;
+        background: navy;
+    }
+
+    .tournament {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tournament .round {
+        font-size: .75em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 10.417vw;
+        list-style: none;
+        padding: 0;
+    }
+
+    .tournament .round .spacer {
+        flex-grow: 2;
+    }
+
+    .tournament .round .spacerMinus {
+        flex-grow: -2;
+    }
+
+    .tournament .round .spacer:first-child,
+    .tournament .round .spacer:last-child {
+        flex-grow: 1;
+    }
+
+    .centerText {
+        text-align: center;
+    }
+
+    .first-four {
+        border: 0.052vw solid #888;
+        border-radius: 1em;
+        background-color: lightcyan;
+        padding: 0 1em;
+    }
+
+    .tournament-header {
+        text-align: center;
+        font-weight: bold;
+        border-radius: 1em;
+        border: 0.052vw solid black;
+        background-color: rgb(243, 241, 241);
+        color: rgb(32, 31, 31);
+    }
+
+    .first-four-winner li.game-left,
+    .round-1 li.game-left,
+    .round-2 li.game-left,
+    .round-3 li.game-left,
+    .round-4 li.game-left,
+    .semi-final li.game-left {
+        padding-left: 0.5em;
+    }
+
+    .first-four-winner li.game-right,
+    .round-1 li.game-right,
+    .round-2 li.game-right,
+    .round-3 li.game-right,
+    .round-4 li.game-right,
+    .semi-final li.game-right {
+        padding-right: 0.5em;
+    }
+
+    .region {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .region-right {
+        text-align: right;
+        padding-right: 0.260vw;
+    }
+
+    .region-left {
+        text-align: left;
+        padding-left: 0.260vw;
+    }
+
+    ul.seed li.game-left span:first-child,
+    ul.seed li.game-right span:last-child {
+        font-size: 0.7em;
+    }
+
+    li.game-right {
+        text-align: right;
+        border-left: 0.052vw solid #aaa;
+    }
+
+    li.game-left {
+        border-right: 0.052vw solid #aaa;
+    }
+
+    li.game-bottom {
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-top {
+        border: none;
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-left.spacer {
+        border-right: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-right: .25em;
+    }
+
+    li.game-right.spacer {
+        border-left: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-left: .25em;
+        text-align: left;
+    }
+
+    .final {
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border: 0.052vw solid #aaa;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-weight: bold;
+    }
+
+    .finals .centered {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .finals .centered>input {
+        display: block;
+        width: 4em;
+        margin: 0 auto 0 auto;
+        text-align: center;
+    }
+
+    .body-first-child {
+        margin-top: -2.344vw;
+    }
+
+    .extra-padding {
+        padding-top: 2.344vw;
+    }
+
+    table.standings {
+        border-collapse: collapse;
+    }
+
+    table.standings td,
+    table.standings th {
+        border: 0.052vw solid #ccc;
+    }
+
+    .standings {
+        margin: 0 auto;
+    }
+
+    .centerDiv {
+        margin: 0 auto;
+    }
+
+
+
+
+    DIV.conf {
+        border: 0.104vw solid lightblue;
+        text-align: center;
+        display: flex;
+        width: 100%;
+        float: none;
+        justify-content: center;
+        display: inline-flexbox;
+        align-items: center;
+    }
+
+    #teamsInConferences {
+        border: 0.052vw 0vw solid #000000;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        float: none;
+    }
+
+
+
+
+    table.standings {
+        table-layout: auto;
+        //float:left;
+        //background:yellow;
+        //width: 470;
+        margin: 3%;
+    }
+
+    table.conf {
+        table-layout: auto;
+
+        //float: left;
+        //background:yellow;
+        width: 90%;
+        margin: 0.8%;
+    }
+
+    .active {
+        background-color: #E6ECE9;
+        //color: black;
+        //border-style: dotted;
+    }
+</style>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name=”robots” content=”noindex, follow”>
+<link rel="stylesheet" href="logDesign.css">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+
+<body>
+
+    
+    <div id="menuBar">
+
+        <div class="menu">
+            <span></span>
+        </div>
+        <nav class="navbar-menu">
+            <ul class="menu-listing">
+                <li>
+                    <div id="mobileMenuIssueNote">You may need to rotate your device to see all menu options</div>
+                </li>
+                <li><a href="home.html">Home</a></li>
+                <li>Chapters</li>
+                <li><a href="Introduction.html">Introduction</a></li>
+                <li><a href="NCAAIndividualSports.html">I. NCAA Individual Sports</a></li>
+                <li><a href="StakeholderFeedback.html">II. Stakeholder Feedback</a></li>
+                <li><a href="Restructuring.html">III. Restructuring</a></li>
+                <li><a href="IndividualQualification.html">IV. Individual Qualification</a></li>
+                <li><a href="TeamQualification.html">V. Team Qualification</a></li>
+                <li><a href="Merge.html">VI. Demand for the Championship</a></li>
+                <li><a href="Schedule.html">VII. Schedule</a></li>
+                <li></li>
+                <li><a href="Citations.html">References</a></li>
+                <li><a href="Support.html">Endorsing the Report</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id='spin' class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+
+    <div id="home" class="page">
+
+        
+        <center>
+            <a href="NCAAIndividualSports.html" class="previous">&laquo; Previous</a>
+            <a href="Restructuring.html" class="next">Next &raquo;</a>
+        </center>
+        <hr>
+        <div id="stakeholderFeedback"></div>
+        <h1>II. Stakeholder Feedback </h1>
+
+        <p>Reviewing the current competition structures utilized by individual sports is useful for identifying
+            commonalities and outliers within the structures but this information does not provide valuable context
+            about these structures about their support and acceptance within the sport. It is important to get feedback from
+            stakeholders on these structures.</p>
+
+        <p>In an effort to gain insights into the perspectives of the coaches of Division I (or National Collegiate,
+            if the sport does not compete in divisions) programs, feedback was solicited through surveys and interviews.</p>
+
+       
+        <div id="interviews"></div>
+        <h3>A. Interviews</h3>
+        <p>Interviews were conducted with coaches from a cross-section of individual sports to gain a further understanding
+            of what coaches of individual sports, other than wrestling, felt were strengths and weaknesses in
+            their systems.</p>
+        <p>These interviews were augmented with interviews from athletic directors at schools ranging in degree of sport
+            sponsorship and level of resources allocated to their athletic department to gain different
+            perspectives.</p>
+        <p>All interviews were conducted on the condition of anonymity and as such will not be cited. A list of
+            interviews may be found on the reference page.</p>
+        <ul>
+            <h3 id="trends">1. Interview Trends</h3>
+            <p>As is the case within wrestling, the interviews reflected many different perspectives within each sport
+                with many coaches
+                within each sport sharing conflicting visions for the sport.</p>
+            <p>Below are the most consistent perspectives shared through these interviews.</p>
+
+            <ul>
+                <h5 id="interviewSeasonFocus">a. Season Focus</h5>
+
+                <p>The most common theme among all sports was a desire to compete within a team-centric framework. This was a surprising finding, as it was consistent across sports and across programs with varying levels of financial resources within each sport. On the rare occasions when an interview yielded support for an individual-centric framework, it was often from a program competing for NCAA titles. The reasoning behind this preference was that an individual-centric model would better prepare their athletes for professional careers. However, this was not a widespread trend among the top programs in individual sports, and there were even some low-resource programs that held this perspective. There was no apparent difference in structure preference based on the level of resources available to the program, although no formal test was conducted to verify this finding.</p>
+                
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“Team centric is significantly better in every way.”</p>
+
+                            <figcaption>- Division I Women's Gymnastics Coach #5
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+                
+                <h5 id="championshipstructure">b. Championship Structure</h5>
+                <p>The next most common theme among the interviews was a desire to have an individual championship that is separate from the team championship. Many respondents expressed a preference for having the team and individual championships as two distinct events, with a strong desire for the individual championship to follow the team championship as a stand-alone event. There was a consensus that programs should be able to focus on the team championship first, and then allow their top athletes the opportunity to compete for individual accolades once the team championship has been completed. Many coaches felt strongly that this structure would be most beneficial for their program, as they were concerned that too much focus on individual athletes could come at the expense of the team. These coaches wanted to maintain a team focus, but also wanted to add a small number of individual opportunities to the season. Coaches who wanted to move towards more of an individual focus were typically from sports with few, if any, individual opportunities, and even then, they still wanted to keep the team focus as a priority. This ordering of championship events, with the team championship coming first followed by the individual championships, is supported by collegiate wrestling coaches according to previous research <cite title="Evolving the core product: Stakeholder’s perceptions of
+                    the NCAA wrestling season">(Cooper & Weight, 2011)</cite>.</p>
+
+                    
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“We don’t have an individual component and we should. We should have an individual
+                                championship.”</p>
+
+                            <figcaption>- Women's Bowling Coach #1, Interview
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“I believe the team championships are the most important but would like to see our
+                                individual
+                                finals
+                                brought back on a separate day after the team is determined.”</p>
+
+                            <figcaption>- Division I Women's Gymnastics Coach #3
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“I wish we could separate the individual National championship away from the team
+                                championship. Too
+                                much
+                                emphasis (especially from our TV partner) is placed on the individual during our team
+                                championship.”
+                            </p>
+
+                            <figcaption>- Division I Men's Golf Coach #8
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+              
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“The NCAA Tennis Championships should remain the same format with the 64 Team
+                                Championship
+                                first
+                                followed by the 64 Individual Singles Championship and the 32 Individual Doubles
+                                Championship.”</p>
+
+                            <figcaption>- Division I Women's Tennis Coach #10
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+
+                <center>
+                    <figure>
+                        <blockquote>
+                            <p>“[Conducting] the team and individual at the same time is unfair to the student athletes.
+                                As
+                                an
+                                example, a player may have to choose to play it safe down the stretch to help the team,
+                                but
+                                not go
+                                for broke to win the individual title. Those conflict with each other and a Student
+                                Athlete
+                                should
+                                not be put in that position.”</p>
+
+                            <figcaption>-
+                                NCAA Division I Men's Golf Coach #2
+                            </figcaption>
+                        </blockquote>
+                    </figure>
+                </center>
+
+
+                
+
+
+            </ul>
+        </ul>
+        <div id="survey"></div>
+        <h3>B. Coaches Survey</h3>
+        <p>Survey of individual sport coaches at programs competing at the highest division within NCAA competition.
+        </p>
+        <ul>
+            <div id="surveyframwork"></div>
+            <h3>1. Survey Framework</h3>
+
+            <p>The sports chosen for the survey were those identified in the previous
+                analysis as sharing similar qualities with wrestling or for which the sport has made recent changes to
+                the
+                championship structure.</p>
+            <p>With the goal to see if sports with similar competition qualities share similar perspectives
+                to
+                wrestling or if there is a deviation in perspectives. Additionally, sports that have recently altered
+                their
+                competition structure are included to gain feedback on perspective following changes in
+                competition
+                structure as these sports have the unique perspective of competing under different frameworks.</p>
+
+            
+            <p>As such, coaches of the following sports were surveyed:</p>
+            <ul>
+                <li>Bowling</li>
+                <li>Fencing</li>
+                <li>Golf</li>
+                <li>Gymnastics</li>
+                <li>Tennis</li>
+                <li>Wrestling</li>
+            </ul>
+            <br>
+            <p>Participants were provided the following definitions to create a uniform understanding of the questions
+                asked:
+            </p>
+
+            <ul>
+                <div><strong>Individual Centric Model</strong> - <i>A team having one or more athletes that can
+                        stand
+                        out
+                        in a national field of athletes from a collection of multiple teams. (Examples: Advancing deep
+                        in an
+                        individual tournament, finish in stroke play, best score nationally, etc.)</i></div>
+                <div><strong>Team Centric Model</strong> - <i>The team that wins directly in head-to-head matchups with
+                        another team using a collection of their athletes from their roster. (Example: A team Dual Match
+                        Play format.) </i></div>
+            </ul>
+            <br>
+            <p>The following eight (8) sentences were provided within each survey and respondents were asked to complete
+                the sentence from a list of possible responses:</p>
+            <ol>
+                <li>For determining the definitive best team in the country...</li>
+                <li>For getting the most engagement from the current fan base...</li>
+                <li>For getting the most engagement from alumni and donors...</li>
+                <li>For getting the most school administration support...</li>
+                <li>For expanding the fan base...</li>
+                <li>For providing opportunities to the athletes on your roster...</li>
+                <li>For TV Viewership...</li>
+                <li>For Collegiate Competition...</li>
+            </ol>
+            <br>
+            <p>The possible answers to each question asked were the following:</p>
+            <ul>
+                <div><span style="background-color:#0924D6">&nbsp;&nbsp;&nbsp;</span> The Individual Centric Model is
+                    Significantly Better</div>
+                <div><span style="background-color:#401DA3">&nbsp;&nbsp;&nbsp;</span> The Individual Centric Model is
+                    Slightly Better</div>
+                <div><span style="background-color:#b1a4bd">&nbsp;&nbsp;&nbsp;</span> Neutral: Both are equal</div>
+                <div><span style="background-color:#AF103C">&nbsp;&nbsp;&nbsp;</span> The Team Centric Model is
+                    Significantly
+                    Better</div>
+                <div><span style="background-color:#e60909">&nbsp;&nbsp;&nbsp;</span> The Team Centric Model is Slightly
+                    Better</div>
+            </ul>
+
+            <br>
+
+            <div id="surveysportresults"></div>
+            <h3>2. Survey Results by Sport</h3>
+
+            <p>Click a question to view the results by sport.</p>
+            <div class="tabListWrap">
+                <ul class="nav nav-pills nav-fill " id="myTab0" role="tablist">
+                    <li class="nav-item" role="presentation" name="bestTeamChart">
+                        <button class="nav-link " id="firstSurveyQuestion" data-mdb-toggle="tab"
+                            data-mdb-target="#wt125" onclick="tabClicked(this)" type="button" role="tab"
+                            aria-controls="home">
+                            1. For determining the definitive best team in the country...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="currentFanChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            2. For getting the most engagement from the current fan base...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="alumniDonorChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            3. For getting the most engagement from alumni and donors...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="adminChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            4. For getting the most school administration support...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="expandingFansChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            5. For expanding the fan base...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="athleteChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            6. For providing opportunities to the athletes on your roster...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="tvChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            7. For TV Viewership...
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" name="collegiateChart">
+                        <button class="nav-link" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="tabClicked(this)" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            8. For Collegiate Competition...
+                        </button>
+                    </li>
+                </ul>
+
+
+
+
+
+
+
+
+                <ul>
+                    <ul>
+                        <div id="bestTeamChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="currentFanChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="alumniDonorChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="adminChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="expandingFansChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="athleteChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="tvChart" style="height: 80%;width: 80%;"></div>
+
+                        <div id="collegiateChart" style="height: 80%;width: 80%;"></div>
+                    </ul>
+                </ul>
+            </div>
+
+            <div id="surveyfindings"></div>
+            <h3>3. Survey Findings</h3>
+
+            <p>Wrestling is an outlier among the surveyed sports due to the higher level of support for the individual-centric
+                model compared to the other sports.  In contrast, bowling, fencing, and tennis, which do not have individual
+                intercollegiate competitions for their athletes during the regular season, still had coaches who
+                supported the team-centric model.  This means that these sports only allow athletes to compete as part of
+                a team in dual competitions. Fencing also has the added issue of being coed, even though
+                some schools only sponsor competition for women.  Despite these limitations, none of these sports, including
+                wrestling, had a majority of coaches who said that an individual-centric model would be better for
+                providing opportunities to their athletes.  Women's bowling, the most team-centric sport, had unanimous
+                (100%) support from respondents for the team-centric structure.</p>
+
+            <p>Sports that use a team-centric championship model have support for their model, while sports that use an
+                individual-centric championship model do not have support for their model.  Fencing and wrestling, which
+                are the most individual-centric in terms of how their championships are conducted, do not have majority
+                support for their current model.  However, both sports still conduct their regular season in the alternative team-centric model, which may explain why they lack support for their current championship model.</p>
+
+            <p>Respondent coaches believe the individual-centric model produces a better representation of the definitive best team, but also believe it's better to use the team-centric model throughout all intercollegiate competition, including the postseason. 
+                Many coaches prefer intercollegiate competition to be conducted in a framework in which they acknowledge may result in the best team not winning the championship.  This sentiment was reflected in interviews with coaches and administrators following the
+                adoption of the team championship in collegiate golf.  While many coaches still feel that the best team
+                does not always win the NCAA Championship, they also believe that the current system is the best one for
+                collegiate golf and support the team competition model.  A similar response was also observed in interviews
+                with coaches in bowling.  Many coaches prefer longer formats that reward consistency to
+                identify the best performing teams and individuals, while the team dual format is more likely to result
+                in unexpected upsets. Coaches understand that the best team over the course of the season may not necessarily be
+                the team that wins on a particular day within the preferred competition format.</p>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“Not once since we moved to the match play format has the #1 ranked team in stroke play won.
+                            Having a stroke play format will identify the best team.”</p>
+
+                        <figcaption>- Division I Men's Golf Coach #5
+
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+
+            <center>
+                <figure>
+                    <blockquote>
+                        <p>“I think with our sport of bowling, total pins for an entire tournament means more than a
+                            team's
+                            win/loss record... Usually the best teams will rise to the top in a longer format, whereas
+                            anyone can beat anyone on any given day.”</p>
+
+                        <figcaption>-
+                            Division I Women's Bowling Coach #3
+                        </figcaption>
+                    </blockquote>
+                </figure>
+            </center>
+        </ul>
+
+
+        <script>
+
+            function accordChange(btn) {
+                console.log('btn', btn);
+                //console.log(btn.getAttribute('data-bs-target'));
+                var itm = document.getElementById(btn.getAttribute('data-bs-target').replace('#', '').trim());
+                //if(itm.classList.contains('show')){
+                //console.log('remove');
+                // itm.classList.remove('show');
+                //}else{
+                //    itm.classList.add('collapsing');
+                //    console.log('add');
+                // }
+
+            }
+            function tabClicked(el) {
+
+                //console.log(el);
+                var current = el.parentElement;
+                var nextSibling = current.nextElementSibling;
+                var prevSibling = current.previousElementSibling;
+
+                current.classList.add("active");
+
+                var cElm = document.getElementById(current.getAttribute('name'));
+
+                cElm.style.display = 'block';
+                cElm.style.visibility = 'visible';
+
+                while (nextSibling != null) {
+                    nextSibling.classList.remove("active");
+                    let nxt = document.getElementById(nextSibling.getAttribute('name'));
+
+                    nxt.style.display = "none";
+                    nxt.style.visibility = "hidden";
+                    nxt.classList.remove("active");
+
+                    nextSibling = nextSibling.nextElementSibling;
+                }
+                while (prevSibling != null) {
+                    prevSibling.classList.remove("active");
+                    let prv = document.getElementById(prevSibling.getAttribute('name'));
+
+                    prv.style.display = "none";
+                    prv.style.visibility = "hidden";
+                    prv.classList.remove("active");
+
+                    prevSibling = prevSibling.previousElementSibling;
+                }
+            }
+
+
+
+
+        </script>
+
+        <hr>
+        <center>
+            <a href="NCAAIndividualSports.html" class="previous">&laquo; Previous</a>
+            <a href="Restructuring.html" class="next">Next &raquo;</a>
+        </center>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+
+    <script src="log.js"></script>
+    <script type="text/javascript" src="canvas.js"></script>
+
+    <script src="surveyData.js"></script>
+
+    <script>window.onload = function () {
+            onLoad();
+            loadSurvey();
+            tabClicked(document.getElementById('firstSurveyQuestion'));
+
+            //tabClicked(document.getElementById('respondentData'));
+            //perfInd();
+        };
+
+        window.onresize = function () {
+            loadSurvey();
+        }</script>
+
+</body>
+
+
+
+
+
+</html>

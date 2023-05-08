@@ -1,0 +1,2791 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name=”robots” content=”noindex, follow”>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <title>Cucumber Report</title>
+</head>
+<link rel="stylesheet" href="logDesign.css">
+
+<style>
+    body {
+        //background-color: #eee;
+        font-family: Tahoma, Arial, sans-serif;
+        margin: 0;
+        padding: 10%;
+    }
+
+    .regional section {
+        margin: 0 0.417vw;
+    }
+
+    .hidden {
+        font-size: 0;
+    }
+
+    .header-text {
+        color: white;
+        background: linear-gradient(blue, navy);
+        border: double 0.260vw white;
+        border-radius: 1em;
+        text-align: center;
+        padding: 0.260vw 0;
+    }
+
+    .header-text h1,
+    .header-text h6 {
+        margin: 0;
+    }
+
+    .header-text h1 {
+        font-size: 1.5em;
+    }
+
+    .half-circle-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .bottom-circle {
+        margin-top: -0.260vw;
+        transform: rotate(180deg);
+    }
+
+    .top-circle {
+        margin-bottom: -0.260vw;
+    }
+
+    .half-circle {
+        height: 2.604vw;
+        /* Alter here for height of circle segment */
+        overflow: hidden;
+    }
+
+    .half-circle>div {
+        width: 20.833vw;
+        /* Alter here for circle diameter */
+        height: 20.833vw;
+        /* Alter here for circle diameter */
+        border: 0.260vw double white;
+        border-radius: 50%;
+        background: navy;
+    }
+
+
+    .regional {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .regional .round {
+        font-size: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 20%;
+        list-style: none;
+        padding: 0;
+    }
+
+    .regional .round .spacer {
+        flex-grow: 2;
+    }
+
+    .regional .round .spacerMinus {
+        flex-grow: -2;
+    }
+
+    .regional .round .spacer:first-child,
+    .regional .round .spacer:last-child {
+        flex-grow: 1;
+    }
+
+    .centerText {
+        text-align: center;
+    }
+
+    .first-four {
+        border: 0.052vw solid #888;
+        border-radius: 1em;
+        background-color: lightcyan;
+        padding: 0 1em;
+    }
+
+    .tourn {
+        //border-radius: 1em;
+        //border: 0.052vw solid rgb(118, 115, 115);
+    }
+
+    .regional-header {
+        text-align: center;
+        //font-weight: bold;
+
+        //background-color: #888;
+        color: black;
+    }
+
+    .first-four-winner li.game-left,
+    .round-1 li.game-left,
+    .round-2 li.game-left,
+    .round-3 li.game-left,
+    .round-4 li.game-left,
+    .semi-final li.game-left {
+        padding-left: 0.5em;
+    }
+
+    .first-four-winner li.game-right,
+    .round-1 li.game-right,
+    .round-2 li.game-right,
+    .round-3 li.game-right,
+    .round-4 li.game-right,
+    .semi-final li.game-right {
+        padding-right: 0.5em;
+    }
+
+    .region {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .region-right {
+        text-align: right;
+        padding-right: 0.260vw;
+    }
+
+    .region-left {
+        text-align: left;
+        padding-left: 0.260vw;
+    }
+
+    ul.seed li.game-left span:first-child,
+    ul.seed li.game-right span:last-child {
+        font-size: 0.7em;
+    }
+
+    li.game-right {
+        text-align: right;
+        border-left: 0.052vw solid #aaa;
+    }
+
+    li.game-left {
+        border-right: 0.052vw solid #aaa;
+    }
+
+    li.game-bottom {
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-top {
+        border: none;
+        border-bottom: 0.052vw solid #aaa;
+    }
+
+    li.game-left.spacer {
+        border-right: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-right: .25em;
+    }
+
+    li.game-right.spacer {
+        border-left: 0.052vw solid #aaa;
+        min-height: 0.260vw;
+        padding-left: .25em;
+        text-align: left;
+    }
+
+    .final {
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border: 0.052vw solid #aaa;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-weight: bold;
+    }
+
+    .finals .centered {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .finals .centered>input {
+        display: block;
+        width: 4em;
+        margin: 0 auto 0 auto;
+        text-align: center;
+    }
+
+    .body-first-child {
+        margin-top: -2.344vw;
+    }
+
+    .extra-padding {
+        padding-top: 2.344vw;
+    }
+
+    table.standings {
+        border-collapse: collapse;
+    }
+
+    table.standings td,
+    table.standings th {
+        border: 0.052vw solid #ccc;
+    }
+
+    .standings {
+        margin: 0 auto;
+    }
+
+    .centerDiv {
+        margin: 0 auto;
+    }
+
+
+
+
+    DIV.regionalConf {
+        border: 0.104vw solid lightblue;
+        text-align: center;
+        display: flex;
+        width: 100%;
+        float: none;
+        justify-content: center;
+        display: inline-flexbox;
+        align-items: center;
+    }
+
+    #regionalAthletesRegional {
+        border: 0.052vw 0vw solid #000000;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        float: none;
+    }
+
+
+
+
+    table.regionalConf {
+        table-layout: auto;
+
+        //float:left;
+        //background:yellow;
+        width: 470;
+        margin: 3%;
+    }
+
+
+    .chat {
+        font-family: helvetica;
+        display: flex;
+        flex-direction: column;
+        //width: 53.333vw;
+        width: inherit;
+        //border: solid 0.111vw #EEE;
+        display: flex;
+        position: absolute;
+        top: 62px;
+        bottom: 0;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 10px;
+        //overflow-y: auto;
+        //height: 300px;
+        padding-bottom: 70px;
+    }
+
+    .chat-spacer {
+        //width: 53.333vw;
+        width: inherit;
+        //border: solid 0.111vw #EEE;
+        display: flex;
+        position: absolute;
+        top: 66px;
+        bottom: 0;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 1.111vw;
+        //overflow-y: auto;
+        height: 100px;
+        display: inline-block;
+    }
+
+    .oldmessages {
+        margin-top: 3.333vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .messages {
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .oldmessage {
+        border-radius: 2.222vw;
+        padding: 0.889vw 1.667vw;
+        margin-top: 0.556vw;
+        margin-bottom: 0.556vw;
+        display: inline-block;
+    }
+
+    .message {
+        border-radius: 20px;
+        padding: 8px 15px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+
+    .yours {
+        align-items: flex-start;
+    }
+
+    .yours .message {
+        margin-right: 10%;
+        background-color: #eee;
+        position: relative;
+    }
+
+    .oldyours .oldmessage.last:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        left: -0.778vw;
+        height: 2.222vw;
+        width: 2.222vw;
+        background: #eee;
+        border-bottom-right-radius: 1.667vw;
+    }
+
+    .oldyours .oldmessage.last:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: -1.111vw;
+        width: 1.111vw;
+        height: 2.222vw;
+        background: white;
+        border-bottom-right-radius: 1.111vw;
+    }
+
+    .yours .message.last:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        left: -7px;
+        height: 20px;
+        width: 20px;
+        background: #eee;
+        border-bottom-right-radius: 15px;
+    }
+
+    .yours .message.last:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: -10px;
+        width: 10px;
+        height: 20px;
+        background: white;
+        border-bottom-right-radius: 50px;
+    }
+
+
+
+    .oldmine .oldmessage.last:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        right: -0.889vw;
+        height: 2.222vw;
+        width: 2.222vw;
+        background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+        background-attachment: fixed;
+        border-bottom-left-radius: 1.667vw;
+    }
+
+    .oldmine .oldmessage.last:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        right: -1.111vw;
+        width: 1.111vw;
+        height: 2.222vw;
+        background: white;
+        border-bottom-left-radius: 1.111vw;
+    }
+
+    .mine {
+        align-items: flex-end;
+    }
+
+    .mine .message {
+        color: white;
+        margin-left: 10%;
+        background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+        background-attachment: fixed;
+        position: relative;
+    }
+
+    .mine .message.last:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        right: -8px;
+        height: 20px;
+        width: 20px;
+        background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+        background-attachment: fixed;
+        border-bottom-left-radius: 15px;
+    }
+
+    .mine .message.last:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        right: -10px;
+        width: 10px;
+        height: 20px;
+        background: white;
+        border-bottom-left-radius: 10px;
+    }
+
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .demo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        //padding: 20px;
+        min-height: 70vh;
+        font-family: "Open Sans", sans-serif;
+        //background-color: #FECA45;
+    }
+
+    .demo__description {
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+
+    .demo__phone {
+        position: relative;
+        width: 305.25px;
+        height: 633px;
+        padding-top: 1px;
+        background-color: #120d30;
+        border-radius: 40px;
+    }
+
+    .demo__notch {
+        position: absolute;
+        top: 12px;
+        left: 74.25px;
+        height: 22.5px;
+        width: 156.75px;
+        background-color: #120d30;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .demo__screen {
+        position: relative;
+        height: 609px;
+        width: 281.25px;
+        padding-top: 25px;
+        //background: linear-gradient(#bf3636, #782323);
+        background: white;
+        border-radius: 30px;
+        cursor: -webkit-grab;
+        cursor: grab;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        perspective: 700px;
+    }
+
+    .demo__screen-wrapper {
+        position: relative;
+        height: 609px;
+        width: 281.25px;
+        margin-top: 11px;
+        margin-left: 12px;
+        overflow: hidden;
+        border-radius: 30px;
+    }
+
+    .demo__indicator {
+        position: absolute;
+        top: 2.5px;
+        font-size: 13.5px;
+        color: white;
+    }
+
+    .demo__indicator--time {
+        left: 18.75px;
+        color: black;
+    }
+
+    .demo__indicator--signal {
+        right: 45px;
+        color: black;
+    }
+
+    .demo__indicator--battery {
+        font-size: 14.25px;
+        right: 16.5px;
+        color: black;
+    }
+
+    .demo__controls {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 6.25px 0;
+        font-size: 18.75px;
+
+        color: black;
+        background-image: linear-gradient(white, #f7f3f2);
+    }
+
+    .demo__arrow {
+        position: absolute;
+        left: 12.5px;
+    }
+
+    .demo__card {
+        position: relative;
+        margin: 9px;
+        height: 142.5px;
+        width: calc(100% - 18px);
+        font-size: 17.5px;
+        border-radius: 5px;
+        transform-style: preserve-3d;
+    }
+
+    .demo__card--notched {
+        position: absolute;
+        top: 0;
+        transform: rotateX(180deg) scale(0.6) translateY(175px);
+    }
+
+    .demo__card--processing {
+        position: absolute;
+        top: 0;
+        transform: translateY(62.5px);
+    }
+
+    .demo__card-frontside {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 9px;
+        padding-bottom: 4.5px;
+        background-color: white;
+        border-radius: 5px;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .demo__card-backside {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+        background: linear-gradient(#120d30 50%, #211858);
+        border-radius: 25px;
+        transform: rotateX(180deg);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .demo__card-release {
+        padding: 5px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .demo__card-type {
+        padding-left: 18px;
+        font-size: 12.5px;
+        color: #aaa;
+    }
+
+    .demo__card-body {
+        display: flex;
+        align-items: center;
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    .demo__card-picture {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .demo__card-picture--starbucks {
+        background-image: url(https://kiyutink.github.io/logos/starbucks.svg);
+    }
+
+    .demo__card-picture--citi {
+        background-image: url(https://kiyutink.github.io/logos/citi.png);
+    }
+
+    .demo__card-picture--paypal {
+        background-image: url(https://kiyutink.github.io/logos/paypal.svg);
+    }
+
+    .demo__card-picture--apple {
+        background-image: url(https://kiyutink.github.io/logos/apple.png);
+    }
+
+    .demo__card-info {
+        width: 70%;
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+
+    .demo__card-caption {
+        width: 100%;
+        font-weight: 700;
+    }
+
+    .demo__card-description {
+        min-height: 37.5px;
+        font-size: 13.75px;
+    }
+
+    .demo__card-money {
+        font-size: 17.5px;
+        font-weight: 700;
+    }
+
+    .demo__card-bottom {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #ddd;
+    }
+
+    .demo__card-button {
+        padding-top: 4.5px;
+        padding-left: 18px;
+        color: #6b6281;
+        cursor: pointer;
+    }
+
+    .demo__card-time {
+        padding-top: 9px;
+        padding-right: 18px;
+        font-size: 12.5px;
+        color: #ddd;
+    }
+
+    .animation {
+        transition: transform 0.5s cubic-bezier(0.55, 0.26, 0.12, 1.19);
+    }
+
+    .short-animation {
+        transition: transform 0.2s ease;
+    }
+</style>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+<body>
+
+
+    <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+   
+    <div id="menuBar">
+
+        <div class="menu">
+            <span></span>
+        </div>
+        <nav class="navbar-menu">
+            <ul class="menu-listing">
+                <li>
+                    <div id="mobileMenuIssueNote">You may need to rotate your device to see all menu options</div>
+                </li>
+                <li><a href="home.html">Home</a></li>
+                <li>Chapters</li>
+                <li><a href="Introduction.html">Introduction</a></li>
+                <li><a href="NCAAIndividualSports.html">I. NCAA Individual Sports</a></li>
+                <li><a href="StakeholderFeedback.html">II. Stakeholder Feedback</a></li>
+                <li><a href="Restructuring.html">III. Restructuring</a></li>
+                <li><a href="IndividualQualification.html">IV. Individual Qualification</a></li>
+                <li><a href="TeamQualification.html">V. Team Qualification</a></li>
+                <li><a href="Merge.html">VI. Demand for the Championship</a></li>
+                <li><a href="Schedule.html">VII. Schedule</a></li>
+                <li></li>
+                <li><a href="Citations.html">References</a></li>
+                <li><a href="Support.html">Endorsing the Report</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id='spin' class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+
+    <div id="home" class="page">
+
+        <center>
+            <a href="Restructuring.html" class="previous">&laquo; Previous</a>
+            <a href="TeamQualification.html" class="next">Next &raquo;</a>
+        </center>
+        <hr>
+        <h1>IV. NCAA Wrestling Championships: Weight Class Championships</h1>
+        <p>
+        <p>The event where individual athletes compete to be crowned NCAA Division-I Wrestling National Champions for a
+            weight
+            class is to be called the NCAA Wrestling Championships to signify that there are plural champions to be
+            crowned by
+            virtue of the results during the event <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                title="2021-22 NCAA Division-I Manual,  31.02.2.2 Individual Championships, Championships Classification and Terminology">(31.02.2.2)</cite>.
+            The following information will detail the qualification methods available for athletes to qualify for the
+            NCAA
+            Wrestling Championships. The administration of the event will remain unchanged.</p>
+
+        <h3 id="issues">A. Current Qualification System Issues</h3>
+       
+        <p>Wrestling's unique qualification structure has caused significant questions about the sport's integrity <cite
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Report of the NCAA Division I Wrestling Committee February 22, 2022, Videoconference">(National
+                Collegiate
+                Athletic Association, 2022o)</cite>. The current system of allocating qualification bids to conferences
+            based on the number of national qualifier-worthy athletes participating in the conference qualifier is a
+            significant improvement over the previous
+            system based on the historic success of the conference <cite data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Wrestling committee recommends allocation plan.">(Johnson, 2008)</cite>.
+            However, the current system still has significant flaws. </p>
+
+
+        <p>Despite the changes, national qualification-worthy athletes are still not guaranteed qualification to the
+            NCAA (Individual) Wrestling Championships based on their regular season performance <cite
+                data-bs-toggle="tooltip" data-bs-placement="top" title="OSU likes new format.">(McLaughlin,
+                2009)</cite>. This is a result of the
+            lack of at-large qualification slots built into the system. Since the new system was adopted in 2009, an
+            average of only three slots have been allocated for at-large bids within each weight classification each
+            year. Only a few athletes are assured they will earn qualification based on their season's body of work.
+            Even a top-five ranked athlete by the NCAA Championship's own selection criteria has no assurance that they
+            will be awarded an at-large bid if they do not perform well at their qualification tournament.  Despite a
+            record of success throughout the season, there are only a very limited number of athletes that can be awarded at-large bids <cite
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Top 5 NCAA Performances By At-Large Selections.">(Spey, 2017)</cite>.</p>
+
+        <p>For most athletes, the path to qualification depends solely on their performance at their qualifying
+            tournament, requiring athlete to peak at the right time, regardless of regular season performance <cite
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Big 12 Coaches Excited About Qualifying Format Cyclones Favored to Win">(Sesker, 2009)</cite>. While they are conference championships in name, in
+            practice, these qualifying tournaments more closely resemble the NCAA's regional
+            qualification model where placement determines qualification to the National Championships. However, under this system, there is added complexity and uncertainty
+            regarding the benchmark that an athlete must achieve for qualification. The number of pre-allocated bids is
+            dynamically calculated throughout the season which creates a moving target that persists even through the
+            first round of competition at the qualifier (depending on if each pre-allocated athlete at the
+            qualifier actually takes the mat to compete).</p>
+
+
+        <p>In wrestling, athletes do not compete against the field as they would in a cross country race with 300
+            athletes running at once. Nor do athlete compete against a field to compare their performance against a
+            clock or a score like athletes in track, diving, golf, or gymnastics. Qualification tournaments in wrestling
+            create a unique path to qualification for each athlete based on the unique matchups they are presented with.
+            This system can create drastically different levels of difficulty within the same qualifying tournament
+            depending on where an athlete is placed within the bracket.</p>
+
+
+
+        <p>Coaches know that an individual matchup can play an outsized role in their athlete's ability to qualify for
+            the NCAA Championships. And due to the parity within the sport as well as the method in which team standings
+            are calculated at the NCAA Championships, this can have a significant impact on the team's post-season
+            success.</p>
+        <p>At the last three NCAA Championships, those since the NCAA adopted a policy of seeding all athletes, 46% of
+            athletes seeded 25th or worse have won at least one match at the NCAA Championships. Simply getting your
+            athletes into the field, even without a favorable seed, provides a program with a coin toss chance of scoring points in the team race.</p>
+
+        <p>This incentivizes many coaches to work to minimize the quality of the opposition in an athlete's path through
+            their qualifying tournament. It is this system that creates incentives that lead to questions of integrity
+            within the sport.</p>
+
+        <p>Overall, the current qualification system for wrestling has significant flaws that hinder the sport and raise
+            questions about its integrity. There is a need for reform to create a system that more fairly allocates bids
+            to ensure qualified athletes are guaranteed a place in the NCAA Championship based on their season's body of
+            work.
+        </p>
+     
+
+
+        <div class="simulationWrap">
+            <center>
+                <h5 class="simulation">Simulation of Fans Discussing Current Qualification Process</h5>
+            </center>
+            <div id='phoneConversation' class="demo">
+                <div class="demo__description">
+                    <center>
+                        <h5>Click the phone to start loading conversation at conversation speed</h5>
+                        <h5>Click again to pause conversation</h5>
+                    </center>
+                </div>
+                <div id="iPhone" class="demo__phone">
+                    <div class="demo__screen-wrapper">
+                        <div class="demo__screen">
+                            <div class="demo__indicator demo__indicator--time">16:22</div>
+                            <div class="demo__indicator demo__indicator--signal">
+                                <i class="fa fa-signal"></i>
+                            </div>
+                            <div class="demo__indicator demo__indicator--battery">
+                                <i class="fa fa-battery"></i>
+                            </div>
+                            <div class="demo__controls">
+                                <div class="demo__arrow">
+                                    <i class="fa fa-chevron-left"></i>
+                                </div>
+                                <div class="demo__caption">Wrestling Trip Chat</div>
+                            </div>
+                            <div id="chat" class="chat">
+                                <div class="yours messages">
+                                    <div class="message last">
+                                        Hey, I got all of our tickets to the NCAA Championships today!
+                                    </div>
+                                </div>
+                                <div class="mine messages">
+                                    <div class="message">
+                                        Awesome!
+                                    </div>
+                                    <div class="message last">
+                                        I am pretty excited to see it after hearing so much about it.
+                                    </div>
+                                </div>
+                                <div class="yours messages">
+                                    <div class="message">
+                                        Yeah, you will love it.
+                                    </div>
+                                    <div class="message last">
+                                        There is really nothing like it!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-spacer"></div>
+                        </div>
+                    </div>
+                    <div class="demo__notch"></div>
+                </div>
+            </div>
+            <br>
+            <center>
+                <button style="padding:2px" onclick="window.location.href='conversation.html'">Click here to read the
+                    whole
+                    conversation on one
+                    page</button>
+            </center>
+        </div>
+
+
+        <h3 id="process">B. New Qualification Process</h3>
+
+        <p>A new qualification process is created that better fits into the new wholistic approach for the season while
+            still leveraging many of the current performance metrics used within the current system.</p>
+        <p>The following section will detail the qualification for athletes to the
+            NCAA
+            Wrestling Championships within the restructured framework.</p>
+        <div id="directQualification"></div>
+        <h3>1. Direct Qualification</h3>
+        <ul>
+            <h5>About</h5>
+            <p>Direct Qualification is a method by which a wrestler earns a bid to the NCAA Wrestling Championships by
+                virtue of
+                their regular season performance and in representing their team during the season.</p>
+
+            <p>The NCAA Wrestling Committee will allocate a maximum of 20 direct qualifiers per weight class.</p>
+            <h5>Eligibility</h5>
+            <p>In order to be eligible for consideration to be a Direct Qualifier, a wrestler must have met the Team
+                Representation standard for the season. </p>
+            <ul>
+                <li><strong>Team Representation</strong></li>
+                <ul>
+                    <li>An athlete must have competed in a minimum of 45% of the total team competitions at a scored
+                        weight
+                        during the
+                        season at the time of consideration for qualification.</li>
+                    <ul>
+                        <li>A team competition is defined by Wrestling Rule 3.5.a.
+                            (Example: Dual Meet)
+                        </li>
+                    </ul>
+                    <li>A scored weight is when the results for the weight were factored into the team score. Note:
+                        Extra
+                        matches/Exhibition
+                        Matches do not count as scored matches.</li>
+                    <li>There is no weight class requirement to meet the Team Representation standard. A wrestler may
+                        qualify
+                        at a
+                        different weight than they represented the team.</li>
+                    <li>Team competitions do not need to be against NCAA Division-I members to meet the Team
+                        Representation
+                        standard
+                        but must be countable contests per NCAA bylaws.</li>
+                </ul>
+            </ul>
+            <h5>Process</h5>
+            <p>All wrestlers who meet the Team Representation standard and are ranked in either the Coaches Ranking (CR)
+                or
+                the
+                Ranking Percentage Index (RPI) Ranking will be considered for Direct Qualification. <i>Note: To
+                    be included in either ranking an athlete must be designated by weight class on the NCAA Division I
+                    Starters page within TrackWrestling.</i></p>
+            <p>There is a predetermined sliding scale of three thresholds that move in unison, by round, to determine
+                the
+                cut
+                line
+                for the Direct Qualifiers in each weight class.</p>
+            <p>A wrestler must meet two of the three standards in a round to become a Direct Qualifier.</p>
+            <p>If a round would produce over twenty (20) direct qualifiers, then that round is not completed and none of
+                the
+                wrestlers in that round will become Direct Qualifiers. This will produce fewer than twenty Direct
+                Qualifiers for
+                the weight.</p>
+            <p>Any of the top-25 athletes in the sliding scale by round, will be moved to the at-large consideration
+                automatically.</p>
+            <p>Should a round produce more than twenty wrestlers, then all those wrestlers will move to at-large
+                consideration.
+            </p>
+
+            <p>Sliding scale metrics:</p>
+            <ul>
+                <li><strong>Wrestler's Winning Percentage (Win%)</strong></li>
+                <ul>
+                    <li>Winning Percentage is defined as Division I wins divided by total Division I matches contested
+                        at the designated
+                        weight
+                        class on the NCAA Division I starters page in TrackWrestling.</li>
+                    <li>Must have a minimum of eight (8) Division I Matches at the designated weight class on the NCAA
+                        Division-I
+                        Starters
+                        page to have a calculated winning percentage.</li>
+                    <ul>
+                    </ul>
+
+                </ul>
+
+                <li><strong>Coaches Rank (CR)</strong></li>
+                <ul>
+                    <li>The Coaches rank is determined by rankers at each weight class representing each conference
+                        earning
+                        an
+                        automatic qualification spot the NCAA Wrestling Championship. Each ranker will rank the top-33
+                        athletes at a
+                        weight.</li>
+                    <li>A point value is assigned to each ranking spot. Wrestlers are ranked based off the total
+                        points.
+                    </li>
+                    <li>The high and low vote is removed from the ranking for
+                        each wrestler</li>
+                    <li>To be considered in the coaches ranking, a wrestler must
+                        have a total of eight (8) Division I Matches at the designated
+                        weight and one match must have occurred within 30-days
+                        of the latest ranking period.</li>
+                </ul>
+                <li><Strong>Rating Percentage Index Rank (RPI)</Strong></li>
+                <ul>
+                    <li>RPI is calculated by the following formula: 25% athlete's
+                        winning percentage, 50% opponents winning
+                        percentage, and 25% opponent's opponent winning
+                        percentage
+                    </li>
+                    <ul>
+                        <span>Note: For the purposes of calculating winning percentage for the RPI, all forfeits are to
+                            be omitted from the athlete's season record. Only matches that have been contested are to be
+                            included.</span>
+                    </ul>
+                    <li>Must have 15-Division I Matches at the designated
+                        weight class on the NCAA Division I Starters page to
+                        have a calculated RPI.
+                    </li>
+                </ul>
+            </ul>
+            <br>
+            <p>The committee will not go below the following minimums when establishing Direct Qualifiers:
+            <ul>
+                <li>Division I weight
+                    class winning percentage: <strong>.700</strong></li>
+                <li>Coaches Ranking: <strong>Top-30</strong></li>
+                <li>RPI Rank: <strong>Top-30</strong></li>
+            </ul>
+            <br>
+            <p>Direct Qualifier selection will be based on all matches through
+                Sunday, February 22, 2025 for the 2025 Championship.</p>
+            <p>Any matches after February 22, 2025 will not
+                be used for determination of Direct Qualifiers, but will
+                be used in the calculations for at-large selections and
+                seeding at the NCAA Wrestling Championships.</p>
+            <p><i>Note: An athlete does
+                    not need 15 matches to earn direct qualification. If the athlete meets the thresholds for team
+                    representation,
+                    winning percentage, and coaches rank they may be allocated a direct qualification.</i> </p>
+            <h5>Dates and Schedules</h5>
+            <p>The release of Direct Qualifiers will be Wednesday, February 25, 2025.</p>
+
+
+            <h5>Replacements and Withdrawals</h5>
+            <p>An athlete that has earned a Direct Qualification bid may be replaced, at the school's discretion,
+                provided
+                the
+                replacement athlete meets all the following criteria at the time the replacement is requested: </p>
+            <ul>
+                <li>Has met the Team Representation standard defined in the direct qualification process as of the date
+                    of
+                    the
+                    replacement request.</li>
+                <li>Replacement athlete has met a minimum of two out of the three Replacement Standard Minimums from the
+                    metrics in
+                    the final round of direct qualification.</li>
+                <ul>
+                    <li>Note: In order to have a Coaches Rank, the replacement athlete will need to be updated in the
+                        Track
+                        Wrestling
+                        Designated Starter page at the weight prior to coaches rankings being submitted. If this change
+                        has
+                        not been
+                        made and a replacement request is submitted, an athlete will only be evaluated using the Ranking
+                        Percentage
+                        Index Rank and Winning Percentage. In such a case, the athlete must meet both
+                        standards.
+                    </li>
+                </ul>
+                <li>Replacement request is submitted prior to the day of seeding for the NCAA Wrestling Championships.
+                </li>
+            </ul>
+            <p>If the replacement athlete has not met the Replacement Standard Minimums, but meets the other criteria,
+                then
+                the
+                direct qualifier will be allocated to the at-large pool and the replacement athlete will be eligible for
+                supplemental or at-large qualification if they would have been eligible for either in the absence of the
+                teammate being declared the starter.</p>
+            <p>If the replacement athlete request for an athlete eligible for supplemental qualification is submitted
+                after
+                the
+                start of the supplemental qualifier the team is assigned to then the athlete will not be eligible for
+                consideration
+                for a bid and the bid will be allocated to the at-large pool.</p>
+            <div id="directqualifiersim" class="simulationWrap">
+                <div id="directQualifierSimulation"></div>
+                <center>
+                    <h5 class="simulation">Simulation of Direct Qualifier Process</h5>
+                    <p>Below you may run a simulation for two different weight classes. You will see how the allocation
+                        is
+                        made
+                        by
+                        round
+                        and the athletes that are included in each allocation as well as those that earn at-large
+                        consideration.
+                    </p>
+                    <p><i>
+                            Click the
+                            weight class tabs to view different examples.</i></p>
+                </center>
+
+
+                <ul>
+                    <li>Direct Bids Awarded: <strong><span id="directBids"></span></strong></li>
+                    <li>Athletes Earning At-Large Consideration: <strong><span id="atlargers"></span></strong></li>
+                    <li>Replacement Standard Minimum (Round): <strong><span id="replacementStandard"></span></strong>
+                    </li>
+                </ul>
+
+
+                <button onclick="allocateRound()">Click to Run a Simulation for Each Round of Direct Bid
+                    Allocation</button>
+                <br><br>
+
+                <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" name id="wt125" data-mdb-toggle="tab" data-mdb-target="#wt125"
+                            onclick="set125()" type="button" role="tab" aria-controls="home" aria-selected="true">
+                            125 Weight Example
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="wt157" data-mdb-toggle="tab" data-mdb-target="wt157"
+                            onclick="set157()" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            157 Weight Example
+                        </button>
+                    </li>
+                </ul>
+
+                <div id="conferenceDetail">
+
+                </div>
+                <br>
+
+
+                <div id="conferences1"></div>
+
+            </div>
+            <script>
+                var weightDisplayed = '125';
+                var allocatedRoundCounterMap = new Map();
+                var currentRound = 1;
+                var lastQualifierRound = 0;
+                var lastAtlargeRound;
+                var qualifiersToAtlarge = false;
+                var simulationResultMap = new Map();
+
+                function updateSimulationCounter(round) {
+                    var dir = document.getElementById("directBids");
+                    var sim = document.getElementById("atlargers");
+                    var rs = document.getElementById("replacementStandard");
+                    var result = simulationResultMap.get(round + '');
+                    if (result != undefined) {
+                        dir.innerHTML = result.direct;
+                        sim.innerHTML = result.considered;
+                        if (round == lastQualifierRound) {
+                            rs.innerHTML = lastQualifierRound;
+                        }
+
+                    }
+
+
+
+                }
+                function allocateRound() {
+                    if (currentRound == lastAtlargeRound || currentRound > lastAtlargeRound) {
+                        activateDNQ();
+                        activateClass(currentRound);
+                    } else {
+                        activateClass(currentRound);
+                    }
+                    updateSimulationCounter(currentRound);
+                    currentRound++;
+                }
+                var colorCodes = ["#035106", "#195c17", "#296726", "#377334", "#457e43", "#538a51", "#61955f", "#6ea16e", "#7cad7d", "#8bb98c", "#99c59b", "#a8d2aa", "#b7deba", "#c6eac9", "#d5f7d9"];
+
+                function getColorCode(round) {
+                    if (round < lastQualifierRound || !qualifiersToAtlarge && round == lastQualifierRound) {
+                        if (round < colorCodes.last) {
+                            return colorCodes.last;
+                        } else {
+                            return colorCodes[round - 1];
+                        }
+
+                    } else if ((qualifiersToAtlarge && round == lastQualifierRound) || round < lastAtlargeRound || round == lastAtlargeRound) {
+                        return "#DBAA11";//gold
+                    }
+
+
+                    return "#F1B7C2";//red
+                }
+
+                function activateDNQ() {
+                    var dnq = document.getElementsByClassName("rounddnq");
+                    for (var i = 0; i < dnq.length; i++) {
+                        dnq[i].style.background = "#F1B7C2";
+                    }
+                }
+                function activateClass(roundCount) {
+
+                    var round = document.getElementsByClassName("round" + roundCount);
+                    var rounda = document.getElementsByClassName("round" + roundCount + "a");
+                    var roundAtlarge = document.getElementsByClassName("round" + roundCount + "Atlarge");
+                    var roundb = document.getElementsByClassName("round" + roundCount + "b");
+                    for (var i = 0; i < round.length; i++) {
+                        round[i].style.background = getColorCode(roundCount);
+                    }
+                    for (var i = 0; i < rounda.length; i++) {
+                        rounda[i].style.background = getColorCode(roundCount);
+                    }
+                    for (var i = 0; i < roundb.length; i++) {
+                        roundb[i].style.visibility = "visible";
+                    }
+                    for (var i = 0; i < roundAtlarge.length; i++) {
+                        roundAtlarge[i].style.background = "#DBAA11";
+                    }
+
+                }
+
+                function deactivateClass(roundCount) {
+                    var roundb = document.getElementsByClassName("round" + roundCount + "b");
+                    for (var i = 0; i < roundb.length; i++) {
+                        roundb[i].style.visibility = "hidden";
+                    }
+                }
+
+                function set125() {
+                    document.getElementById("wt125").classList.add("active");
+                    document.getElementById("wt157").classList.remove("active");
+                    conferences('125');
+                }
+                function set157() {
+                    document.getElementById("wt157").classList.add("active");
+                    document.getElementById("wt125").classList.remove("active");
+                    conferences('157');
+                }
+
+                var displayedRandomSeason = [];
+                function conferences(num) {
+                    var rs = document.getElementById("replacementStandard");
+                    rs.innerHTML = '';
+                    simulationResultMap = new Map();
+                    simulationResultMap.set("0", { direct: 0, considered: 0 });
+                    var AtlargeLimitReached = false;
+                    lastQualifierRound = 1;
+                    lastAtlargeRound = 0;
+                    qualifiersToAtlarge = false;
+                    var node = document.getElementById("conferences1");
+                    node.querySelectorAll('*').forEach(n => n.remove());
+                    var node = document.getElementById("conferenceDetail");
+                    node.querySelectorAll('*').forEach(n => n.remove());
+                    displayedRandomSeason.push(num);
+
+                    var criteria = [{ "order": "1", "winper": "0.89", "cr": "11", "rpi": "11" },
+                    { "order": "2", "winper": "0.88", "cr": "12", "rpi": "12" },
+                    { "order": "3", "winper": "0.87", "cr": "13", "rpi": "13" },
+                    { "order": "4", "winper": "0.86", "cr": "14", "rpi": "14" },
+                    { "order": "5", "winper": "0.85", "cr": "15", "rpi": "15" },
+                    { "order": "6", "winper": "0.84", "cr": "16", "rpi": "16" },
+                    { "order": "7", "winper": "0.83", "cr": "17", "rpi": "17" },
+                    { "order": "8", "winper": "0.82", "cr": "18", "rpi": "18" },
+                    { "order": "9", "winper": "0.81", "cr": "19", "rpi": "19" },
+                    { "order": "10", "winper": "0.8", "cr": "20", "rpi": "20" },
+                    { "order": "11", "winper": "0.79", "cr": "21", "rpi": "21" },
+                    { "order": "12", "winper": "0.78", "cr": "22", "rpi": "22" },
+                    { "order": "13", "winper": "0.77", "cr": "23", "rpi": "23" },
+                    { "order": "14", "winper": "0.76", "cr": "24", "rpi": "24" },
+                    { "order": "15", "winper": "0.75", "cr": "25", "rpi": "25" },
+                    { "order": "16", "winper": "0.74", "cr": "26", "rpi": "26" },
+                    { "order": "17", "winper": "0.73", "cr": "27", "rpi": "27" },
+                    { "order": "18", "winper": "0.72", "cr": "28", "rpi": "28" },
+                    { "order": "19", "winper": "0.71", "cr": "29", "rpi": "29" },
+                    { "order": "20", "winper": "0.7", "cr": "30", "rpi": "30" }];
+
+                    var testcriteria = [{ "order": "14", "winper": "0.72", "cr": "28", "rpi": "28" }];
+
+
+
+                    var wt125 = [{ "name": "Jodi Emory", "team": "Texas A&M", "winper": "1", "cr": "1", "rpi": "1" },
+                    { "name": "Slayde Jacy", "team": "Rhode Island", "winper": "1", "cr": "2", "rpi": "3" },
+                    { "name": "Drew Kimberly", "team": "Florida", "winper": "0.96", "cr": "3", "rpi": "6" },
+                    { "name": "Tyree Ellyson", "team": "St. Bonaventure", "winper": "0.9231", "cr": "4", "rpi": "5" },
+                    { "name": "Harleigh Lynden", "team": "Louisville", "winper": "0.9091", "cr": "5", "rpi": "NR" },
+                    { "name": "Ruston Knight", "team": "Drake", "winper": "0.875", "cr": "11", "rpi": "12" },
+                    { "name": "Durano Norberto", "team": "Missouri State", "winper": "0.8667", "cr": "9", "rpi": "17" },
+                    { "name": "Charly Lynley", "team": "Marquette", "winper": "0.84", "cr": "5", "rpi": "9" },
+                    { "name": "Marilynn McCoy", "team": "Houston", "winper": "0.8276", "cr": "12", "rpi": "11" },
+                    { "name": "Baxter Skyler", "team": "Texas Southern", "winper": "0.8148", "cr": "19", "rpi": "10" },
+                    { "name": "Arden Tobey", "team": "UCLA", "winper": "0.8056", "cr": "16", "rpi": "13" },
+                    { "name": "Leighton Landan", "team": "Long Beach State", "winper": "0.7857", "cr": "7", "rpi": "4" },
+                    { "name": "Daelan Ronny", "team": "Marist", "winper": "0.7778", "cr": "18", "rpi": "16" },
+                    { "name": "Shelby Manning", "team": "Vermont", "winper": "0.7619", "cr": "15", "rpi": "18" },
+                    { "name": "Tristen Edmund", "team": "Xavier", "winper": "0.7407", "cr": "20", "rpi": "21" },
+                    { "name": "Harick Otmani", "team": "Dartmouth", "winper": "0.732", "cr": "30", "rpi": "NR" },
+                    { "name": "Lee Ken", "team": "Kansas State", "winper": "0.7273", "cr": "8", "rpi": "7" },
+                    { "name": "Brody Clearly", "team": "Idaho", "winper": "0.724", "cr": "NR", "rpi": "25" },
+                    { "name": "Melton Deon", "team": "Memphis", "winper": "0.72", "cr": "13", "rpi": "8" },
+                    { "name": "Jamison Ron", "team": "East Tenn. State", "winper": "0.7188", "cr": "14", "rpi": "14" },
+                    { "name": "Mindy Burton", "team": "Seattle", "winper": "0.7083", "cr": "10", "rpi": "2" },
+                    { "name": "Raj Ado", "team": "Loyola-Chicago", "winper": "0.6894", "cr": "25", "rpi": "NR" },
+                    { "name": "Normand Raleigh", "team": "South Carolina State", "winper": "0.6667", "cr": "17", "rpi": "19" },
+                    { "name": "Langley Stacy", "team": "Marshall", "winper": "0.6667", "cr": "29", "rpi": "23" },
+                    { "name": "Kasia Malin", "team": "LSU", "winper": "0.6667", "cr": "28", "rpi": "28" },
+                    { "name": "Frank Robinson", "team": "Western Kentucky", "winper": "0.6522", "cr": "29", "rpi": "26" },
+                    { "name": "Mervyn Maxfield", "team": "Utah State", "winper": "0.619", "cr": "26", "rpi": "20" },
+                    { "name": "Cordell Keldon", "team": "Mississippi", "winper": "0.6087", "cr": "21", "rpi": "15" },
+                    { "name": "Charles Redding", "team": "Bethune-Cookman", "winper": "0.5788", "cr": "27", "rpi": "24" },
+                    { "name": "Jason Chan", "team": "Saint Louis", "winper": "0.548", "cr": "NR", "rpi": "30" },
+                    { "name": "Mario Torres", "team": "CSU-Northridge", "winper": "0.542", "cr": "NR", "rpi": "29" },
+                    { "name": "Robby Perry", "team": "Belmont", "winper": "0.5217", "cr": "22", "rpi": "27" },
+                    { "name": "Walker Townsend", "team": "Utah Tech", "winper": "0.4737", "cr": "24", "rpi": "22" }];
+
+                    var wt157 = [{ "name": "Tyler Taylor", "team": "Washington", "winper": "1", "cr": "2", "rpi": "1" },
+                    { "name": "Shay Faulkner", "team": "Mercer", "winper": "1", "cr": "3", "rpi": "3" },
+                    { "name": "Ivan Copenhaver", "team": "Morehead State", "winper": "0.98", "cr": "1", "rpi": "6" },
+                    { "name": "Chad Brownell", "team": "Utah", "winper": "0.9431", "cr": "4", "rpi": "5" },
+                    { "name": "Jack Gorham", "team": "New Mexico State", "winper": "0.9291", "cr": "6", "rpi": "NR" },
+                    { "name": "Austin Murphy", "team": "Bryant", "winper": "0.8867", "cr": "18", "rpi": "17" },
+                    { "name": "Mike Stone", "team": "Charleston", "winper": "0.86", "cr": "5", "rpi": "9" },
+                    { "name": "Matt Appleby", "team": "Jackson State", "winper": "0.853", "cr": "10", "rpi": "12" },
+                    { "name": "Derrick Dorvit", "team": "South Dakota", "winper": "0.8256", "cr": "20", "rpi": "13" },
+                    { "name": "Travis Dean", "team": "Akransas", "winper": "0.8057", "cr": "7", "rpi": "4" },
+                    { "name": "Karl Hacket", "team": "UTEP", "winper": "0.8056", "cr": "15", "rpi": "11" },
+                    { "name": "Craig Adams", "team": "Northeastern", "winper": "0.7928", "cr": "19", "rpi": "10" },
+                    { "name": "Justin Cowell", "team": "Eastern Illinois", "winper": "0.7607", "cr": "24", "rpi": "21" },
+                    { "name": "Dennis Adams", "team": "La Salle", "winper": "0.7558", "cr": "11", "rpi": "16" },
+                    { "name": "Fred Tompkins", "team": "Dayton", "winper": "0.7473", "cr": "8", "rpi": "7" },
+                    { "name": "Steve Ward", "team": "Richmond", "winper": "0.74", "cr": "13", "rpi": "8" },
+                    { "name": "Dustin Pierce", "team": "Georgia Tech", "winper": "0.7399", "cr": "12", "rpi": "18" },
+                    { "name": "Nick Covert", "team": "Montana State", "winper": "0.7388", "cr": "14", "rpi": "14" },
+                    { "name": "Tracy Bentley", "team": "Miami", "winper": "0.7283", "cr": "9", "rpi": "2" },
+                    { "name": "Gary McDonald", "team": "San Jose State", "winper": "0.6867", "cr": "27", "rpi": "28" },
+                    { "name": "Donnie Moore", "team": "Northern Arizona", "winper": "0.685", "cr": "NR", "rpi": "25" },
+                    { "name": "Robert Morris", "team": "Auburn", "winper": "0.6447", "cr": "17", "rpi": "19" },
+                    { "name": "Tyler Newton", "team": "Connecticut", "winper": "0.6447", "cr": "25", "rpi": "23" },
+                    { "name": "Craig Greene", "team": "Albany", "winper": "0.6302", "cr": "26", "rpi": "26" },
+                    { "name": "Brandon Pierce", "team": "Oral Roberts", "winper": "0.6287", "cr": "22", "rpi": "15" },
+                    { "name": "Keith Otto", "team": "Colorado State", "winper": "0.597", "cr": "16", "rpi": "20" },
+                    { "name": "Travis Dorvit", "team": "Iona", "winper": "0.578", "cr": "29", "rpi": "24" },
+                    { "name": "Jeremiah Blue", "team": "Hampton", "winper": "0.546", "cr": "30", "rpi": "30" },
+                    { "name": "Kyle Ordaway", "team": "Idaho", "winper": "0.5417", "cr": "28", "rpi": "27" },
+                    { "name": "Mike Sortore", "team": "Florida State", "winper": "0.52", "cr": "NR", "rpi": "29" },
+                    { "name": "Riley McKay", "team": "Youngstown State", "winper": "0.4517", "cr": "21", "rpi": "22" }];
+
+                    var teams;
+                    if (num == '125') {
+                        teams = wt125;
+                    } else {
+                        teams = wt157;
+                    }
+                    var assignmentMap = new Map();
+                    var conferenceMap = new Map();
+                    var criteriaNameMap = new Map();
+                    var flagged = 0;
+                    var qualifiers = 0;
+                    var AtlargeCount = 0;
+                    var lastRunCriteria = 0;
+                    var qualificationInProgress = true;
+                    for (z = 0; z < criteria.length; z++) {
+                        criteria[z].Atlarge = 0;
+                        var startQual = qualifiers;
+                        var startAtlarge = AtlargeCount;
+                        lastRunCriteria = criteria[z].order;
+
+                        //if(qualifiers<20 ){
+                        for (i = 0; i < teams.length; i++) {
+                            //if(AtlargeCount >5) continue;
+                            var criteriaMet = 0;
+                            var winperMet = false;
+                            var crMet = false;
+                            var rpiMet = false;
+                            //if criteria standard not already set, calculate, otherwise move on.
+                            if (teams[i].class == undefined) {
+                                if (!isNaN(teams[i].cr)) {
+                                    if (parseInt(criteria[z].cr) > parseInt(teams[i].cr) || parseInt(criteria[z].cr) == parseInt(teams[i].cr)) {
+                                        criteriaMet++;
+                                        crMet = true;
+                                    }
+                                }
+                                if (!isNaN(teams[i].rpi)) {
+                                    if (parseInt(criteria[z].rpi) > parseInt(teams[i].rpi) || parseInt(criteria[z].rpi) == parseInt(teams[i].rpi)) {
+                                        criteriaMet++;
+                                        rpiMet = true;
+                                    }
+                                }
+                                if (criteria[z].winper < teams[i].winper || criteria[z].winper == teams[i].winper) {
+                                    criteriaMet++;
+                                    winperMet = true;
+                                }
+                                if (criteriaMet > 1 && !AtlargeLimitReached) {
+                                    //if two out of three criteria are met, set as class
+                                    flagged++;
+                                    teams[i].flag = flagged;
+                                    if (qualificationInProgress) {
+                                        //teams[i].direct = true;
+                                        teams[i].class = lastRunCriteria;
+                                        qualifiers++;
+                                    } else {
+                                        //teams[i].Atlarge = true;
+                                        AtlargeCount++;
+                                        teams[i].class = lastRunCriteria + 'Atlarge'
+                                        //  criteria[z].Atlarge ++;
+                                    }
+
+                                    //teams[i].allocatedRound = lastQualifierRound;
+                                    //set the criteria that were met
+                                    if (crMet) {
+                                        teams[i].crmet = true;
+                                    }
+                                    if (rpiMet) {
+                                        teams[i].rpimet = true;
+                                    }
+                                    if (winperMet) {
+                                        teams[i].winpermet = true;
+                                    }
+                                } else if (lastRunCriteria == criteria.length) {
+                                    teams[i].class = 'dnq';
+                                }
+                            }
+                        }
+                        //}
+                        //recalculate the number of qualifiers AFTER the athlete for loop
+
+                        if (AtlargeLimitReached) {
+                            criteria[lastRunCriteria - 1].atLarge = 0;
+                            criteria[lastRunCriteria - 1].allocated = 0;
+                            continue;
+
+                        } else if (qualifiers > 20 && AtlargeCount == 0) {
+                            //retun the athletes to move the qualifiers to Atlarge
+                            qualificationInProgress = false;
+                            for (i = 0; i < teams.length; i++) {
+                                if (teams[i].class == lastRunCriteria) {
+                                    teams[i].class = lastRunCriteria + 'Atlarge';
+                                }
+                            }
+
+                            criteria[lastRunCriteria - 1].allocated = 0;
+                            AtlargeCount = qualifiers - startQual;
+                            qualifiers = qualifiers - AtlargeCount;
+                            criteria[lastRunCriteria - 1].Atlarge = AtlargeCount;
+                            lastAtlargeRound = lastRunCriteria;
+                        } else if (qualifiers > 20 || AtlargeCount > 0 && !AtlargeLimitReached) {
+                            qualificationInProgress = false;
+                            criteria[z].Atlarge = AtlargeCount - startAtlarge;
+                            lastAtlargeRound = lastRunCriteria;
+                            criteria[z].allocated = 0;
+
+                        } else if (qualifiers == 20) {
+                            criteria[z].Atlarge = 0;
+                            lastQualifierRound = lastRunCriteria;
+                            criteria[z].allocated = qualifiers - startQual;
+                        } else {
+                            criteria[z].Atlarge = 0;
+                            lastQualifierRound = lastRunCriteria;
+                            criteria[z].allocated = qualifiers - startQual;
+
+
+                        }
+
+                        if ((qualifiers + AtlargeCount) > (24)) {
+                            AtlargeLimitReached = true;
+                            //lastAtlargeRound = lastRunCriteria;
+                            //break;
+                            //console.log('everyone is now DNQ')
+                        }
+                        //console.log(z+" z count for lastAtlarge Round ",lastAtlargeRound);
+
+                        simulationResultMap.set(lastRunCriteria, { direct: qualifiers, considered: AtlargeCount });
+                    }
+                    //end of criteria for loop
+                    NEWbuildTable(teams, criteria, lastQualifierRound);
+                    currentRound = 1;
+                    updateSimulationCounter("0");
+                    //return assignmentMap;
+                }
+                //updateSeeds();
+                //}
+
+
+                function createTables() {
+                    return;
+                }
+
+                function createDiv(className, idName) {
+                    var x = document.createElement("DIV");
+                    x.classList.add(className);
+                    x.id = idName;
+                    return x;
+                }
+
+                function insertAfter(referenceNode, newNode) {
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+                }
+
+
+                function getColor(counter) {
+                    if (counter % 2 != 0) {
+                        return "#ccc";
+                    }
+                    return "white";
+                }
+                function NEWbuildTable(teams, criteria, lastQualifierRound) {
+                    var tables = document.getElementById("conferences1");
+                    var x = createDiv("conf", "conferenceDiv1");
+                    var tblHTML = "<table id=\"" + "tbl" + "\" class=\"standings stripe conf\" style=\"text-align:center\"><tbody><tr style=\"text-align:center\" ><th>Name</th><th>Team</th><th>Win%</th><th>CR</th><th>RPI</th></tr>";
+
+                    //Loop through each conference
+                    for (i = 0; i < teams.length; i++) {
+
+
+                        var className = teams[i].class ? 'round' + teams[i].class : 'dnq';
+                        var classNamerpi = teams[i].rpimet || className == 'dnq' ? className : '';
+                        var classNamecr = teams[i].crmet || className == 'dnq' ? className : '';
+                        var classNamewinper = teams[i].winpermet || className == 'dnq' ? className : '';
+
+                        tblHTML += "<tr><td class=\"" + className + " stripe \">" + teams[i].name + "</td><td class=\"" + className + "\">" + teams[i].team + "</td><td class=\"" + classNamewinper + "\">" + teams[i].winper + "</td><td class=\"" + classNamecr + "\">" + teams[i].cr + "</td><td class=\"" + classNamerpi + "\">" + teams[i].rpi + "</td></tr>"
+                    }
+                    tblHTML += "</tbody></table>";
+                    //tables.appendChild(x);
+                    tables.insertAdjacentHTML('beforeend', tblHTML);
+
+                    //build table for the criteria ranges
+
+                    var tblBody = '';
+                    var tblHeader = '';
+                    var tblEnd = '';
+                    var totalAllocated = 0;
+                    var totalAtlarge = 0;
+
+                    for (i = 0; i < criteria.length; i++) {
+                        var counter = i + 1;
+                        //var className = counter == lastQualifierRound ? 'dnq' :'round'+counter+'a';
+                        var className = 'round' + counter + 'a';
+                        totalAllocated += criteria[i].allocated;
+                        totalAtlarge += criteria[i].Atlarge;
+                        tblBody += "<tr><td class=\"" + className + "\">" + criteria[i].order + "</td><td class=\"" + className + "\">" + criteria[i].winper + "</td><td class=\"" + className + "\">" + criteria[i].cr + "</td><td class=\"" + className + "\">" + criteria[i].rpi + "</td><td class=\"" + 'round' + counter + 'b' + " " + className + "\"><strong>" + criteria[i].allocated + "</strong> (" + totalAllocated + ")</td><td class=\"" + 'round' + counter + 'b' + " " + className + "\"><strong>" + criteria[i].Atlarge + "</strong> (" + totalAtlarge + ")</td></tr>"
+                    }
+
+
+
+
+
+                    tblHeader = "<table id=\"conferencesList\" class=\"standings conf\" style=\"text-align:center\"><tbody><tr><th>Round</th><th>Win%</th><th>CR</th><th>RPI</th><th>Bids Allocated (Total)</th><th>At-Large Consideration (Total)</th></tr>";
+
+                    var tblEnd = "</tbody></table>";
+
+
+                    var detailTable = document.getElementById("conferenceDetail");
+                    detailTable.insertAdjacentHTML('beforeend', tblHeader + tblBody + tblEnd);
+
+                    for (i = 0; i < criteria.length; i++) {
+                        deactivateClass(i + 1);
+                    }
+
+
+
+                }
+
+
+                //window.onload(conferences(4));
+                function runConferences(num) {
+                    conferences(num);
+                }
+                var runCurrentSeason = runConferences('125');
+
+
+                function getRandom() {
+                    return Math.trunc(Math.random() * 10) + 1;
+                }
+                function getNewExample() {
+                    var num = 0;
+                    if (displayedRandomSeason.length > 10) {
+                        displayedRandomSeason = [];
+                        displayedRandomSeason.push(0);
+                    }
+                    for (i = 0; i < 100; i++) {
+                        num = getRandom();
+                        if (!displayedRandomSeason.includes(num)) {
+                            return num;
+                        }
+                    }
+                    return num;
+                }
+
+                function rando() {
+                    var listMap = new Map();
+                    var num;
+
+                    for (let i = 0; i < 100001; i++) {
+
+                        num = getRandom();
+                        var counter = 1;
+                        if (listMap.get(num) == undefined) {
+                            listMap.set(num, counter);
+                        } else {
+                            counter = listMap.get(num);
+                            counter++;
+                            listMap.set(num, counter);
+                        }
+                    }
+                }
+
+                function conferenceRandom() {
+                    var num = getNewExample();
+                    conferences(num);
+                } 
+            </script>
+            <h5>Benefits, Direct Qualification</h5>
+
+            <p>This system directly rewards athletes for their performance during the season and their contribution to
+                their team, aligning the individual and team interests to create a more harmonious structure for
+                wrestling. To be declared a starter on the TrackWrestling Starters Page, athletes must compete
+                for their team in a minimum number of team competitions. This requirement helps to solve the principal-agent problem inherant within the individual sport whereby team competitions and results are held <cite data-bs-toggle="tooltip" 
+                title="Tournament performance and “Agency” problems: An empirical investigation of “March madness”.">(McClure & Spector, 1997)</cite>.  This change balances the team interest by
+                ensuring that athletes represent their team in competition and contribute to the team's success
+                to earn individual qualification.</p>
+
+            <p>The threshold for competition is kept low so as not to hinder a program's ability to use different
+                lineups throughout the season. Athletes only need to compete for their team in a minority of team
+                competitions, which allows them to miss time due to injury without jeopardizing the team representation
+                provision.</p>
+
+            <p>High-performing athletes who consistently meet the standards for qualification will be directly included
+                in the individual championship field based on their season's performance. This is a widely adopted
+                method of qualification in NCAA individual sports.</p>
+
+            <p>Under this system, athletes are no longer required to defend their bid to the championship against other
+                athletes who may not have performed consistently throughout the season. This benefit is not only
+                extended to the identified starter at the time of selection, but also to any subsequent replacement
+                athlete if the original qualifier is unable to compete at the championships and another athlete within
+                the program meets the standards for qualification.</p>
+
+            <p>The system of direct qualification will reduce the financial burden on programs by eliminating the need
+                of programs to fund the travel of athletes to a qualifier when they have already been identified as
+                athletes meeting standards to justify qualification to the
+                NCAA Championships.</p>
+            <p>Note: While this report acknowledges the shortcomings of the metrics used in wrestling's
+                current pre-allocation process, as identified in the study published by <cite data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Ranking and prediction of collegiate wrestling.">Bigsby & Ohlmann
+                    (2016)</cite> in the <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="vol. 3, no. 1, pp. 1-19, 2017">Journal of Sports Analytics</cite>, the established metrics,
+                and criteria for individual qualification
+                will continue to be used in the direct qualifier process to ensure a smooth transition to the new
+                process. The top athletes
+                under the current pre-allocation system will remain the top athletes in the direct qualifier process
+                under the new system, as the same consideration process is being utilized.</p>
+
+
+        </ul>
+        <div id="supplementalQualification"></div>
+        <h3>2. Supplemental Qualification (Regional Events)</h3>
+
+
+        <ul>
+            <h5>About</h5>
+
+            <p>Supplemental Qualification is a process where a wrestler may earn a bid to the NCAA Wrestling
+                Championships by
+                virtue of their placement in a two-day National Qualifying Event.</p>
+
+            <p>Teams are assigned to a region prior to the start of each season based on geographic location. The
+                regions
+                will be
+                equally divided with any imbalance in the number of teams in a region being decided based on geography
+                so that the region covering the most geographic area will have the fewest teams.
+            </p>
+            <p>There will be one regional event held for each of the following regions:</p>
+            <ul>
+                <li>North</li>
+                <li>South</li>
+                <li>West</li>
+            </ul>
+            <br>
+            <p>Regional events will be held at pre-determined locations that are secured based on competitive bids to
+                host.
+                As is the case with the current qualifying system, individual programs are responsible for the cost of
+                their athletes and staff to travel and compete at regional events.
+            </p>
+
+
+            <h5>Dates and Schedule</h5>
+
+            <p>2025 Regional events may be held on either of the two possible dates.</p>
+            <ul>
+                <li>Friday March 6, 2025 to Saturday March 7, 2025</li>
+                <li>Saturday March 7, 2025 to Sunday March 8, 2025</li>
+            </ul>
+            <br>
+            <p>If a school has a written policy preventing competition on Sundays the team will be assigned to a region
+                competing on the Friday to Saturday schedule. Note: A minimum of one regional must compete on the Friday
+                to
+                Saturday schedule each year.</p>
+            <p>The schedule for each day of competition at a regional event is to be established so that competition for
+                the
+                day
+                will end a minimum of two hours prior to the scheduled start time of any NCAA Wrestling Championship
+                competition on the same date.
+            </p>
+
+            <h5>Eligibility</h5>
+            <p>To be eligible to compete in the supplemental qualification process a wrestler must meet all of
+                the
+                following criteria:</p>
+            <ul>
+                <li>Is competing in the designated weight class on the NCAA Division-I starters page in TrackWrestling.
+                </li>
+
+                <li>Has met the Team Representation standard defined in the Direct Qualification process as of the date
+                    of
+                    the
+                    competition.</li>
+                <li>Has not earned Direct Qualification.</li>
+                <li>Not a member of a team represented in the quarter-finals of the NCAA Wrestling Championship.</li>
+
+            </ul>
+            <br>
+            <h5>Seeding</h5>
+            <p>An updated set of Coaches Rank, RPI, and Winning Percentage will be provided for each athlete.</p>
+            <p>A tiered system will be used to group athletes for seeding purposes at regional events. Each athlete will
+                be
+                placed
+                into one of the three following tiers:</p>
+            <ul>
+                <li>Tier I</li>
+                <ul>
+                    <li>Any athlete earning at-large consideration from the Direct Qualification process.</li>
+                </ul>
+                <li>Tier II</li>
+                <ul>
+                    <li>Any athlete with a .700 or better Winning Percentage</li>
+                    <li>Any athlete represented on the Coaches Rankings</li>
+                    <li>Any athlete represented on the Ranking Percentage Index Ranking</li>
+                </ul>
+                <li>Tier III</li>
+                <ul>
+                    <li>All remaining athletes</li>
+                </ul>
+
+            </ul>
+            <p>Seeds will not be declared and seed numbers will not be listed on the brackets. The process of seeding
+                is the act of
+                separating
+                athletes within the bracket based on tiers. </p>
+            <p>Athletes in Tier I will be randomly drawn and placed onto the top seed lines. Next Tier II athletes will
+                be
+                randomly drawn into the bracket on the remaining seed lines. Tier three athletes will then fill out the
+                remaining
+                seed lines of the bracket.</p>
+            <p>This process will ensure that athletes are separated based on standards established within the
+                qualification
+                process.</p>
+
+            <br>
+            <div id="supplementalsim" class="simulationWrap">
+
+                <center>
+                    <h5 class="simulation">Simulation of Supplemental Regional Tournament Seeding</h5>
+                    <p>Below is a simulation of a weight class bracket separating athletes based on their seeding tiers
+                        for
+                        the
+                        Western
+                        Supplemental Regional Qualifier.</p>
+                </center>
+
+
+
+                <div id="regionalDetail"></div>
+
+                <div id="regionalAthletesRegional"></div>
+
+
+                <section class="tourn">
+                    <hr>
+                    <div class='regional'>
+
+
+                    </div>
+
+
+                    <div class='regional regional-header'>
+
+
+                        <ul class='round'>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <ul class='round'>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <ul class='round center'>
+                            <li style="font-size: 1.1em;">Western Regional</li>
+                            <li>March 7-8, 2025</li>
+                            <li>Predetermined Site, TBD</li>
+                            <li style="font-size: 0.7em;">(Only Championship Bracket Displayed)</li>
+                        </ul>
+                        <ul class='round'>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                    </div>
+                    <center>
+                        <button id='btn' onclick="updateRegionalBracketing()">Click here to Simulate Regional
+                            Seeding/Bracketing</button>
+                    </center>
+                    <div class='regional'>
+                        <ul class='round seed'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+
+                                <span id="Seed16">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed17">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed13">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed20">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed12">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed21">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed15">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed18">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed10">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed23">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed14">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed19">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed11">&nbsp;</span>
+                            </li>
+                            <li class='game-left game-bottom'>
+                                <span id="Seed22">&nbsp;</span>
+                            </li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+                        <ul class='round round-1 seed'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>
+                                <span id="Seed1">&nbsp;</span>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span id="Seed9">&nbsp;</span></li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed8">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed4">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed5">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span id="Seed2">&nbsp;</span></li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed7">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed3">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'><span id="Seed6">&nbsp;</span></li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+
+                        <ul class='round seed round-2'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span>&nbsp;</span>
+                                <span></span>
+                            </li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span>&nbsp;</span>
+                                <span></span>
+                            </li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span>&nbsp;</span>
+                                <span></span>
+                            </li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'><span>&nbsp;</span>
+                                <span></span>
+                            </li>
+                            <li class='game-left spacer'>&nbsp;</li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+                        <ul class='round round-3'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer region region-right'></li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer region region-right'></li>
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+                        <ul class='round round-4'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='game-left spacer region region-right'></li>
+
+                            <li class='game-left game-bottom'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+                        <ul class='round semi-final'>
+                            <li class='spacer'>&nbsp;</li>
+                            <li class='game-left game-top'>&nbsp;</li>
+                            <li class='spacer'>&nbsp;</li>
+                        </ul>
+                        <ul class='finals'>
+                            <!--<li class='spacer'>&nbsp;</li>
+        <li class='game'></li>
+        <li class='spacer'>&nbsp;</li>-->
+                        </ul>
+
+                    </div>
+            </div>
+            </section>
+
+
+
+
+            <h5>Results</h5>
+            <p>The results from each of the three the regional events will determine qualification to the NCAA Wrestling
+                Championships as well as eligibility for at-large consideration.</p>
+
+            <ul>
+                <li>Regional finishes qualifying for the NCAA Wrestling Championship.</li>
+                <ul>
+                    <li>Regional Champion</li>
+                    <li>Regional Runner-Up</li>
+                    <li>Regional Third Place</li>
+                </ul>
+                <li>Regional finishes earning at-large consideration (3 per regional, per weight; 9 total, per weight)
+                </li>
+                <ul>
+                    <li>Regional Fourth Place</li>
+                    <li>Regional Fifth Place</li>
+                    <li>Regional Sixth Place</li>
+                </ul>
+
+
+
+            </ul>
+            <br>
+            <h5>Benefits, Supplemental Qualification</h5>
+
+
+            <p>The current process for selecting pre-allocations for the NCAA Championships is susceptible to
+                controversy, especially when choosing athletes who are "on the bubble." As the selection process moves
+                further away from the top athletes, this issue becomes increasingly prevalent. However, the supplemental
+                qualifier process offers a solution to this problem by addressing both the unequal qualification
+                opportunities for athletes from different conferences and the challenge of selecting "bubble" athletes.
+                This process allows non-qualifying athletes from the regular season to compete against each other for a
+                chance to earn a bid.</p>
+            <p>With the supplemental qualifier, imbalanced qualifiers are no longer an issue, and the practice of
+                stealing pre-qualified athlete bids is eliminated. Athletes who have earned a bid through their
+                successful season keep their bids.</p>
+
+            <p>The supplemental qualifier offers a opportunity for athletes from programs no longer competing for the
+                NCAA (Team) Championship to secure qualification to the individual championship.</p>
+            <p>The supplemental qualifiers are the only events in which an athlete can secure qualification to the NCAA
+                Championships based on a single event performance. All other qualification methods will consult the full
+                season's body of work. This ensures that the primary focus of qualification remains based on season
+                performance while still offering a last-chance pathway to determined athletes from the programs not
+                competing for an NCAA (team) Championship.</p>
+            <p>This process is in line with the regional and direct qualification processes used by many NCAA individual
+                sports. The allocation of bids is spread out regionally through three regional supplemental qualifiers,
+                reducing the sport's concentration in certain regions while maintaining competitiveness. This aligns
+                with the goals of the 2009 qualification reforms as outlined by the Division I Wrestling Committee Chair
+                and Big Ten Conference Deputy Commissioner, Brad Traviolia <cite data-bs-toggle="tooltip"
+                    title="Wrestling committee recommends allocation plan.">(Johnson, 2008)</cite>.</p>
+
+            <p>Reducing the number of qualifying events will make it easier for fans to keep track of the results from a
+                more concise set of qualifiers taking place during the weekend. This provides increased exposure to
+                athletes from programs that may not have received much attention during the regular season, promoting
+                their visibility leading up to the NCAA Wrestling Championships.</p>
+
+            <p>In addition, with fewer Division I wrestling competitions taking place on the qualifier weekend,
+                officiating at qualification events will be more consistent with one another, aligning better with the
+                standards set for the NCAA Championships. This enhances the integrity of the entire competition.</p>
+
+        </ul>
+        <br>
+        <div id="atlargeQualification"></div>
+        <h3>3. At-large Qualification</h3>
+
+        <ul>
+            <h5>About</h5>
+
+            <p>At-large Qualification is a process in which deserving athletes within each weight class who have not yet
+                been
+                awarded a bid to the NCAA Wrestling Championships may be awarded bids to the NCAA Wrestling
+                Championships by the NCAA Wrestling Selection Committee.</p>
+
+            <h5>Dates and Schedule</h5>
+
+            <p>At-large selections will be made by the committee and announced on:</p>
+            <ul>
+                <li>Monday, March 9, 2025 (Along with the National Championship)</li>
+            </ul>
+            <br>
+            <h5>Eligibility</h5>
+            <p>In order to be eligible for consideration an athlete must meet each of the
+                following
+                criteria:</p>
+            <ul>
+                <li>Is competing in the designated weight class on the NCAA Division-I starters page in TrackWrestling.
+                </li>
+                <li>Has met the Team Representation standard defined in the Direct Qualification process as of the date
+                    of
+                    selection.</li>
+                <li>Competed in one of the following:</li>
+                <ul>
+                    <li>NCAA Wrestling Championship (any round)</li>
+                    <li>Supplemental Qualifier</li>
+                    <p>Note: For the purposes of <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Wrestling Rules Book">Wrestling Rule 9.1.8</cite>, all of the above events should be
+                        considered National
+                        Qualifying Events.</p>
+                </ul>
+
+            </ul>
+            <p>Additionally, the athlete must meet one (1) of the following criteria:</p>
+            <ul>
+                <li>Designated as an at-large contender during the Direct Qualification process.</li>
+                <li>Finished in the top-six at a Supplemental Regional Qualifier</li>
+                <li>Member of a program represented at the NCAA Wrestling Championship Quarter-finals.</li>
+                <li>Attempted to compete but was prevented from competing in their assigned Supplemental Regional
+                    Qualifier due to a failed medical/skin check <cite data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Wrestling Rules Book">(Wrestling Rule 9.1.8)</cite>.</li>
+            </ul>
+            <br>
+            <h5>Process</h5>
+
+            <p>The NCAA Wrestling Committee will select the at-large athletes from the pool of athletes meeting the
+                above
+                defined criteria.</p>
+
+            <p>Prior to seeding, an updated set of Coaches Rank, RPI, and Winning Percentage will be provided for each
+                athlete.</p>
+
+            <p>The metrics to be considered by the committee when select at-large athletes are:</p>
+            <ul>
+                <li>Winning Percentage against the Qualifiers</li>
+                <li>Winning Percentage</li>
+                <li>Head-to-Head Competition</li>
+                <li>Quality Wins</li>
+                <li>Results Against Common Opponents</li>
+                <li>Coaches Rank</li>
+                <li>Ranking Percentage Index Rank </li>
+            </ul>
+        </ul>
+        <h5>Benefits, At-Large Qualification</h5>
+
+
+
+        <p>The at-large selection process has been improved to no longer require elite athletes who had their bid stolen
+            from them to secure an at-large bid.</p>
+        <p>The new at-large process considers only athletes who narrowly missed qualification in the direct qualifier
+            process or through placement in a supplemental qualifier, as well as those athletes on teams who were unable
+            to compete in a supplemental qualifier because their team was competing in the NCAA Wrestling Championship.
+            This narrows the field of athletes under consideration.</p>
+        <div id="champ"></div>
+        <h3>C. Championship Administration</h3>
+        <p>The NCAA Individual Championship will continue to be administered in its current format. All 33 athletes per
+            weight class will continue to be seeded. The only alteration will be
+            the elimination of team scoring and team awards at the event.</p>
+        <br>
+        <hr>
+        <center>
+            <a href="Restructuring.html" class="previous">&laquo; Previous</a>
+            <a href="TeamQualification.html" class="next">Next &raquo;</a>
+        </center>
+
+
+        <h2>Questions</h2>
+        <p>The questions below have been asked by stakeholders who have been granted an access key to review this
+            report. </p>
+        <p>
+            FAQs are updated within the online report periodically to reflect newly asked questions. Questions are
+            scrubbed and anonymized if they include any potentially identifiable information. Only questions emailed
+            to the report email address (PolicyReform@yahoo.com) will be answered.</p>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Why change the qualification system to select athletes directly to the NCAA Wrestling
+                        Championships? (October 30, 2022)
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>The selection process for conference pre-allocations is already a proxy for direct selection
+                            of athletes. This change simply formalizes the process and directly ties the pre-allocated
+                            bids to the athletes who earned them. These athletes will be required to compete in the
+                            conference tournament in order for the conference to retain the bid.</p>
+                        <p>This change eliminates the problematic process of stealing bids and having to defend them.
+                            There are three main issues with this process:</p>
+
+                        <ol>
+                            <li>Only athletes in that specific conference are able to compete for the bid, which
+                                unfairly removes opportunities for some athletes based on their conference affiliation
+                                while giving greater opportunities to others based on their conference affiliation.</li>
+                            <li>Athletes in a conference with a lot of allocations must compete in an excessive number
+                                of matches just to determine allocations that have no conference placement value for the
+                                team (e.g. determining 12th place in a conference tournament). This puts an unreasonable
+                                burden on the athletes.
+                                The system does not ensure that the top athletes in the country qualify for the NCAA
+                                tournament. Qualification is based on performance within a conference rather than a
+                                national or regional field of competitors.</li>
+                            <li>The system does not ensure that the top athletes in the country qualify for the NCAA
+                                tournament. Qualification is based on performance within a conference rather than a
+                                national or regional field of competitors.</li>
+                        </ol>
+                        <p>The new direct qualification process rewards athletes who perform at a high level throughout
+                            the season while representing their team in team competitions. It ensures that the top
+                            athletes will earn their way into the NCAA Championships. Additionally, it provides an
+                            avenue for other athletes to earn their own bids to the NCAA individual championship, even
+                            if they were not selected as direct qualifiers.</p>
+                        <p>This process also helps to eliminate the issue of injured athletes defaulting out at
+                            qualifying events in order to preserve their path through an at-large bid. By earning a
+                            direct qualification, there is no need for these athletes to enter an event when they are
+                            unable to compete, which improves the integrity of the sport.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Why is there a team representation requirement? (November 10, 2022)
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>In order to be eligible for the postseason, including the opportunity to win an individual
+                            national championship or earn All-American honors, athletes must have been a starter for
+                            their team in at least 45% of team competitions. This requirement is designed to ensure that
+                            athletes who participate in the postseason are truly starters for their program and have
+                            contributed to their team's success. The threshold for earning the team representation
+                            requirement
+                            is not weight class specific, which means that a team could potentially have up to 22
+                            athletes who meet the requirement at the end of the season.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        What is the point of Direct Qualifiers? Why shouldn't those athletes have to earn their
+                        qualification like
+                        others? (November 22, 2022)
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>The direct qualification process is designed to reward the top-performing athletes during the
+                            season. These athletes have demonstrated their abilities and deserve a spot in the NCAA
+                            Wrestling Championships. In the current system, there is often universal agreement on which
+                            athletes are the most deserving of inclusion in the championship. These athletes, if they
+                            were to fail to qualify through a conference allocation, would likely be given an at-large
+                            bid. The direct qualification process allows these top performers to bypass qualification
+                            events, providing an added incentive for athletes to perform during the season.</p>
+                        <p>Furthermore, the direct qualification process provides the opportunity in the schedule to
+                            have a dual track postseason process for teams and individuals which improves athlete
+                            well-being. Programs competing for an NCAA Team Championship, will not be burdened with a
+                            packed schedule of competition and significant increase in matches.</p>
+                        <p>The top performing programs within team competitions historically are also those that have
+                            the greatest number of athletes earning their conferences pre-allocations today. As a
+                            result, the number of athletes from teams competing in the NCAA Wrestling (Team)
+                            Championship and still seeking a bid to the NCAA Wrestling Championships is likely to be
+                            relativley low.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingfour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                        Why move to a system of regional qualifiers? Doesn't this diminish the Conference
+                        Championships? (December 12, 2022)
+                    </button>
+                </h2>
+                <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>This system of individual qualification provides equal opportunities for athletes from all
+                            programs, regardless of their conference affiliation. NCAA Rule <i>17.28.5.3 Annual
+                                Exemptions, Number of Dates of Competition</i> will continue to allow conferences to
+                            hold conference championships without counting a date of competition, if they choose, which
+                            could actually increase opportunities for athletes by allowing multiple entries per weight
+                            class from each school. This would make college wrestling more inclusive and increase equity
+                            among athletes. The current system of qualification, with its regional qualifiers and focus
+                            on consolidation, has minimized opportunities for individuals and teams to compete in
+                            conference championships. The new system aims to address this issue and create a more fair
+                            and equitable system for all wrestlers.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Why do the teams to make the NCAA Wrestling
+                        Championship Quarter-finals get
+                        their athletes automatically eligible for at-large consideration? Why should the top
+                        programs have this
+                        unfair advantage? (January 4, 2023)
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <p>The top performing programs historically within team competitions are also those that have
+                            the greatest number of athletes earning their conferences pre-allocations today. As a
+                            result, the number of athletes from teams competing in the NCAA Wrestling (Team)
+                            Championship and still seeking a bid to the NCAA Wrestling Championships is likely to be
+                            relativley low.</p>
+                        <p>However, there may still be athletes within these programs that did not earn direct
+                            qualification but are still within the top-25 athletes based on their full season of
+                            competition (including their postseason results). As a result, these athletes are going to
+                            be considered for at-large qualification to the NCAA Wrestling Championships.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Why are weaker programs given an advantage to get their athletes qualified through the
+                        regional qualifier but the top programs competing at the National Championship don't have
+                        the chance to push through athletes that have a good performance at a qualifier? (January 18,
+                        2023)
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>The season competition is the primary qualification process to the NCAA Wrestling
+                            Championships. The majority of athletes will qualify through direct qualification or
+                            at-large selection which increases the significance of the results from the season rather
+                            than simply focusing on one qualification competition.</p>
+                        <p>The supplemental qualifier is designed to provide a path for athletes from programs
+                            not competing for a NCAA championship to earn a bid to the NCAA Wrestling Championships.
+                            This is achieved by consolidating athletes who have not earned qualification into regional
+                            qualifying tournaments. This allows these athlete to compete directly with each other for
+                            qualification. This process ensures that
+                            athletes from every region of the country have the opportunity to earn representation for
+                            their program and themselves based on their performance against other athletes in their
+                            geographic region who have not yet been selected to the championship.</p>
+
+                        <p>The at-large consideration process is separate from the supplemental qualifier process and is
+                            used to ensure that the top-25 athletes for the season are included in the final field of 33
+                            athletes in each weight class. While the supplemental qualifier process may result in some
+                            athletes from under-represented programs earning qualification to the NCAA Wrestling
+                            Championships
+                            despite not having a top-33 quality season, this is not seen as a flaw in the process.
+                            Instead, it
+                            is a way to provide opportunities for athletes from all programs to earn a place at the NCAA
+                            Wrestling Championships and to ensure that the final field is as competitive as possible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        If the regional champion and runner-up both advance to the championship, why would they wrestle?
+                        (February 18, 2023)
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>The match is a countable contest where a result will be recorded for an athlete which will
+                            factor into seeding at the NCAA Wrestling Championships.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <address>Contact: PolicyReform@yahoo.com</address>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        var simulator = true;
+
+
+        function pauser(timer) {
+            var pauseTime = simulator ? timer : 0;
+            setTimeout((function () {
+                return function () {
+                    getConversation();
+                }
+            })(), pauseTime);
+        }
+        var counter = 0;
+        var toggleRun = false;
+        function sleep(milliseconds) {
+            //const date = Date.now();
+            //let currentDate = null;
+            //do {
+            //currentDate = Date.now();
+            //} while (currentDate - date < milliseconds);
+            //for(i=0;i< (milliseconds);i++){
+            //waiting
+            //}
+        }
+        function countSpaces(my_string) {
+            return (my_string.split(" ").length - 1);
+        }
+        function getReadingTime(myString) {
+            var words = countSpaces(myString) + 1;
+
+            words = (words < 4) ? 4 : words;
+            words = (words > 10) ? 4 + words : words;
+
+            return words * 250;
+        }
+
+        function changeChatToggleRun() {
+            toggleRun = !toggleRun;
+        }
+
+
+        function getConversation() {
+
+            var chatHeight = document.getElementById("chat").offsetHeight;
+
+            var convoCount = 0;
+            var conversations = [{ "person": "1", "text": "Hey, would you be able to explain something to me?", "pause": "2000" }, { "person": "2", "text": "Sure, what's up?", "pause": "100" }, { "person": "1", "text": "I don't understand how qualifications for the NCAA Wrestling Championships works.", "pause": "1000" }, { "person": "1", "text": "Would you mind explaining it to me?", "pause": "1000" }, { "person": "2", "text": "Oh, yeah… no worries.  What do you want to know?", "pause": "2000" }, { "person": "1", "text": "Well, I saw the pre-allocations have been released.  What does that mean exactly.", "pause": "1000" }, { "person": "2", "text": "That is the number of bids pre-allocated to each conference.  Wrestlers are ranked based on a combination of three factors: Win Percentage, RPI, and Coaches rankings.  ", "pause": "1000" }, { "person": "2", "text": "They use these three metrics and determine the top wrestlers for each weight class and those wrestlers are given pre-allocations.", "pause": "1000" }, { "person": "1", "text": "Oh, got ya.  So it's just the number of wrestlers who were given bids in each conference?", "pause": "1000" }, { "person": "1", "text": "Why are they called pre-allocations and not allocations if the wrestlers earned the bids?", "pause": "1000" }, { "person": "1", "text": "Do you know where I can find the list of wrestlers?  The NCAA release only list the conferences and not the wrestlers.  ", "pause": "1000" }, { "person": "2", "text": "Well, not exactly.  A conference could get fewer bids than were pre-allocated.  But that is the amount they are expected to get.", "pause": "1000" }, { "person": "2", "text": "It's called pre-allocations because that's how many are allocated to the conference before the conference tournament starts but that doesn't mean that is how many the conference will get.", "pause": "1000" }, { "person": "1", "text": "Okay, now I am really confused.", "pause": "1000" }, { "person": "2", "text": "Well, the pre-allocations aren't really for the conference but rather the individuals in the conference.  The guys that earned the bids have to wrestle in the conference tournament.", "pause": "1000" }, { "person": "1", "text": "Wait... so it is just how many guys in each conference have already qualified to the NCAA tournament?  I thought you said it wasn't.  Again, why wouldn't they just put out the list of the individual wrestlers who qualified for the NCAA tournament?", "pause": "1000" }, { "person": "2", "text": "Well, no…  They didn't actually earn themselves a bid to the NCAA tournament.  They were just deemed worthy of a bid to the NCAA tournament.", "pause": "1000" }, { "person": "2", "text": "They don't release the name of the wrestlers who earned the bids because they are conference bids and not wrestler bids.", "pause": "1000" }, { "person": "1", "text": "…but I thought you said the pre-allocations weren't for the conference but were for the individuals in the conference.", "pause": "1000" }, { "person": "1", "text": "And what does being deemed worthy but not getting a bid mean?  That's such a strange thing...", "pause": "1000" }, { "person": "2", "text": "Well, yeah… but once the pre-allocations are earned they are transferable within the conference.", "pause": "1000" }, { "person": "2", "text": "Another wrestler could \"steal\" the bid from the wrestler who earned it.", "pause": "1000" }, { "person": "1", "text": "So a wrestler earns a pre-allocation bid?", "pause": "1000" }, { "person": "2", "text": "Yes.", "pause": "1000" }, { "person": "1", "text": "And then that pre-allocation just goes to the conference to give out?", "pause": "1000" }, { "person": "2", "text": "As long as the wrestler who earned the pre-allocation competes in the conference tournament, yes.  But if the wrestler doesn't compete in the conference tournament then the conference loses the pre-allocation and the bid will be added back in as an at-large bid.", "pause": "1000" }, { "person": "1", "text": "Okay… so when does it become an allocation?", "pause": "1000" }, { "person": "2", "text": "Well, the allocations are determined based on placement in the conference tournament.", "pause": "1000" }, { "person": "2", "text": "So if a conference has one pre-allocation bid then the wrestler to win the conference gets the bid to the NCAA tournament.", "pause": "1000" }, { "person": "1", "text": "Okay, that makes sense.", "pause": "1000" }, { "person": "2", "text": "And if the conference has 10 bids to the NCAA tournament then the wrestlers who place in the top-10 earn the bids to the NCAA tournament.", "pause": "1000" }, { "person": "1", "text": "But tournaments don't place top-10…", "pause": "1000" }, { "person": "2", "text": "No, but they will hold special placement matches to determine who gets those extra bids if they need to do so.", "pause": "1000" }, { "person": "1", "text": "So wrestlers earn the bids but they may not use the bid they earned?", "pause": "1000" }, { "person": "2", "text": "Yes.", "pause": "1000" }, { "person": "2", "text": "But if they place high enough in the conference then they get the bid.", "pause": "1000" }, { "person": "1", "text": "So what happenes if the wrestler doesn't place high enough?", "pause": "1000" }, { "person": "2", "text": "Well, there are always a few spots reserved for at-large bids to be given out after the conference tournaments for guys who didn't earn a bid.  At least three spots but sometimes a few more.", "pause": "1000" }, { "person": "1", "text": "So, if a wrestler who earned a bid in pre-allocation but fails to earn a bid through allocation can earn an at-large bid?", "pause": "1000" }, { "person": "2", "text": "Yes.  Exactly.", "pause": "1000" }, { "person": "1", "text": "If the wrestler is just going to get in anyways why not just give them to the wrestler?  Why give it to them, let someone else take it, and then just give them one anyways.", "pause": "1000" }, { "person": "2", "text": "Well, they aren't guaranteed to get in…", "pause": "1000" }, { "person": "2", "text": "Like… Let's say that the top three wrestlers in the country all medical forfiet out of the conference tournament because they are banged up and don't want to aggrevate injury.  Then those guys would all be guaranteed to get in but if the 10th best wrestler didn't earn a bid they wouldn't get an at-large because there weren't any at-large bids left to give.", "pause": "1000" }, { "person": "1", "text": "So wrestlers individually earn the bids. ", "pause": "1000" }, { "person": "2", "text": "Yup.", "pause": "1000" }, { "person": "1", "text": "And they are tied to the wrestler who earned the bid.", "pause": "1000" }, { "person": "2", "text": "Yeah.", "pause": "1000" }, { "person": "1", "text": "But they go the conference the wrestler is in?", "pause": "1000" }, { "person": "2", "text": "Yeah…", "pause": "1000" }, { "person": "1", "text": "And they can be stolen by another wrestler in that conference.", "pause": "1000" }, { "person": "2", "text": "Correct.", "pause": "1000" }, { "person": "1", "text": "But the conference only got that bid because of the wrestler who had it stolen?", "pause": "1000" }, { "person": "2", "text": "Yeah, that's how it works.", "pause": "1000" }, { "person": "1", "text": "So what's the point of pre-allocation?", "pause": "1000" }, { "person": "1", "text": "Like, if the bids are tied to wrestlers… why do pre-allocations?", "pause": "1000" }, { "person": "2", "text": "Well some conferences are just much stronger than others and have more teams.  So you have to give them more bids.", "pause": "1000" }, { "person": "1", "text": "But you're not giving them to the guys who earned them… ", "pause": "1000" }, { "person": "2", "text": "Yeah, you are.  ", "pause": "1000" }, { "person": "1", "text": "You said they could be stolen.", "pause": "1000" }, { "person": "2", "text": "Yeah, they can.", "pause": "1000" }, { "person": "1", "text": "So they can be stolen by wrestlers that were not 'deemed worthy' of a bid before the conference tournament started?", "pause": "1000" }, { "person": "2", "text": "Yeah, but some kids have a good conference tournament and so they get to steal a bid.", "pause": "1000" }, { "person": "1", "text": "But didn't you say a kid could earn a bid just because one of their opponents happened to default out of the tournament?", "pause": "1000" }, { "person": "2", "text": "Yeah, but only if they are in a really tough conference.", "pause": "1000" }, { "person": "1", "text": "Okay... are you saying...", "pause": "1000" }, { "person": "1", "text": "If I am the 8 seed and matched up with the 1 seed...", "pause": "1000" }, { "person": "1", "text": "and the 1 seed defaults to me...", "pause": "1000" }, { "person": "1", "text": "and we have six pre-allocations...", "pause": "1000" }, { "person": "1", "text": "I have now earned a bid to the NCAA tournament?", "pause": "1000" }, { "person": "2", "text": "Sure.  Probably has happened", "pause": "1000" }, { "person": "1", "text": "So if I win a wrestle-off to a teammate who earned a bid for the conference tournament do I then steal his bid?", "pause": "1000" }, { "person": "2", "text": "Ha ha... No.  Only other teams can steal bids.  I mean, you could steal someone else's bid but the bid earned by your teammate wouldn't go to the conference anymore.  So there would be one less pre-allocation for the conference unless the kid to win the wrestle off himself had a really high RPI and Win Perc.", "pause": "1000" }, { "person": "1", "text": "So are all the conferences about the same size?  Do they all get a similar number of bids so it all comes out in the wash?", "pause": "1000" }, { "person": "2", "text": "Oh, no.  Not even close.", "pause": "1000" }, { "person": "2", "text": "One conference has 6 teams;  another has 17 teams.", "pause": "1000" }, { "person": "2", "text": "But there has been a lot of consolidation into large regional conferences.  I think people think they have a better shot at getting a bid if they are in a larger conference.", "pause": "1000" }, { "person": "1", "text": "So my bid can be stolen by anyone else in my conference.", "pause": "1000" }, { "person": "1", "text": "But it can't be stolen by my teammate", "pause": "1000" }, { "person": "1", "text": "And it can't be stolen by any of the many wrestlers outside of the conference", "pause": "1000" }, { "person": "1", "text": "But my teammate and the wrestlers in other conferences might actually be better wrestlers than the kid who lucked into stealing my bid?", "pause": "1000" }, { "person": "1", "text": "I don't get the point of this system.", "pause": "1000" }, { "person": "2", "text": "It's just the way it is.", "pause": "1000" }];
+            var i = counter;
+            if (i == conversations.length || !toggleRun) return;
+            //if(conversations[i].person == 1){
+
+            //console.log(conversations[i].text);
+            var message = "<div class=\"message last\">" + conversations[i].text + "</div>";
+            var chatElm = document.getElementById("chat");
+            var lastChildrenNode = chatElm.lastElementChild;
+
+            if (lastChildrenNode.classList.contains("mine")) {
+                //console.log("last is mine.");
+                if (conversations[i].person == 1) {
+                    //Last message was mine and new message is mine
+                    lastChildrenNode.lastElementChild.classList.remove("last");
+                    lastChildrenNode.insertAdjacentHTML('beforeend', message);
+
+
+                } else {
+                    //last message was mine but new message is yours
+                    message = "<div class=\"yours messages\">" + message + "</div>";
+                    chatElm.insertAdjacentHTML('beforeend', message);
+
+
+                }
+            } else {
+                console.log("this is yours");
+                if (conversations[i].person == 1) {
+
+                    message = "<div class=\"mine messages\">" + message + "</div>";
+                    chatElm.insertAdjacentHTML('beforeend', message);
+
+
+                } else {
+
+                    lastChildrenNode.lastElementChild.classList.remove("last");
+                    lastChildrenNode.insertAdjacentHTML('beforeend', message);
+
+
+                }
+            }
+
+            if (i < conversations.length) {
+                if (simulator)
+
+
+
+                    if (conversations[i].person == conversations[i + 1]) {
+                        //if the next text is from the same person, then the next delay should be shorter for a rapid fire of multiple texts in a row.
+
+                        pauser(getReadingTime(conversations[i].text) / 2);
+
+                    } else {
+                        pauser(getReadingTime(conversations[i].text));
+                    }
+
+                var objDiv = document.getElementById("chat");
+                objDiv.scrollTop = objDiv.scrollHeight - 600;
+                //setInterval(getConversation(),conversations[i].pause);
+                counter++;
+            }
+
+
+        }
+
+
+
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            const SCALE = 4;
+            const ANIMATION_DURATION = 500;
+            const QUICK_ANIMATION_DURATION = 200;
+            const DRAG_LIMIT = 375;
+
+            let initialMouseY;
+            let lastTranslateValue = 0;
+            let diff = 0;
+            let busy = false;
+            let cardsCreated = 0;
+            let $notched = $('.demo__card--notched');
+            let $controls = $('.demo__controls');
+            let $cards = $('.demo__card');
+            let $regularCards = $('.demo__card--regular');
+            let $timeIndicator = $('.demo__indicator--time');
+
+            const codepenCard = {
+                type: 'LINK',
+                imageUrl: 'https://kiyutink.github.io/logos/codepen.png',
+                caption: '<a class="demo__profile-link" href="https://codepen.io/kiyutink/" target="_blank">My codepen</a>',
+                description: 'Check out my other pens',
+                time: 'just now'
+            }
+
+            const twitterCard = {
+                type: 'LINK',
+                imageUrl: 'https://kiyutink.github.io/logos/twitter.jpg',
+                caption: '<a class="demo__profile-link" href="https://twitter.com/kiyutin_k" target="_blank">My twitter</a>',
+                description: 'Follow me',
+                time: 'just now'
+            }
+
+            const dribbbleCard = {
+                type: 'LINK',
+                imageUrl: 'https://kiyutink.github.io/logos/dribbble.png',
+                caption: '<a class="demo__profile-link" href="https://dribbble.com/shots/4089014-Pull-To-Refresh-iPhone-X" target="_blank">Dribble shot</a>',
+                description: 'By Saptarshi Prakash',
+                time: 'just now'
+            }
+
+            setCurrentTime();
+            setInterval(setCurrentTime, 60 * 1000);
+
+            function setCurrentTime() {
+                const curDate = new Date();
+                let hours = curDate.getHours();
+                if (hours > 12)
+                    hours = hours - 12;
+                let minutes = curDate.getMinutes() + '';
+                if (minutes.length <= 1)
+                    minutes = 0 + minutes;
+                $timeIndicator.text(`${hours}:${minutes}`);
+            }
+
+        });
+
+
+        var ichat = document.getElementById("iPhone");
+
+        ichat.style.cursor = 'pointer';
+        ichat.onclick = function () {
+            changeChatToggleRun();
+            getConversation();
+
+        };
+    </script>
+
+
+
+    <script type="text/javascript">
+        var regionalCounter = 0;
+        function shuffle(array) {
+
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Create a random index to pick from the original array
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // Cache the value, and swap it with the current element
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            for (i = 0; i < array.length; i++) {
+                arrayshuffled.push(array[i]);
+            }
+        }
+
+        var regionalRandomArray = [];
+
+
+
+        function updateRegionalBracketing() {
+            regionalCounter = 0;
+            arrayshuffled.length = 0;
+            if (arrayi.length == 0 && arrayii.length == 0 && arrayiii.length == 0) {
+                for (i = 0; i < regionalAthletes.length; i++) {
+                    if (regionalAthletes[i].Tier == 'I') {
+                        arrayi.push(i);
+                    } else if (regionalAthletes[i].Tier == 'II') {
+                        arrayii.push(i);
+                    } else {
+                        arrayiii.push(i);
+                    }
+                }
+            }
+            shuffle(arrayi);
+            shuffle(arrayii);
+            shuffle(arrayiii);
+
+            for (i = 0; i < arrayshuffled.length; i++) {
+
+                var counter = parseInt(i) + 1;
+                var updateID = "Seed" + counter;
+                var elm = document.getElementById(updateID);
+                elm.innerHTML = regionalAthletes[parseInt(arrayshuffled[i])].name + ", " + regionalAthletes[parseInt(arrayshuffled[i])].team
+                elm.style.background = getColorRegional(regionalAthletes[arrayshuffled[i]].Tier);
+                regionalCounter++;
+
+            }
+
+        }
+
+        var arrayi = [];
+        var arrayii = [];
+        var arrayiii = [];
+        var arrayshuffled = [];
+        var regionalAthletes = [{ "name": "John Lincoln", "team": "UC-Irvine", "Tier": "I", "Type": "", "rpi": "" },
+        { "name": "Ryan Hodges", "team": "Colorado", "Tier": "I", "Type": "", "rpi": "" },
+        { "name": "Manuel Wiley", "team": "Santa Clara", "Tier": "I", "Type": "", "rpi": "" },
+        { "name": "Braydon Robertson", "team": "Nevada", "Tier": "II", "Type": "", "rpi": "" },
+        { "name": "Cale Macias", "team": "Sam Houston State", "Tier": "II", "Type": "", "rpi": "" },
+        { "name": "Ryker Stevens", "team": "San Diego State", "Tier": "II", "Type": "", "rpi": "" },
+        { "name": "Chance Delacruz", "team": "Washington", "Tier": "II", "Type": "", "rpi": "" },
+        { "name": "Diego Logan", "team": "Hawaii", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Dominik Thomas", "team": "Pepperdine", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Brenton Taylor", "team": "Gonzaga", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Noe Orr", "team": "Idaho State", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Ayden Bright", "team": "UCLA", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Ali Erickson", "team": "USC", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "George Valdez", "team": "Incarnate Word", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Jorden Shields", "team": "Texas-Rio Grande Valley", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Max Cooke", "team": "CSU Sacramento", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Kobe McBride", "team": "UNLV", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Irvin Novarro", "team": "Weber State", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Alden Snow", "team": "Denver", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Jonah Valez", "team": "Washington State", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Dexter Best", "team": "Houston Baptist", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Paxton Russell", "team": "Montana", "Tier": "III", "Type": "", "rpi": "" },
+        { "name": "Reynaldo Santos", "team": "UC San Diego", "Tier": "III", "Type": "", "rpi": "" }];
+
+
+        function regionalBuilder(num) {
+
+            var node = document.getElementById("regionalAthletesRegional");
+            node.querySelectorAll('*').forEach(n => n.remove());
+            var node = document.getElementById("regionalDetail");
+            node.querySelectorAll('*').forEach(n => n.remove());
+            regionalRandomArray.push(num);
+
+            buildRegionalTable();
+        }
+
+        function createDiv(className, idName) {
+            var x = document.createElement("DIV");
+            x.classList.add(className);
+            x.id = idName;
+            return x;
+        }
+
+
+        function insertAfter(referenceNode, newNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
+
+
+        function getColorRegional(tier) {
+            var gold = "#DBAA11";//gold
+            var green = "#a8d2aa"; //green
+            var red = "#F1B7C2";//red
+            if (tier == "I") {
+                return green;
+            } else if (tier == 'II') {
+                return gold;
+            }
+            return red;
+        }
+        function buildRegionalTable() {
+
+            var tables = document.getElementById("regionalAthletesRegional");
+            var counter = 1;
+            var x = createDiv("conf", "conferenceDiv1");
+
+
+            var tblHTML = "<table id=\"" + "tblRegional" + "\" class=\"standings conf\" style=\"text-align:center\"><tbody><tr style=\"text-align:center\" ><th>Name</th><th>Team</th><th>Tier</th></tr>";
+
+
+            //Loop through each conference
+            for (i = 0; i < regionalAthletes.length; i++) {
+
+                //build the rows for the conference table.
+                tblHTML += "<tr><td>" + regionalAthletes[i].name + "</td><td>" + regionalAthletes[i].team + "</td><td style=\"background:" + getColorRegional(regionalAthletes[i].Tier) + "\">" + regionalAthletes[i].Tier + "</td></tr>";
+
+            }
+            tblHTML += "</tbody></table>";
+            tables.insertAdjacentHTML('beforeend', tblHTML);
+        }
+
+
+        //window.onload(regionalBuilder(4));
+        function runRegional() {
+            regionalBuilder();
+        }
+        var runRegional = runRegional();
+
+
+        function getRandomRegionalNumber() {
+            return Math.trunc(Math.random() * 10) + 1;
+        }
+        function getNewExample() {
+            var num = 0;
+            if (regionalRandomArray.length > 10) {
+                regionalRandomArray = [];
+                regionalRandomArray.push(0);
+            }
+            for (i = 0; i < 100; i++) {
+                num = getRandomRegionalNumber();
+                if (!regionalRandomArray.includes(num)) {
+                    return num;
+                }
+            }
+            return num;
+        }
+
+
+        function conferenceRandom() {
+            var num = getNewExample();
+            regionalBuilder(num);
+        } 
+    </script>
+    <element onload="runRegional">
+
+
+        <script src="log.js"></script>
+
+        <script>window.onload = function () {
+                onLoad();
+            };</script>
+
+</body>
+
+
+
+
+
+</html>
