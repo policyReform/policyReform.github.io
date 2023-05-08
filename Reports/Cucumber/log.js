@@ -62,12 +62,16 @@
             showID('menuBar',true);
 
         }
+        function getUser(){
+           var u = window.localStorage.getItem('CucumberUser');
+           return "?Rev="+u;
+        }
         function redirectToRequestedPage(){
             var routeTo = window.localStorage.getItem('requestedPage');
             if(routeTo == '' || routeTo == undefined ){
-                document.location.href="home.html";  
+                document.location.href="home.html"+ getUser();  
             }else{
-                document.location.href=routeTo;
+                document.location.href=routeTo +getUser();
             }
         }
         var ps = document.querySelector("#passSubmit");
@@ -77,6 +81,8 @@
                 if (pk != undefined) {
                     if (approvedKeys.includes(pk.value)) {
                         window.localStorage.setItem('CucumberPK','true');
+                        window.localStorage.setItem('CucumberUser',matrixMap.get(pk.value));
+
                         loggedIn = true;
                         //document.getElementById('loginError').style.visibility = "hidden";
                         document.getElementById('loginError').style.display = "none";
