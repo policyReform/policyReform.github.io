@@ -102,7 +102,7 @@
     text-decoration: none;
     transition: 0.5s;
   }
-  @media only screen and (max-width:700px) {
+  @media only screen and (max-width:900px) {
     .menu-listing li a {
       font-size: 0.7rem; 
     }
@@ -112,7 +112,7 @@
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
     #mobileMenuIssueNote {
         display: block;
         font-size: xx-small;
