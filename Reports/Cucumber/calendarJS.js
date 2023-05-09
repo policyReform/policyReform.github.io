@@ -95,7 +95,12 @@ var showAdmins = false;
           }
         } else if (indEv == '1') {
           //needs atlarge
-          activateClass("regional" + schedule, true);
+          if(flipCoin() == false){
+            activateClass("regional" + 'b', true);
+          }else{
+            activateClass("regional" + 'c', true);
+          }
+          
           activateClass("athlete", true);
           updateNotes("The athlete has not yet qualified for the NCAA Wrestling Championships.  In order to compete for a weight class championship, the athlete will need to compete in the regional supplemental qualifier.  The team did not earn a post-season bid.  There will be no team competitions for the athlete.");
 
@@ -123,6 +128,7 @@ var showAdmins = false;
           }
         } else if (indEv == '1') {
           //needs atlarge
+          activateClass("rnd1" + schedule, true);
           activateClass("athlete", true);
           activateClass("regional" + schedule, true);
           updateNotes("The athlete has not yet qualified for the NCAA Wrestling Championships.  The athlete's team will compete in one dual in the first round of the NCAA Wrestling Championship. In order to compete for a weight class championship, the athlete will need to compete in the regional supplemental qualifier.");
