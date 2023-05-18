@@ -29,6 +29,12 @@
             var currentPathArray = document.location.href.split("/");
             return currentPathArray[currentPathArray.length -1];
         }
+        function checkParam(){
+            if(window.localStorage.getItem('CucumberUser') != null && !window.location.href.includes("?Rev") ){
+                window.history.replaceState(null, null, getUser());
+            }
+        }
+        checkParam();
         function checkLogin() {
             //check if the key grants access
             if (!keyGranted()) {
@@ -64,7 +70,7 @@
         }
         function getUser(){
            var u = window.localStorage.getItem('CucumberUser');
-           return "?Rev="+u;
+           return u == null ? "" : "?Rev="+u;
         }
         function redirectToRequestedPage(){
             var routeTo = window.localStorage.getItem('requestedPage');
