@@ -102,10 +102,17 @@
     text-decoration: none;
     transition: 0.5s;
   }
+  body{
+    padding: 10%;
+  }
   @media only screen and (max-width:900px) {
     .menu-listing li a {
       font-size: 0.7rem; 
     }
+    body{
+      padding: 5%;
+    }
+
   }
 
   #mobileMenuIssueNote {
