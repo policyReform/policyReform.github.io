@@ -31,7 +31,12 @@
         }
         function checkParam(){
             if(window.localStorage.getItem('CucumberUser') != null && !window.location.href.includes("?Rev") ){
-                window.history.replaceState(null, null, getUser());
+                
+                if(window.location.href.includes("#")){
+                    window.history.replaceState(null, null, getUser() +'#'+window.location.href.split('#')[1]);
+                }else{
+                    window.history.replaceState(null, null, getUser());
+                }
             }
         }
         checkParam();
