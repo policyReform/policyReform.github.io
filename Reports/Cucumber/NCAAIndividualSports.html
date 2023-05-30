@@ -919,7 +919,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="clicky.log(getPage()+'#accordionExample');">
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="clicky.log(getPage()+'#accordionExample','Helper');">
                         <Strong>Helper: &nbsp;</Strong><i> &nbsp;How does an individual sport have team qualifiers
                             without
                             team head-to-head competitions? (click to expand)</i>
@@ -1855,8 +1855,8 @@
 
         <hr>
         <center>
-            <a href="Introduction.html" onclick="clicky.log(getPage()+'#bottomPreviousButton'); return true;" class="previous">&laquo; Previous</a>
-            <a href="StakeholderFeedback.html" onclick="clicky.log(getPage()+'#bottomNextButton'); return true;"class="next">Next &raquo;</a>
+            <a href="Introduction.html" onclick="clicky.log(getPage()+'#bottomPreviousButton', this.innerText); return true;" class="previous">&laquo; Previous</a>
+            <a href="StakeholderFeedback.html" onclick="clicky.log(getPage()+'#bottomNextButton', this.innerText); return true;"class="next">Next &raquo;</a>
         </center>
         <script>
 
