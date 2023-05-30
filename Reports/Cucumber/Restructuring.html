@@ -21,7 +21,7 @@
         //background-color: #eee;
         font-family: Tahoma, Arial, sans-serif;
         margin: 0;
-        padding: 5%;
+        //padding: 5%;
     }
 
     .regional section {
@@ -2112,6 +2112,7 @@
             }
 
             function weighInTable() {
+                clicky.log(getPage()+"#weighInTable", "weighInTable");
                 hideCoinFlip(false);
                 document.getElementById('coinResult').style.display = 'none';
                 document.getElementById('coin').style.display = 'none';
