@@ -769,6 +769,7 @@
                 // }
 
             }
+            var loadedClick = true;
             function tabClicked(el) {
 
                 //console.log(el);
@@ -777,8 +778,13 @@
                 var prevSibling = current.previousElementSibling;
 
                 current.classList.add("active");
-                console.log(el.id);
-                setAndLogURL(el.id);
+                
+                if(loadedClick){
+                    loadedClick = false
+                }else{
+                    setAndLogURL(el.id);
+                }
+                
                 var cElm = document.getElementById(current.getAttribute('name'));
 
                 cElm.style.display = 'block';
