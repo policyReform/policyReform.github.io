@@ -361,7 +361,7 @@ function trackDiv(divID) {
 
 function inView(elTop){
   //accept the top of the element being checked
-  var currentTopOfPage = window.pageYOffset;
+  var currentTopOfPage = window.pageYOffset -5;
   return elTop > currentTopOfPage && elTop < ( window.pageYOffset + ((window.innerHeight/10)*9));
 }
 function setAndLogURL(val){
