@@ -332,6 +332,7 @@ var menuActive = false;
 var scrollPosition = 0;
 var yposition = 0;
 var divsLogged=[];
+var loggedPageTime = Date.now();
 function onLoad() {
   buildMatrixMap();
   checkLogin();
@@ -347,21 +348,38 @@ function setScrollReporting() {
   }
 }
 function trackDiv(divID) {
-  var element_position = $("#"+divID).offset().top;
+  var eTop = $("#"+divID).offset().top;
+  var eBottom = eTop + ((window.innerHeight/100)*90);
 
   $(window).on("scroll", function () {
-    var y_scroll_pos = window.pageYOffset +((window.innerHeight/4)*3);
-    var scroll_pos_test = element_position;
-
-    if (y_scroll_pos > scroll_pos_test && !divsLogged.includes(divID) ) {
+    if ( inView(eTop) && !divsLogged.includes(divID) ) {
       setAndLogURL(divID);
       divsLogged.push(divID);
     }
   });
 }
+
+function inView(elTop){
+  //accept the top of the element being checked
+  var currentTopOfPage = window.pageYOffset;
+  return elTop > currentTopOfPage && elTop < ( window.pageYOffset + ((window.innerHeight/10)*9));
+}
 function setAndLogURL(val){
-    checkParam('&loc='+val);
-    clicky.pageview();
+    //if(rerunPageview()){
+      checkParam('&loc='+val);
+      clicky.pageview();
+      loggedPageTime = Date.now();
+    //}
+}
+function rerunPageview(){
+  var endTime = new Date();
+  var timeDiff = endTime - loggedPageTime; //in ms
+  // strip the ms
+  timeDiff /= 1000;
+
+  // get seconds 
+  var seconds = Math.round(timeDiff);
+  return seconds > 2;
 }
 
 function buildMatrixMap() {
