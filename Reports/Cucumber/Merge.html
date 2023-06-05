@@ -336,12 +336,7 @@
             overflow: auto;
         }
 
-        .wrap {
-            width: 95%;
-            margin: auto;
-            max-width: 62.5vw;
-        }
-
+       
         .calendar-container {
             width: 95%;
             margin: auto;
@@ -932,6 +927,30 @@
             margin-bottom: 3%;
             border: 2px solid #F8F8F8;
         }
+        /*control the padding based on device view size*/
+    @media (min-width: 768px) {
+        body {
+            padding: 15%;
+        }
+        .wrap {
+            width: 95%;
+            margin: auto;
+            max-width: 62.5vw;
+        }
+
+    }
+    @media (max-width: 768px) {
+        
+        body {
+            padding: 3%;
+        }
+        .wrap {
+            width: 99%;
+            margin: auto;
+            //max-width: 40vw;
+        }
+
+    }
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
