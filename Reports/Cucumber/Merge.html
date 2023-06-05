@@ -336,7 +336,7 @@
             overflow: auto;
         }
 
-       
+
         .calendar-container {
             width: 95%;
             margin: auto;
@@ -915,9 +915,9 @@
         }
 
         #floated {
-            float: right;
+            
             //margin: 10px;
-            width: 35%;
+            
             //height: 475px;
             //padding: .9%;
             //padding-left: 2.5%;
@@ -927,30 +927,37 @@
             margin-bottom: 3%;
             border: 2px solid #F8F8F8;
         }
+
         /*control the padding based on device view size*/
-    @media (min-width: 768px) {
-        body {
-            padding: 15%;
-        }
-        .wrap {
-            width: 95%;
-            margin: auto;
-            max-width: 62.5vw;
-        }
-
-    }
-    @media (max-width: 768px) {
-        
-        body {
-            padding: 3%;
-        }
-        .wrap {
-            width: 99%;
-            margin: auto;
-            //max-width: 40vw;
+        @media (min-width: 768px) {
+            body {
+                padding: 15%;
+            }
+            .wrap {
+                width: 95%;
+                margin: auto;
+                max-width: 62.5vw;
+            }
+            #floated {
+                width: 45%;  
+                float: right; 
+            }
         }
 
-    }
+        @media (max-width: 768px) {
+            body {
+                padding: 3%;
+            }
+            .wrap {
+                width: 99%;
+                margin: auto;
+                //max-width: 40vw;
+            }    
+            #floated {  
+                width: 95%; 
+                
+            }
+        }
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -2588,7 +2595,7 @@
                     <center>
                         <h5 class="simulation">NCAA Wrestling, Championship Assets and Program Inventory
                         </h5>
-
+                        <p style="font-size:x-small">click to toggle between the current and proposed structures</p>
                     </center>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="assetTabs" role="tablist">
@@ -3053,8 +3060,8 @@
                         <center>
 
                             <img src="https://clips-media-aka.warnermediacdn.com/ncaa/clips/2020-08/42555-75465c2e321d4204a0887c5fe04d19be/images/00c9f513-74ae-4de5-adfa-fe2220c9fe2b-42555-1.png"
-                                style="width:95%">
-                            <p>NCAA Basketball Studio Show Sponsored by AT&T.</p>
+                                style="width:95%" >
+                            <p style="font-size:x-small">NCAA Basketball Studio Show Sponsored by AT&T.</p>
                         </center>
                     </div>
                     </p>
