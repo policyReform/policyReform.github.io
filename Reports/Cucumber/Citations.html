@@ -21,7 +21,20 @@
         //background-color: #eee;
         font-family: Tahoma, Arial, sans-serif;
         margin: 0;
-        padding: 15%;
+        //padding: 15%;
+    }
+
+    /*control the padding based on device view size*/
+    @media (min-width: 768px) {
+        body {
+            padding: 15%;
+        }
+    }
+    @media (max-width: 768px) {
+        
+        body {
+            padding: 3%;
+        }
     }
 
     p {
