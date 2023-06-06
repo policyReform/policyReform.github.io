@@ -2610,6 +2610,7 @@
 
         ichat.style.cursor = 'pointer';
         ichat.onclick = function () {
+            setAndLogURL('userClickedConversationPhone');
             changeChatToggleRun();
             getConversation();
 
