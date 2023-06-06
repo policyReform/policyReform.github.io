@@ -243,6 +243,8 @@
 
         function support(val) {
             window.localStorage.setItem('supportPosition', val);
+            window.history.replaceState(null, null, getUser()+'?reply='+val);
+            clicky.pageview();
             setAndLogURL(val);
 
             displaySelection(val);
