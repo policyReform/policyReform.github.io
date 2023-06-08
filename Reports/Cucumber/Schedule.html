@@ -326,7 +326,7 @@
         overflow: auto;
     }
 
-    
+
 
     .calendar-container {
         width: 95%;
@@ -888,29 +888,41 @@
         padding-right: 0.3em;
         text-align: left;
     }
-     /*control the padding based on device view size*/
-     @media (min-width: 768px) {
+
+    /*control the padding based on device view size*/
+    @media (min-width: 768px) {
         body {
             padding: 15%;
         }
+
         .wrap {
             width: 95%;
             margin: auto;
             max-width: 62.5vw;
         }
 
+        #countryMapofHSEnding {
+            width: 60vw;
+            height: 60vw;
+        }
     }
+
     @media (max-width: 768px) {
-        
+
         body {
             padding: 3%;
         }
+
         .wrap {
             width: 99%;
             margin: auto;
             //max-width: 40vw;
         }
 
+        #countryMapofHSEnding {
+            width: 83vw;
+            height: 83vw;
+        }
     }
 </style>
 <!-- Required meta tags -->
@@ -1213,7 +1225,8 @@
                                     <section class="admin task task--warning2">Selection of Direct Qualifiers</section>
                                     <section class="admin adminDirect task task--warning4">Direct Qualifiers Announced
                                     </section>
-                                    <section class="admin adminInd task task--warning5">Seeding of Weight Classes for NCAA
+                                    <section class="admin adminInd task task--warning5">Seeding of Weight Classes for
+                                        NCAA
                                         Wrestling
                                         Championships</section>
                                     <section class="admin adminAtlarge task task--warning7">NCAA Wrestling
@@ -2927,7 +2940,8 @@
 
 
                 <center>
-                    <h2 class="simulation">NCAA Division I Basketball Games Durring NCAA Division I (Individual) Wrestling Championships, by Phase
+                    <h2 class="simulation">NCAA Division I Basketball Games Durring NCAA Division I (Individual)
+                        Wrestling Championships, by Phase
                     </h2>
                     <table class="comparisonTbl tvWrap" style="text-align:center">
                         <tbody>
@@ -3211,12 +3225,8 @@
                             <input type="radio" id="v2Check" name="scheduleVersion" value="v2"
                                 onchange="getWeekMapDisplay()">
                             <label for="css">Phase II, Shifted NCAA (Individual) Championships</label>
-                            <br>
 
-
-
-                            <div id="countryMapofHSEnding" style="display:block; width:85%; height:70%"></div>
-
+                            <div id="countryMapofHSEnding" style="display:block;"></div>
 
                             <table class="standings conf" style="text-align:center">
                                 <tbody>
@@ -4375,7 +4385,23 @@
                                 dataPoints: [{ x: new Date(2022, 3, 3), y: 0 }]
 
                             },*/
-                                {
+                            {
+                                type: "stackedColumn",
+                                name: "Wrestling Individual Championship",
+
+                                showInLegend: "true",
+                                xValueFormatString: "DDD MMM D",
+                                color: '#f7e1f6',
+                                dataPoints: wrInd
+                            },{
+                                    type: "stackedColumn",
+                                    name: "Wrestling Team Championship",
+
+                                    showInLegend: "true",
+                                    xValueFormatString: "DDD MMM D",
+                                    color: '#e6d6ac',
+                                    dataPoints: wrTeam
+                                }, {
                                     type: "stackedColumn",
                                     name: "T6 Conference Tournaments",
 
@@ -4534,7 +4560,340 @@
             </center>
             <br>
             <hr>
+
+            <div id="questions" class="trackIt"></div>
+            <h2>Questions or Concerns</h2>
+            <p>The questions below have been asked by stakeholders who have been granted an access key to review this
+                report. </p>
+            <p>
+                This section is updated within the online report periodically to reflect newly asked questions.
+                Questions are
+                scrubbed and anonymized if they include any potentially identifiable information. Only questions emailed
+                to the report email address (PolicyReform@yahoo.com) will be answered.</p>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button onclick="setAndLogURL('Q1');" class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                            aria-controls="collapseOne">
+                            It looks like if you make the quarterfinals of the dual team tournament, the supplemental
+                            regional tournament qualifier for the individual tournament could be the next day. Maybe I
+                            missed something, but what if an athlete in the quarterfinals of the team tournament needs
+                            to wrestle in the regional tournament to qualify for the individual tournament? They are
+                            expected to travel and compete in a regional as well? (June 7, 2023)
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>No, athletes will not compete the next day.</p>
+                            <p>The Supplemental Regional Qualifiers and the Team Championship Quarterfinals,
+                                Semi-Finals, and Finals are all held the same week. Any program that is still competing
+                                in the NCAA Wrestling (Team) Championship that week is not eligible to compete in a
+                                Supplemental Regional Qualifier. <a href="IndividualQualification.html#supElig">See
+                                    here.</a></p>
+
+                            <p>This creates a dual track postseason whereby, the week of the of the team championship
+                                (QF, SF, F) and the Supplemental Qualifiers, a program is either focused on competing
+                                for a team championship or qualifying athletes for the individual championship. A
+                                program will never be focused on both team and individual competitions at the same time.
+                            </p>
+                            <p>The Supplemental Qualifier is only for athletes from programs that have not qualified for
+                                the Quarterfinals of the NCAA Championship.</p>
+                            <p>It may be helpful to see a visual representation of what an athlete's postseason schedule
+                                would look like based on their individual and team performances. You may use the <a
+                                    href="Schedule.html#competitionsim">Simulation of Competition Dates, Based on
+                                    Athlete and Team Performance</a> to select different performance variables from the
+                                drop downs on the calendar to see how individual schedules would actually look for
+                                athletes.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button onclick="setAndLogURL('Q2');" class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Unfortunately, this is too much competition for an athlete who is on a team contending for a
+                            team title, who doesn't earn one to the automatic 20 bids and needs to compete at a regional
+                            qualifier. (June 7, 2023)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>Athletes from teams contending for a team title will not complete in a regional
+                                qualifier. As a result these athletes won't compete in too many matches during the
+                                postseason.</p>
+                            <p>The Supplemental Regional Qualifiers are called Supplemental Qualifiers because their
+                                purpose is to supplement the individual championship field with athletes from programs
+                                not contending for a team title.</p>
+                            <p>These regional qualifiers are specifically designed to provide a pathway for athletes
+                                from programs that may not have had many opportunities to build a strong individual
+                                resume for direct qualification due to their team's lack of success during the season.
+                            </p>
+
+                            <p>Athletes from less successful programs can compete against each other to earn bids to the
+                                individual championships.</p>
+
+                            <p>Athletes from programs competing for team titles will earn bids to the individual
+                                championships based on their season's body of work alone—either by direct qualification
+                                or by at-large qualification.</p>
+                            <p>All athletes from programs contending for a team title will be considered for at-large
+                                qualification. This ensures that the athletes from those eight programs will be
+                                considered for selection after all of the Direct Qualifier and Supplemental Qualifiers
+                                have been determined. <a href="IndividualQualification.html#addAtlargeElig">See
+                                    here.</a> </p>
+
+
+                            <p>The objective here is to try to best ensure that all the top-25 athletes, based on their
+                                season's body of work, qualify for the individual championship. This makes an athlete's
+                                season performance the primary pathway to qualification to the individual championship
+                                and the only method available for athletes from programs competing for national team
+                                titles.</p>
+
+                            <ul>
+
+                                <p><i>Does this mean if the University of Florida makes the Semifinals of the team
+                                        championship and they have the 29th best athlete at a weight class, and that
+                                        29th best athlete may not qualify for the individual championship while an
+                                        athlete from Bethune-Cookman University who is the 35th best athlete at the same
+                                        weight qualifies to the individual championship due to placing third in a
+                                        Supplemental Qualifier?</i></p>
+                            </ul>
+                            <p>Yes. That is correct.</p>
+
+                            <p>That dynamic already happens today based on the current qualification process. It's
+                                possible for an athlete to stay home today despite having the 29th best season while an
+                                athlete with the 35th best season advances to the individual championship.</p>
+
+                            <p>Within this new framework, athletes still competing in the team championship the week of
+                                the Supplemental Qualifiers have been provided with a championship experience through
+                                the team championship. They have had the sport focused on their team and individual
+                                performances and they have had opportunities to improve their atlarge resume through
+                                competition with athletes from other quality programs.</p>
+
+                            <p>Athletes from programs competing for the team championship must earn a bid through their
+                                season's body of work.</p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button onclick="setAndLogURL('Q3');" class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            The Big 10 will have issues with this due to the number of teams in the conference and the
+                            dual meet portion is hard to execute within the dates allotted. (June 7, 2023)
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>This plan does not call for an increase in Big Ten Dual Meets, nor does it require Big
+                                Ten programs change the makeup of their schedules from what they are today.</p>
+
+                            <p>Programs may continue to schedule the same number of contests as they do currently.</p>
+
+                            <p>The Big Ten programs <a href="https://bigten.org/standings.aspx?path=wrestling"
+                                    target="_blank">currently wrestle eight (8) conference duals</a> and already
+                                determine a conference dual champion. They already compete in more than the number of
+                                contests needed to meet the requirements outlined for conference qualification.</p>
+
+                            <p>Additionally, the Big Ten conference dual schedule is currently completed prior to the
+                                postseason which would be when a conference would need to have determined their
+                                conference champion if they wished to have an automatic bid to the team championship.
+                            </p>
+
+                            <p>All conferences have November, December, January, and February to hold competitions to
+                                determine their conference automatic bid. Conferences may set up their own conference
+                                scheduling as they would like. It is expected that conferences would award their
+                                automatic bid to their conference regular season champion as that would require little,
+                                if any, change to teams current schedules.</p>
+
+                            <p>There is nothing in this framework that requires the Big Ten Conference to make any
+                                substantial changes to meet the requirements for the conference to earn an automatic
+                                bid.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingfour">
+                        <button onclick="setAndLogURL('Q4');" class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false"
+                            aria-controls="collapsefour">
+                            The 2025 season (and any seasons that have already determined the individual national
+                            championship host) would have the team championships too close to the individual
+                            championships. Why not just wait until the individual championship date can be move? (June
+                            7, 2023)
+                        </button>
+                    </h2>
+                    <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>The 2025 season (and any season with the individual championship site already determined)
+                                will have the same break between postseason events no matter if it is Phase I or Phase
+                                II.</p>
+
+                            <p>The whole post season shifts with Selection Sunday also shifting one week between Phase I
+                                and Phase II. The only difference between Phase I and Phase II is that all of the
+                                postseason dates are moved back seven days within Phase II. The spread between
+                                individual postseason milestones will not shift.</p>
+
+                            <table class="tvWrap" style="text-align:center">
+                                <tbody class="comparisonTbl">
+
+                                    <tr class="tvWrap" style=\"text-align:center\">
+                                        <th style="">2025 Event</th>
+                                        <th style="">Phase I Schedule</th>
+                                        <th style="">Phase II Schedule</th>
+
+                                    </tr>
+
+                                    <!-- New Date-->
+                                    <tr class="tvWrap">
+                                        <td class="tvWrap">
+                                            Regular Season Ends
+                                        </td>
+                                        <td class="tvWrap">
+                                            Sunday, February 22
+                                        </td>
+                                        <td class="tvWrap">
+                                            Sunday, March 1
+                                        </td>
+                                    </tr>
+                                    <tr class="tvWrap">
+                                        <td class="tvWrap">
+                                            NCAA Wrestling Championship, First Round
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, February 26
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 5
+                                        </td>
+                                    </tr>
+                                    <tr class="tvWrap">
+                                        <td class="tvWrap">
+                                            Supplemental Regional Qualifiers
+                                        </td>
+                                        <td class="tvWrap">
+                                            Friday, March 6
+                                        </td>
+                                        <td class="tvWrap">
+                                            Friday, March 13
+                                        </td>
+                                    </tr>
+                                    <tr class="tvWrap">
+                                        <td class="tvWrap">
+                                            NCAA Wrestling Championship, Finals
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 9
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 16
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="tvWrap">
+                                            NCAA Wrestling Championship, First Day
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 19
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 26
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="tvWrap">
+                                            NCAA Wrestling Championship, Third Day
+                                        </td>
+                                        <td class="tvWrap">
+                                            Saturday, March 21
+                                        </td>
+                                        <td class="tvWrap">
+                                            Thursday, March 28
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <p>This span of time can be observed in the <a href="Schedule.html#bballinventory">Inventory
+                                    of Division I Men's College Basketball Games and NCAA Wrestling Championship
+                                    Competition Dates</a>. If you use the drop down to change between Phase I and Phase
+                                II, the whole postseason for the wrestling shifts while the NCAA basketball
+                                season schedule remains the same.</p>
+
+                            <p>In this framework, the break between the finals of the team championship and the
+                                individual championship will be nine (9) days in Phase I as well in Phase II. The
+                                current
+                                shortest break between a conference qualifying tournament and the individual
+                                championship is ten days. There is not a significant change in the break between
+                                competition prior to the individual championship for the teams competing for a team
+                                championship.</p>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button onclick="setAndLogURL('Q5');" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        QUESTION
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <p>ANSWER</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button onclick="setAndLogURL('Q6');" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        QUESTION
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>ANSWER
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button onclick="setAndLogURL('Q7');" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        QUESTION
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>ANSWER</p>
+                    </div>
+                </div>
+            </div> -->
+            </div>
+            <br>
+            <hr>
             <address>Contact: PolicyReform@yahoo.com</address>
+
         </div>
         <element onload="load"></element>
         <script src="log.js"></script>

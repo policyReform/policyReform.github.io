@@ -371,6 +371,9 @@ var  majmid = [{ x: new Date(2021,10,9), y: 57},
     { x: new Date(2022,1,8), y: 1}];
 
 var  nond1 = [];
+var  wrTeam = [{ x: new Date(2022,2,8), y: 0}];
+var wrInd = [{ x: new Date(2022,2,8), y: 0}];
+
 var  majConf = [{ x: new Date(2022,2,8), y: 3},
     { x: new Date(2022,2,9), y: 16},
     { x: new Date(2022,2,10), y: 24},
