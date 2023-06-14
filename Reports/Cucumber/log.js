@@ -371,6 +371,11 @@ function setAndLogURL(val){
       loggedPageTime = Date.now();
     //}
 }
+function logParam(param){
+  checkParam(param);
+  checkclicky.pageview();
+  checkParam('');
+}
 function rerunPageview(){
   var endTime = new Date();
   var timeDiff = endTime - loggedPageTime; //in ms
@@ -483,7 +488,7 @@ if (ps != undefined) {
           //document.getElementById('loginError').style.visibility = "visible";
           document.getElementById("loginError").style.display = "";
           document.getElementById("errorCount").innerText = errorCount;
-          checkParam('?errorCount='+errorCount+'&puser='+pk.value);
+          logParam('?errorCount='+errorCount+'&puser='+pk.value);
         }
         event.preventDefault();
       }
