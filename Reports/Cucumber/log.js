@@ -331,58 +331,60 @@ var errorCount = 0;
 var menuActive = false;
 var scrollPosition = 0;
 var yposition = 0;
-var divsLogged=[];
+var divsLogged = [];
 var loggedPageTime = Date.now();
 function onLoad() {
   buildMatrixMap();
   checkLogin();
   setScrollReporting();
-
 }
 function setScrollReporting() {
   var divs = document.getElementsByTagName("div");
   for (var i = 0; i < divs.length; i++) {
-    if (divs[i].classList.contains('trackIt')) {
+    if (divs[i].classList.contains("trackIt")) {
       trackDiv(divs[i].id);
     }
   }
 }
 function trackDiv(divID) {
-  var eTop = $("#"+divID).offset().top;
-  var eBottom = eTop + ((window.innerHeight/100)*90);
+  var eTop = $("#" + divID).offset().top;
+  var eBottom = eTop + (window.innerHeight / 100) * 90;
 
   $(window).on("scroll", function () {
-    if ( inView(eTop) && !divsLogged.includes(divID) ) {
+    if (inView(eTop) && !divsLogged.includes(divID)) {
       setAndLogURL(divID);
       divsLogged.push(divID);
     }
   });
 }
 
-function inView(elTop){
+function inView(elTop) {
   //accept the top of the element being checked
-  var currentTopOfPage = window.pageYOffset -5;
-  return elTop > currentTopOfPage && elTop < ( window.pageYOffset + ((window.innerHeight/10)*9));
+  var currentTopOfPage = window.pageYOffset - 5;
+  return (
+    elTop > currentTopOfPage &&
+    elTop < window.pageYOffset + (window.innerHeight / 10) * 9
+  );
 }
-function setAndLogURL(val){
-    //if(rerunPageview()){
-      checkParam('&loc='+val);
-      clicky.pageview();
-      loggedPageTime = Date.now();
-    //}
+function setAndLogURL(val) {
+  //if(rerunPageview()){
+  checkParam("&loc=" + val);
+  clicky.pageview();
+  loggedPageTime = Date.now();
+  //}
 }
-function logParam(param){
+function logParam(param) {
   window.history.replaceState(null, null, param);
   checkclicky.pageview();
-  window.history.replaceState(null, null,'');
+  window.history.replaceState(null, null, "");
 }
-function rerunPageview(){
+function rerunPageview() {
   var endTime = new Date();
   var timeDiff = endTime - loggedPageTime; //in ms
   // strip the ms
   timeDiff /= 1000;
 
-  // get seconds 
+  // get seconds
   var seconds = Math.round(timeDiff);
   return seconds > 2;
 }
@@ -400,12 +402,11 @@ function keyGranted() {
 function getPage() {
   var currentPathArray = document.location.href.split("/");
   var p = currentPathArray[currentPathArray.length - 1];
-  if(p.includes('?')){
-    return p.split('?')[0];
-  }else{
+  if (p.includes("?")) {
+    return p.split("?")[0];
+  } else {
     return p;
   }
-  
 }
 function checkParam(str) {
   if (
@@ -416,14 +417,14 @@ function checkParam(str) {
       window.history.replaceState(
         null,
         null,
-        getUser() + str+"#" + window.location.href.split("#")[1]
+        getUser() + str + "#" + window.location.href.split("#")[1]
       );
     } else {
-      window.history.replaceState(null, null, getUser()+str);
+      window.history.replaceState(null, null, getUser() + str);
     }
   }
 }
-checkParam('');
+checkParam("");
 function checkLogin() {
   //check if the key grants access
   if (!keyGranted()) {
@@ -460,7 +461,7 @@ function getUser() {
 }
 function redirectToRequestedPage() {
   var routeTo = window.localStorage.getItem("requestedPage");
-  if (routeTo == "" || routeTo == undefined || routeTo.includes('login.html')) {
+  if (routeTo == "" || routeTo == undefined || routeTo.includes("login.html")) {
     document.location.href = "home.html" + getUser();
   } else {
     document.location.href = routeTo + getUser();
@@ -485,10 +486,19 @@ if (ps != undefined) {
             "grantaccess.html?Rev=" + matrixMap.get(pk.value);
         } else {
           errorCount++;
+
+          window.history.replaceState(
+            null,
+            null,
+            "?errorCount=" + errorCount + "&puser=" + pk.value
+          );
+          checkclicky.pageview();
+
           //document.getElementById('loginError').style.visibility = "visible";
           document.getElementById("loginError").style.display = "";
           document.getElementById("errorCount").innerText = errorCount;
-          logParam('?errorCount='+errorCount+'&puser='+pk.value);
+          logParam("?errorCount=" + errorCount + "&puser=" + pk.value);
+          window.history.replaceState(null, null, "");
         }
         event.preventDefault();
       }
