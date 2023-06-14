@@ -375,7 +375,7 @@ function setAndLogURL(val) {
 }
 function logParam(param) {
   window.history.replaceState(null, null, param);
-  checkclicky.pageview();
+  clicky.pageview();
   window.history.replaceState(null, null, "");
 }
 function rerunPageview() {
@@ -492,12 +492,11 @@ if (ps != undefined) {
             null,
             "?errorCount=" + errorCount + "&puser=" + pk.value
           );
-          checkclicky.pageview();
+          clicky.pageview();
 
           //document.getElementById('loginError').style.visibility = "visible";
           document.getElementById("loginError").style.display = "";
           document.getElementById("errorCount").innerText = errorCount;
-          logParam("?errorCount=" + errorCount + "&puser=" + pk.value);
           window.history.replaceState(null, null, "");
         }
         event.preventDefault();
