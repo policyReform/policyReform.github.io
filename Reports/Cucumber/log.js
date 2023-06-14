@@ -394,7 +394,13 @@ function keyGranted() {
 }
 function getPage() {
   var currentPathArray = document.location.href.split("/");
-  return currentPathArray[currentPathArray.length - 1];
+  var p = currentPathArray[currentPathArray.length - 1];
+  if(p.includes('?')){
+    return p.split('?')[0];
+  }else{
+    return p;
+  }
+  
 }
 function checkParam(str) {
   if (
@@ -419,6 +425,7 @@ function checkLogin() {
     if (getPage() != "login.html") {
       requestedPage = document.location.href;
       window.localStorage.setItem("requestedPage", requestedPage);
+      setAndLogURL(requestedPage);
       document.location.href = "login.html";
     } else {
     }
@@ -448,7 +455,7 @@ function getUser() {
 }
 function redirectToRequestedPage() {
   var routeTo = window.localStorage.getItem("requestedPage");
-  if (routeTo == "" || routeTo == undefined) {
+  if (routeTo == "" || routeTo == undefined || routeTo.includes('login.html')) {
     document.location.href = "home.html" + getUser();
   } else {
     document.location.href = routeTo + getUser();
