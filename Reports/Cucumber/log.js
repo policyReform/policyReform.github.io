@@ -483,7 +483,7 @@ if (ps != undefined) {
           //document.getElementById('loginError').style.visibility = "visible";
           document.getElementById("loginError").style.display = "";
           document.getElementById("errorCount").innerText = errorCount;
-          checkParam('?errorCount='+errorCount);
+          checkParam('?errorCount='+errorCount+'&puser='+pk.value);
         }
         event.preventDefault();
       }
