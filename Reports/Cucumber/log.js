@@ -372,9 +372,9 @@ function setAndLogURL(val){
     //}
 }
 function logParam(param){
-  checkParam(param);
+  window.history.replaceState(null, null, param);
   checkclicky.pageview();
-  checkParam('');
+  window.history.replaceState(null, null,'');
 }
 function rerunPageview(){
   var endTime = new Date();
