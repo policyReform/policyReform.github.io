@@ -471,8 +471,6 @@ if (ps != undefined) {
         if (approvedKeys.includes(pk.value)) {
           window.localStorage.setItem("CucumberPK", "true");
           window.localStorage.setItem("CucumberUser", matrixMap.get(pk.value));
-          setAndLogURL('granted'+matrixMap.get(pk.value));
-
           loggedIn = true;
           //document.getElementById('loginError').style.visibility = "hidden";
           document.getElementById("loginError").style.display = "none";
@@ -485,7 +483,7 @@ if (ps != undefined) {
           //document.getElementById('loginError').style.visibility = "visible";
           document.getElementById("loginError").style.display = "";
           document.getElementById("errorCount").innerText = errorCount;
-          setAndLogURL('errorCount'+errorCount);
+          checkParam('?errorCount='+errorCount);
         }
         event.preventDefault();
       }
