@@ -334,6 +334,7 @@ var yposition = 0;
 var divsLogged = [];
 var loggedPageTime = Date.now();
 function onLoad() {
+  clicky.pageview();
   buildMatrixMap();
   checkLogin();
   setScrollReporting();
