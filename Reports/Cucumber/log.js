@@ -333,6 +333,9 @@ var scrollPosition = 0;
 var yposition = 0;
 var divsLogged = [];
 var loggedPageTime = Date.now();
+var clicky_custom = clicky_custom || {};
+  clicky_custom.pageview_disable = 1;
+  
 function onLoad() {
   clicky.pageview();
   buildMatrixMap();
