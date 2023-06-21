@@ -335,7 +335,7 @@ var divsLogged = [];
 var loggedPageTime = Date.now();
 var clicky_custom = clicky_custom || {};
   clicky_custom.pageview_disable = 1;
-  
+
 function onLoad() {
   clicky.pageview();
   buildMatrixMap();
@@ -407,6 +407,7 @@ function getPage() {
   var currentPathArray = document.location.href.split("/");
   var p = currentPathArray[currentPathArray.length - 1];
   if (p.includes("?")) {
+    console.log(p.split("?")[0]);
     return p.split("?")[0];
   } else {
     return p;
