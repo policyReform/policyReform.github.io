@@ -407,7 +407,6 @@ function getPage() {
   var currentPathArray = document.location.href.split("/");
   var p = currentPathArray[currentPathArray.length - 1];
   if (p.includes("?")) {
-    console.log(p.split("?")[0]);
     return p.split("?")[0];
   } else {
     return p;
