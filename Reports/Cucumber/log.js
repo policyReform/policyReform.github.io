@@ -334,9 +334,11 @@ var yposition = 0;
 var divsLogged = [];
 var loggedPageTime = Date.now();
 var clicky_custom = clicky_custom || {};
-  clicky_custom.pageview_disable = 1;
+clicky_custom.pageview_disable = 1;
+checkParam("");
 
 function onLoad() {
+  
   clicky.pageview();
   buildMatrixMap();
   checkLogin();
@@ -412,6 +414,18 @@ function getPage() {
     return p;
   }
 }
+function getQueryVariable(variable){
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+function checkPassPermitted() {
+  return getQueryVariable("bypass") == 'true';
+}
 function checkParam(str) {
   if (
     window.localStorage.getItem("CucumberUser") != null /*&&
@@ -428,7 +442,7 @@ function checkParam(str) {
     }
   }
 }
-checkParam("");
+
 function checkLogin() {
   //check if the key grants access
   if (!keyGranted()) {
@@ -458,6 +472,10 @@ function makeDataViewable() {
   showID("spin", false);
   showID("home", true);
   showID("menuBar", true);
+}
+function showWithoutMenuAccess() {
+  showID("spin", false);
+  showID("home", true);
 }
 function getUser() {
   var u = window.localStorage.getItem("CucumberUser");

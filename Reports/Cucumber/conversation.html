@@ -194,7 +194,8 @@
         </div>
       </div>
     </div>
-    <button onclick="window.location.href='IndividualQualification.html#phoneConversation'">Return to Report</button>
+    <button id='returnToReport' onclick="window.location.href='IndividualQualification.html#phoneConversation'">Return to Report</button>
+    <button id='viewReport' onclick="window.location.href='home.html'">View Full Report</button>
     <button id="convoBtn" onclick="getConversation()">Click here to continue the conversation</button>
     <!--<br>
   <center>
@@ -274,7 +275,7 @@
           chatElm.insertAdjacentHTML('beforeend', message);
         }
       } else {
-        console.log("this is yours");
+        //console.log("this is yours");
         if (conversations[i].person == 1) {
 
           message = "<div class=\"mine messages\">" + message + "</div>";
@@ -297,7 +298,7 @@
           pauser(getReadingTime(conversations[i].text));
         }
 
-        console.log(simulator, 'simulator');
+        //console.log(simulator, 'simulator');
         //setInterval(getConversation(),conversations[i].pause);
         counter++;
       }
@@ -320,7 +321,16 @@
 
 
   <script>window.onload = function () {
+    if(checkPassPermitted()){
+      showWithoutMenuAccess();
+      showID('viewReport', true);
+      showID('returnToReport', false);
+      
+    }else{
       onLoad();
+      showID('viewReport', false);
+      showID('returnToReport', true);
+    } 
       getConversation();
     };</script>
 
