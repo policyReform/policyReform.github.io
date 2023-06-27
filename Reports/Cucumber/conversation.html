@@ -133,7 +133,7 @@
 
 
 <body>
- 
+
 
   <div id="menuBar">
 
@@ -167,7 +167,7 @@
     <div class="bounce2"></div>
     <div class="bounce3"></div>
   </div>
-  
+
   <div id="home" class="page">
 
     <h1>A Conversation Between College Wrestling Fans</h1>
@@ -194,7 +194,8 @@
         </div>
       </div>
     </div>
-    <button id='returnToReport' onclick="window.location.href='IndividualQualification.html#phoneConversation'">Return to Report</button>
+    <button id='returnToReport' onclick="window.location.href='IndividualQualification.html#phoneConversation'">Return
+      to Report</button>
     <button id='viewReport' onclick="window.location.href='home.html'">View Full Report</button>
     <button id="convoBtn" onclick="getConversation()">Click here to continue the conversation</button>
     <!--<br>
@@ -316,21 +317,22 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-    <script src="log.js"></script>
-    <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+  <script src="log.js"></script>
+  <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
 
 
   <script>window.onload = function () {
-    if(checkPassPermitted()){
-      showWithoutMenuAccess();
-      showID('viewReport', true);
-      showID('returnToReport', false);
-      
-    }else{
-      onLoad();
-      showID('viewReport', false);
-      showID('returnToReport', true);
-    } 
+      if (checkPassPermitted()) {
+        clicky.pageview();
+        showWithoutMenuAccess();
+        showID('viewReport', true);
+        showID('returnToReport', false);
+
+      } else {
+        onLoad();
+        showID('viewReport', false);
+        showID('returnToReport', true);
+      }
       getConversation();
     };</script>
 
