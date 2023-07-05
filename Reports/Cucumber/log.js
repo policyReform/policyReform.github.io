@@ -337,10 +337,10 @@ var clicky_custom = clicky_custom || {};
 clicky_custom.pageview_disable = 1;
 
 
-checkParam("");
 function onLoad() {
   
   clicky.pageview();
+  checkParam("");
   buildMatrixMap();
   checkLogin();
   setScrollReporting();
