@@ -335,7 +335,8 @@ var divsLogged = [];
 var loggedPageTime = Date.now();
 var clicky_custom = clicky_custom || {};
 clicky_custom.pageview_disable = 1;
-clicky.pageview();
+
+
 checkParam("");
 function onLoad() {
   
