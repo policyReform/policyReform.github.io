@@ -924,6 +924,75 @@
             height: 83vw;
         }
     }
+
+    //below is QA calendar css
+    .wrapCalendar {
+        background: #f5f7fa;
+        //padding: 2.083vw 0;
+        box-sizing: border-box;
+        font-family: Montserrat, "sans-serif";
+        //color: 'red'; //#51565d;
+    }
+
+    .calendarQA {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(7, minmax(6.25vw, 1fr));
+        grid-template-rows: 2.604vw 3vw 7vw 7vw 20.5vw 10.5vw;
+        grid-auto-rows: 20vw;
+        overflow: visible;
+    }
+
+    .day {
+        border-bottom: 0.052vw solid rgba(61, 62, 66, 0.12);
+        border-right: 0.052vw solid rgba(166, 168, 179, 0.12);
+        text-align: right;
+        //padding: 0.729vw 1.042vw;
+        //letter-spacing: 0.052vw;
+        font-size: 0.625vw;
+        box-sizing: border-box;
+        color: #0f1011;
+        position: relative;
+        pointer-events: none;
+        z-index: 1;
+        font-weight: bold;
+
+    }
+
+    .game {
+        text-align: left;
+        background-color: #c8c0db;
+        border: #000;
+        border-right-color: #fa607e;
+        border-right: #f8254e;
+        color: #4b2c88;
+        position: relative;
+        z-index: 1;
+        font-weight: lighter;
+        margin: 1px;
+    }
+
+    .dual {
+        text-align: left;
+        background-color: #f3e9ea;
+        border: #000;
+        color: #f8254e;
+        position: relative;
+        z-index: 1;
+        font-weight: lighter;
+        margin: 1px;
+    }
+
+    .wr {
+        text-align: left;
+        background-color: #f3e9ea;
+        border: #000;
+        color: #f8254e;
+        position: relative;
+        z-index: 1;
+        font-weight: lighter;
+        margin: 1px;
+    }
 </style>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -4387,15 +4456,15 @@
                                 dataPoints: [{ x: new Date(2022, 3, 3), y: 0 }]
 
                             },*/
-                            {
-                                type: "stackedColumn",
-                                name: "Wrestling Individual Championship",
+                                {
+                                    type: "stackedColumn",
+                                    name: "Wrestling Individual Championship",
 
-                                showInLegend: "true",
-                                xValueFormatString: "DDD MMM D",
-                                color: '#f7e1f6',
-                                dataPoints: wrInd
-                            },{
+                                    showInLegend: "true",
+                                    xValueFormatString: "DDD MMM D",
+                                    color: '#f7e1f6',
+                                    dataPoints: wrInd
+                                }, {
                                     type: "stackedColumn",
                                     name: "Wrestling Team Championship",
 
@@ -4846,23 +4915,1041 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                    <button onclick="setAndLogURL('Q5');" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        QUESTION
-                    </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button onclick="setAndLogURL('Q5');" class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                            aria-controls="collapseFive">
+                            When referencing the Blue Ribbon Task Force it is important to note that the Division I
+                            coaches were the first to discuss the move to a one semester sport.
+                            In addition the report should have also discussed the meeting of the Big Ten Coaches had in
+                            the spring of 22 with the Big Ten Network. During that meeting the coaches asked what could
+                            drive the viewership higher and in a word the BTN said “move the season”. Also the report
+                            should have pointed out that March is the second busiest month for NCAA championships and
+                            this report proposes adding another one to the mix. If you look at the various months you
+                            will find that April is the second slowest month for NCAA championships. Another great time
+                            to capture new and casual fans. (July 5, 2023)
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>In order to streamline the already comprehensive report and prioritize crucial content,
+                                only the final
+                                proposal
+                                and its corresponding considerations have been included within the Cucumber Report. A
+                                significant portion of
+                                the
+                                additional research and considerations which lead to the contents of the report have
+                                been omitted.</p>
 
-                        <p>ANSWER</p>
 
+                            <p>Prior to producing the report, there was an extensive analysis of the proposals,
+                                hypotheses,
+                                and
+                                recommendations circulating within the wrestling community, including those put forth by
+                                the esteemed Blue
+                                Ribbon Task Force. Multiple options were thoroughly reviewed and evaluated, taking into
+                                consideration
+                                relevant
+                                research and modeling that could provide insights into these proposals.</p>
+
+
+                            <p>This analysis identified deficiencies in the hypothesis that shifting the NCAA Wrestling
+                                Championships
+                                to April, or later, would enhance consumer demand and interest in the NCAA Wrestling
+                                Championships and/or
+                                regular season. While it is true April hosts fewer NCAA Championships compared to March,
+                                simply moving the
+                                championships to April (or later) does not guarantee an increase in consumption of NCAA
+                                Wrestling.</p>
+
+                            <p>In order to maintain the strong interest in the NCAA Individual Wrestling Championships
+                                within the expanded
+                                structure of a team and individual championship, it is crucial to ensure that the
+                                quality of the venue and
+                                the
+                                competition structure remains enjoyable for what this report identifies as sport
+                                loyalists who have been the
+                                core regular attendees of the Championship event for years.</p>
+
+                            <p>If the championships were moved to April (or even May), it would likely result in a
+                                decrease in the demand
+                                for
+                                bids to host the championship event, directly impacting the event's profitability.</p>
+
+                            <p>The NCAA Wrestling Championship requires high-quality arenas capable of accommodating
+                                15,500 spectators per
+                                session, equipped with LED video boards, ribbon boards, media production studios,
+                                professionally equipped
+                                video
+                                control rooms, green rooms, meeting rooms, as well as full-time staffing for all
+                                in-house production staff,
+                                located within a city with enough hotel rooms to accomodate the influx of attendees
+                                (National
+                                Collegiate Athletic Association, 2019a). Most of the venues
+                                capable of meeting these standards are professional sports arenas with full-time NBA
+                                and/or NHL tenants.</p>
+
+                            <p>The duration of the NCAA Individual Wrestling Championships requires the host venue to be
+                                allocated for
+                                nearly a
+                                full week (Monday to Sunday). Thus if the NCAA Wrestling Championships are moved to
+                                April, it will be nearly
+                                impossible for venues with professional tenants to bid on hosting the Championships as
+                                the event's dates are
+                                in
+                                direct competition with the NBA and NHL playoffs (National Basketball Association, 2023;
+                                National Hockey
+                                League, 2023). These venues must reserve these playoff dates for their
+                                full-time tenants, ensuring facility availability should their primary tenant(s) make
+                                the playoffs.</p>
+
+                            <p>This reduction in the number of prospective venues will significantly reduce the number
+                                of competitive bids
+                                recieved by the Association. Therefore, moving the Championships to April or May would
+                                likely result in
+                                cities
+                                like Des Moines (2013 host), Albany (2002), or Omaha (2010) winning the rights to host
+                                the Championships,
+                                after
+                                cities like Philadelphia (2011), New York (2016), Cleveland (2018), Detroit (2022), and
+                                Saint Louis (2021)
+                                decline to bid on the Championships.</p>
+
+                            <p>Not only would the net impact likely lead to a reduction in the number of possible
+                                attendees due to smaller
+                                venues in less desirable locales, but it would also increase expenses for flights and
+                                hotels for the
+                                association as well as fans adding to a
+                                decrease in overall local championship amenities.</p>
+
+                            <p>The impact of such a change is particularly concerning due to the NCAA Wrestling
+                                Committee recently reviewing
+                                increasing the minimum financial guarantee necessary for hosting the NCAA Individual
+                                Championships from $2.5
+                                Million to $3 Million (National Collegiate Athletic Association, 2023a). These higher
+                                financial guarantees
+                                may
+                                prove too burdensome for the remaining prospective host municipalities,
+                                resulting in a reduction in the financial guarantees for the championships overall.</p>
+
+                            <p>A reduction in financial guarantees would directly impact the Association's investment in
+                                the NCAA
+                                Wrestling Championship(s) and subsequently lead to a decline in the quality of the event
+                                for all
+                                stakeholders.</p>
+
+                            <p>While there has been considerable discussion about the NCAA Wrestling Championships
+                                competing with the NCAA
+                                Men's Basketball Championships for viewers, it's important to recognize that the
+                                consumption of
+                                intercollegiate
+                                sports is driven primarily as an entertainment and leisure activity. As a result,
+                                competition is not limited
+                                to
+                                NCAA Championships or or even sports in general. Competition may come from any
+                                alternative entertainment or
+                                leisure activity individuals find more preferable, in the moment, than consuming NCAA
+                                Championship
+                                Wrestling.</p>
+
+                            <p>This means that while moving the Wrestling Championships would avoid the competition with
+                                NCAA Men's
+                                Basketball
+                                Championships, new competition would arise from alternative sports programming such as
+                                the NBA playoffs, NHL
+                                playoffs, and MLB regular season. Additionally, the most significant competition is
+                                likely to come from
+                                outdoor
+                                activities, spring high school or youth sports, or simply nicer weather and longer days.
+                            </p>
+
+                            <p>In March, the prime television-watching season comes to an end, and viewership declines
+                                significantly during
+                                the spring and summer months (Krantz-Kent, 2018). Research by Barnett et al. (1991) has
+                                shown that modeling
+                                based on three non-programing based variables, which includes seasonality, can model
+                                television viewership
+                                with 99% accuracy. If the NCAA Wrestling Championships were moved from March to April,
+                                it would shift the
+                                event from a period when many people are used to watching televised sports to a time
+                                when very few people
+                                intend to watch TV.</p>
+
+
+                            <p>This change is due primarily to the transition in seasons, which leads to more sunshine
+                                (longer days) and
+                                increased average temperatures. As temperatures rise and days become longer, following
+                                the cold and dark
+                                winter,
+                                television viewership declines at a predictable and measurable rate (Eisinga, Franses, &
+                                Vergeer, 2011). The
+                                improved weather provides new opportunities for engaging in
+                                alternative entertainment activities that feel more novel following the winter months
+                                and are valued more
+                                highly
+                                than watching television at this time of the year.</p>
+
+                            <p>Moreover, people are not only less likely to watch television in April and May but also
+                                less likely to be
+                                aware
+                                of televised events. This is partly due to reduced consumption of television, which
+                                provides information on
+                                future programming, and would likely be exasperated within wrestling's consumers due to
+                                the lack of
+                                continuity
+                                of the various wrestling competition seasons.</p>
+
+                            <p>Aligning the intercollegiate wrestling season with the youth and high school seasons is
+                                crucial for fostering
+                                a
+                                culture of wrestling consumption. During this time of year, the wrestling community
+                                spends more time
+                                together,
+                                thinking about the sport, and engaging in natural discussions about the sport, including
+                                the programming and
+                                results of the NCAA Championships.</p>
+
+                            <p>Shifting the intercollegiate seasons and championships to a different time of year, when
+                                the majority of high
+                                school and wrestling stakeholders have moved on to other activities, would diminish the
+                                sport's connection
+                                with
+                                its target consumers (high school and youth wrestlers, coaches, and their parents). The
+                                sport specialization
+                                rate within wrestling (~30%) is lower than the typical high school sport specialization
+                                rate (Howard, 2016).
+                                Even
+                                at the high school level, where athletes are most likely to specialize compared to the
+                                youth level, there is
+                                a high probability that the
+                                target consumers will have moved on to other activities and will be spending time
+                                outside of the wrestling
+                                community.</p>
+
+                            <p>As an example, the Ohio High School Athletic Association's (OHSAA) state wrestling
+                                championships, which
+                                conclude
+                                in mid-March, mark the last high school wrestling championship of the year (Ohio High
+                                School Athletic
+                                Association, 2023). By moving the NCAA Wrestling
+                                Championships to April, every single high school State Championship will have been
+                                completed for at least a
+                                month, with nearly 50% of high school State Championships concluding over two months
+                                prior (Abbott, 2022).
+                            </p>
+
+                            <p>Considering that the high school wrestling postseason often runs for a month and the
+                                majority of high school
+                                (and youth) athletes do not compete in state championships, most of the targeted
+                                prospective youth and high
+                                school wrestling consumers will have ended their wrestling season three months prior.
+                                Moving the
+                                Championships
+                                away from the high school competition season would reduce the influence that key
+                                wrestling stakeholders,
+                                such as
+                                wrestling coaches and state qualifier athletes, have on other prospective wrestling
+                                consumers.</p>
+
+                            <p>In April, the wrestling community would be less concentrated as the majority of those
+                                involved in high school
+                                and youth wrestling take time off from the sport and move on to other communities. One
+                                of the most common
+                                communities they transition to is spring sports, with Little League baseball being a
+                                prominent example,
+                                running
+                                from March to May (Coatess, 2023). Consequently, the social influence within the
+                                wrestling community, which
+                                can serve as a
+                                strong motivation for casual sports consumption, would be greatly diminished as the
+                                influence of the Little
+                                League baseball communities becoming stronger for these individuals.</p>
+
+                            <p>The high school athletes who move on to spring sports, such as baseball, would already be
+                                a month into their
+                                baseball games when the NCAA Championships are held. Wrestling wouldn't only be
+                                competing for attention but
+                                actually be in direct competition with actual scheduled athletic events for the
+                                prospective consumers.</p>
+
+                            <p>It's essential to note that the improved weather does not only result in a change to the
+                                athletic communities
+                                people may be within but also result in a change to their social behaviors (Essa et al.,
+                                1990). The
+                                transition in weather and longer days leads to a
+                                change
+                                in behaviors, resulting in reduced interest in watching television or attending indoor
+                                events (Eisinga,
+                                Franses, & Vergeer, 2011l Vachon, 1983).</p>
+
+                            <p>The likelihood of individuals being more engaged with the sport due to the college season
+                                no longer facing
+                                competition from the youth and high school season is not great. This is already evident
+                                within USA
+                                Wrestling's
+                                senior level competitions, which feature the biggest names in the sport. While these
+                                events may not face the
+                                competition often cited as a barrier for the consumption of the NCAA Wrestling
+                                Championships, consumption
+                                remains weak, with wrestling loyalists comprising the base.</p>
+
+                            <p>Consumers are going to be less likely to choose wrestling as an entertainment activity as
+                                the event will be
+                                taking place indoors at a time when consumers are eager to be able to enjoy outdoor
+                                activities.</p>
+
+                            <p>It is worth noting that the Big Ten Network's (BTN) support for shifting the wrestling
+                                programming should not
+                                be
+                                surprising. BTN has limited programing options available in the spring due, in large
+                                part, to the majority
+                                of
+                                the conference's spring inventory of athletic competitions being baseball and softball
+                                games (Big Ten,
+                                n.a.). These contest,
+                                which start six weeks prior to Major League Baseball's opening day (Major League
+                                Baseball, 2023), requires
+                                the Big Ten's teams to travel
+                                to
+                                warmer climates for away games throughout February and March in order to be able to play
+                                games as there is
+                                often
+                                snow on the ground still. This results in the conference not being able to capture the
+                                media rights for
+                                these
+                                contests as not being the host (sponsoring) school.</p>
+
+                            <p>For instance, Michigan didn't play their first game in the north until their 15th game of
+                                the season,
+                                following
+                                trips to Arizona, California, and Texas (Michigan Athletics, 2023). Even after that
+                                single home game, they
+                                traveled back south for
+                                another
+                                four games in Georgia. Leaving only one out of the first twenty games of the season
+                                being available for the
+                                Big Ten Network to broadcast.</p>
+
+                            <p>As a result, the network is left with minimal programing options during the spring (Big
+                                Ten, n.a. -a).
+                                Shifting the wrestling
+                                schedule would help load balance the BTN's programing, providing more original content
+                                and reducing their
+                                reliance on reruns of previous broadcasts (Big Ten Network, 2023). However, this shift
+                                does not necessarily
+                                guarantee an improvement in
+                                the
+                                overall reach of wrestling for the Big Ten or other conferences.</p>
+
+                            <p>Though it should be noted, the recent addition of warm climate schools UCLA and USC to
+                                the Big Ten Conference
+                                will increase the available Big Ten controlled spring sport programing through expanded
+                                Women's Gymnastics,
+                                Baseball, and Softball, and Beach Volleyball programming for the early spring season
+                                (Uggetti, 2022). This
+                                programing would
+                                simply be new competition for wrestling programming on the BTN if wrestling were to
+                                shift the season to
+                                April or May.
+                            </p>
+
+                            <p>It is important to note that the location of the wrestling championships and postseason
+                                on the calendar, when
+                                properly aligned, can greatly benefit from the heightened interest in sports television
+                                consumption fueled
+                                by
+                                March Madness.</p>
+
+                            <p>Not every viewership slot in March is filled with NCAA Men's Basketball Championship
+                                programing. The NCAA
+                                Wrestling Championships being the same month of the Men's Basketball Championship can be
+                                a significant asset
+                                to
+                                wrestling with an expanded Championship structure that features the team championships
+                                during the week and
+                                between the March Madness basketball tournament. It is possible to align wrestling's
+                                championship schedule
+                                to
+                                benefit from the increased sports viewership that consumers plan for due to March
+                                Madness.</p>
+
+
+                            <p>Harold Hotelling's (1929) pioneering research on spatial competition and location theory
+                                has demonstrated
+                                the benefits of clustering competing firms, whereby competitors positioning themselves
+                                next to one another improves their ability to capture select customers.</p>
+
+                            <p>This phenomenon can be observed in car dealerships, mattress stores, gas stations,
+                                restaurants and many other industries, where
+                                firms in direct competition with each-other will cluster together (Joffe-Walt &
+                                Davidson, 2009).</p>
+
+                            <p>These same benefits apply to media consumption, where being positioned on select
+                                distribution networks and/or
+                                being positioned alongside high-demand programming can yield better performance for a
+                                media property (Ryu et
+                                al., 2019). The
+                                increasing success of the NCAA Women's Basketball Championships serves as a prime
+                                example (Weiner, 2023).
+                                The Women's
+                                basketball championships have benefited from being positioned alongside the Men's
+                                Championship in March,
+                                leading to
+                                greater consumption of the women's championship than would be experienced if the event
+                                was scheduled on its
+                                own in April.</p>
+
+                            <p>It's true that wrestling's currently scheduled individual championship date is not
+                                optimal. (See calendar
+                                below.) Currently, the championship sits in
+                                direct competition with the NCAA Men's Basketball Championship's busiest days of
+                                competition. Moving away
+                                from this saturated date on the calendar is
+                                the correct decision, based on the views of this author as well as those on the Blue
+                                Ribbon Task Force.
+                                However, there is disagreement regarding the magnitude of the move.</p>
+
+
+                            <div class="wrapCalendar">
+                                <div class="calendar-container">
+                                    <div class="calendar-header">
+                                        <h1>
+                                            Current March 2025, NCAA Championships Calendar
+                                        </h1>
+                                        <p></p>
+                                    </div>
+                                    <div class="calendarQA"><span class="day-name">Sun</span><span
+                                            class="day-name">Mon</span><span class="day-name">Tue</span><span
+                                            class="day-name">Wed</span><span class="day-name">Thu</span><span
+                                            class="day-name">Fri</span><span class="day-name">Sat</span>
+
+                                        <div class="day day--disabled">February 23</div>
+                                        <div class="day day--disabled">February 24</div>
+                                        <div class="day day--disabled">February 25</div>
+                                        <div class="day day--disabled">February 26</div>
+                                        <div class="day day--disabled">February 27</div>
+                                        <div class="day day--disabled">February 28</div>
+                                        <div class="day">1</div>
+                                        <div class="day">2</div>
+                                        <div class="day">3</div>
+                                        <div class="day">4</div>
+                                        <div class="day">5</div>
+                                        <div class="day">6
+
+                                        </div>
+                                        <div class="day">7
+
+                                        </div>
+                                        <div class="day">8</div>
+                                        <div class="day">9
+
+                                        </div>
+                                        <div class="day">10
+
+                                        </div>
+                                        <div class="day">11</div>
+                                        <div class="day">12
+
+                                        </div>
+                                        <div class="day">13
+
+                                        </div>
+                                        <div class="day">14</div>
+                                        <div class="day">15</div>
+                                        <div class="day">16
+
+                                        </div>
+                                        <div class="day">17
+
+
+                                        </div>
+                                        <div class="day">18
+                                            <div class="game">&nbsp;MBB - Game 1</div>
+                                            <div class="game">&nbsp;MBB - Game 2</div>
+                                        </div>
+                                        <div class="day">19
+                                            <div class="game">&nbsp;MBB - Game 3</div>
+                                            <div class="game">&nbsp;MBB - Game 4</div>
+                                        </div>
+                                        <div class="day">20
+                                            <div class="wr">&nbsp;WR - Session I</div>
+                                            <div class="game">&nbsp;MBB - Game 5</div>
+                                            <div class="game">&nbsp;MBB - Game 6</div>
+                                            <div class="game">&nbsp;MBB - Game 7</div>
+                                            <div class="game">&nbsp;MBB - Game 8</div>
+                                            <div class="game">&nbsp;MBB - Game 9</div>
+                                            <div class="game">&nbsp;MBB - Game 10</div>
+                                            <div class="game">&nbsp;MBB - Game 11</div>
+                                            <div class="game">&nbsp;MBB - Game 12</div>
+                                            <div class="wr">&nbsp;WR - Session II</div>
+                                            <div class="game">&nbsp;MBB - Game 13</div>
+                                            <div class="game">&nbsp;MBB - Game 14</div>
+                                            <div class="game">&nbsp;MBB - Game 15</div>
+                                            <div class="game">&nbsp;MBB - Game 16</div>
+                                            <div class="game">&nbsp;MBB - Game 17</div>
+                                            <div class="game">&nbsp;MBB - Game 18</div>
+                                            <div class="game">&nbsp;MBB - Game 19</div>
+                                            <div class="game">&nbsp;MBB - Game 20</div>
+                                        </div>
+                                        <div class="day">21
+                                            <div class="wr">&nbsp;WR - Session III</div>
+                                            <div class="game">&nbsp;MBB - Game 21</div>
+                                            <div class="game">&nbsp;MBB - Game 22</div>
+                                            <div class="game">&nbsp;MBB - Game 23</div>
+                                            <div class="game">&nbsp;MBB - Game 24</div>
+                                            <div class="game">&nbsp;MBB - Game 25</div>
+                                            <div class="game">&nbsp;MBB - Game 26</div>
+                                            <div class="game">&nbsp;MBB - Game 27</div>
+                                            <div class="game">&nbsp;MBB - Game 28</div>
+                                            <div class="wr">&nbsp;WR - Session IV</div>
+                                            <div class="game">&nbsp;MBB - Game 29</div>
+                                            <div class="game">&nbsp;MBB - Game 30</div>
+                                            <div class="game">&nbsp;MBB - Game 31</div>
+                                            <div class="game">&nbsp;MBB - Game 32</div>
+                                            <div class="game">&nbsp;MBB - Game 33</div>
+                                            <div class="game">&nbsp;MBB - Game 34</div>
+                                            <div class="game">&nbsp;MBB - Game 35</div>
+                                            <div class="game">&nbsp;MBB - Game 36</div>
+                                        </div>
+                                        <div class="day">22
+                                            <div class="wr">&nbsp;WR - Session V</div>
+                                            <div class="game">&nbsp;MBB - Game 37</div>
+                                            <div class="game">&nbsp;MBB - Game 38</div>
+                                            <div class="game">&nbsp;MBB - Game 39</div>
+                                            <div class="game">&nbsp;MBB - Game 40</div>
+                                            <div class="wr">&nbsp;WR - Session VI</div>
+                                            <div class="game">&nbsp;MBB - Game 41</div>
+                                            <div class="game">&nbsp;MBB - Game 42</div>
+                                            <div class="game">&nbsp;MBB - Game 43</div>
+                                            <div class="game">&nbsp;MBB - Game 44</div>
+                                        </div>
+                                        <div class="day">23
+                                            <div class="game">&nbsp;MBB - Game 45</div>
+                                            <div class="game">&nbsp;MBB - Game 46</div>
+                                            <div class="game">&nbsp;MBB - Game 47</div>
+                                            <div class="game">&nbsp;MBB - Game 48</div>
+                                            <div class="game">&nbsp;MBB - Game 49</div>
+                                            <div class="game">&nbsp;MBB - Game 50</div>
+                                            <div class="game">&nbsp;MBB - Game 51</div>
+                                            <div class="game">&nbsp;MBB - Game 52</div>
+                                        </div>
+                                        <div class="day">24</div>
+                                        <div class="day">25</div>
+                                        <div class="day">26</div>
+                                        <div class="day">27
+
+                                            <div class="game">&nbsp;MBB - Game 53</div>
+
+                                            <div class="game">&nbsp;MBB - Game 54</div>
+                                            <div class="game">&nbsp;MBB - Game 55</div>
+                                            <div class="game">&nbsp;MBB - Game 56</div>
+                                        </div>
+                                        <div class="day">28
+
+                                            <div class="game">&nbsp;MBB - Game 57</div>
+
+                                            <div class="game">&nbsp;MBB - Game 58</div>
+                                            <div class="game">&nbsp;MBB - Game 59</div>
+                                            <div class="game">&nbsp;MBB - Game 60</div>
+                                        </div>
+                                        <div class="day">29
+
+                                            <div class="game">&nbsp;MBB - Game 61</div>
+
+                                            <div class="game">&nbsp;MBB - Game 62</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <p>Moving the Individual Wrestling Championship only one week later, when there is
+                                significantly less
+                                competition from NCAA Men's Basketball Championship programming, positions the wrestling
+                                championship
+                                well to capture all the viewers who have planned to spend their weekend watching
+                                sports--motivated by the
+                                cultural phenomenon of March Madness. While retaining the cohesion of the traditional
+                                wrestling season.</p>
+
+                            <p>Not only will the NCAA Wrestling Championship be on ESPN, a major network that is the
+                                first stop for
+                                consumers sitting down with the intent to view sports, but the programming will also be
+                                one of only a limited number of live
+                                sports events available on the date due to the inherent nature of tournament structures,
+                                whereby the
+                                number of contests is reduced by half with each round of the tournament.</p>
+
+                            <p>Just as how there are fewer wrestling matches to watch on Saturday of the Wrestling
+                                Championships, providing
+                                for more time between sessions. The basketball tournament has significantly fewer games
+                                being played the
+                                following week for rounds three and four of their tournament. Shifting the NCAA
+                                Wrestling Championships one
+                                week later greatly reduces the competition with basketball programing and will increase
+                                in the wrestling
+                                championship's consumption--especially for the Session six finals--which will have very
+                                limited competition with the Men's Basketball Championship.
+                                (see below).</p>
+
+                                <div class="wrapCalendar">
+
+                                    <div class="calendar-container">
+                                        <div class="calendar-header">
+                                            <h1>
+                                                Proposed March 2025, NCAA Championships Calendar (Phase II)
+                                            </h1>
+                                            <p></p>
+                                        </div>
+                                        <div class="calendarQA"><span class="day-name">Sun</span><span
+                                                class="day-name">Mon</span><span class="day-name">Tue</span><span
+                                                class="day-name">Wed</span><span class="day-name">Thu</span><span
+                                                class="day-name">Fri</span><span class="day-name">Sat</span>
+    
+                                            <div class="day day--disabled">February 23</div>
+                                            <div class="day day--disabled">February 24</div>
+                                            <div class="day day--disabled">February 25</div>
+                                            <div class="day day--disabled">February 26</div>
+                                            <div class="day day--disabled">February 27</div>
+                                            <div class="day day--disabled">February 28</div>
+                                            <div class="day">1</div>
+                                            <div class="day">2</div>
+                                            <div class="day">3</div>
+                                            <div class="day">4</div>
+                                            <div class="day">5</div>
+                                            <div class="day">6
+                                                <div class="dual">&nbsp;WR - Dual 1</div>
+                                                <div class="dual">&nbsp;WR - Dual 2</div>
+                                                <div class="dual">&nbsp;WR - Dual 3</div>
+                                                <div class="dual">&nbsp;WR - Dual 4</div>
+                                            </div>
+                                            <div class="day">7
+                                                <div class="dual">&nbsp;WR - Dual 5</div>
+                                                <div class="dual">&nbsp;WR - Dual 6</div>
+                                                <div class="dual">&nbsp;WR - Dual 7</div>
+                                                <div class="dual">&nbsp;WR - Dual 8</div>
+                                            </div>
+                                            <div class="day">8</div>
+                                            <div class="day">9
+                                                <div class="dual">&nbsp;WR - Dual 9</div>
+                                                <div class="dual">&nbsp;WR - Dual 10</div>
+                                                <div class="dual">&nbsp;WR - Dual 11</div>
+                                                <div class="dual">&nbsp;WR - Dual 12</div>
+                                            </div>
+                                            <div class="day">10
+                                                <div class="dual">&nbsp;WR - Dual 13</div>
+                                                <div class="dual">&nbsp;WR - Dual 14</div>
+                                                <div class="dual">&nbsp;WR - Dual 15</div>
+                                                <div class="dual">&nbsp;WR - Dual 16</div>
+                                            </div>
+                                            <div class="day">11</div>
+                                            <div class="day">12
+                                                <div class="dual">&nbsp;WR - Dual 17</div>
+                                                <div class="dual">&nbsp;WR - Dual 18</div>
+                                            </div>
+                                            <div class="day">13
+                                                <div class="dual">&nbsp;WR - Dual 19</div>
+                                                <div class="dual">&nbsp;WR - Dual 20</div>
+                                            </div>
+                                            <div class="day">14</div>
+                                            <div class="day">15</div>
+                                            <div class="day">16
+                                                <div class="dual">&nbsp;WR - Dual 21</div>
+                                                <div class="dual">&nbsp;WR - Dual 22</div>
+                                            </div>
+                                            <div class="day">17
+                                                <div class="dual">&nbsp;WR - Dual 23</div>
+    
+                                            </div>
+                                            <div class="day">18
+                                                <div class="game">&nbsp;MBB - Game 1</div>
+                                                <div class="game">&nbsp;MBB - Game 2</div>
+                                            </div>
+                                            <div class="day">19
+                                                <div class="game">&nbsp;MBB - Game 3</div>
+                                                <div class="game">&nbsp;MBB - Game 4</div>
+                                            </div>
+                                            <div class="day">20
+                                                <div class="game">&nbsp;MBB - Game 5</div>
+                                                <div class="game">&nbsp;MBB - Game 6</div>
+                                                <div class="game">&nbsp;MBB - Game 7</div>
+                                                <div class="game">&nbsp;MBB - Game 8</div>
+                                                <div class="game">&nbsp;MBB - Game 9</div>
+                                                <div class="game">&nbsp;MBB - Game 10</div>
+                                                <div class="game">&nbsp;MBB - Game 11</div>
+                                                <div class="game">&nbsp;MBB - Game 12</div>
+                                                <div class="game">&nbsp;MBB - Game 13</div>
+                                                <div class="game">&nbsp;MBB - Game 14</div>
+                                                <div class="game">&nbsp;MBB - Game 15</div>
+                                                <div class="game">&nbsp;MBB - Game 16</div>
+                                                <div class="game">&nbsp;MBB - Game 17</div>
+                                                <div class="game">&nbsp;MBB - Game 18</div>
+                                                <div class="game">&nbsp;MBB - Game 19</div>
+                                                <div class="game">&nbsp;MBB - Game 20</div>
+                                            </div>
+                                            <div class="day">21
+                                                <div class="game">&nbsp;MBB - Game 21</div>
+                                                <div class="game">&nbsp;MBB - Game 22</div>
+                                                <div class="game">&nbsp;MBB - Game 23</div>
+                                                <div class="game">&nbsp;MBB - Game 24</div>
+                                                <div class="game">&nbsp;MBB - Game 25</div>
+                                                <div class="game">&nbsp;MBB - Game 26</div>
+                                                <div class="game">&nbsp;MBB - Game 27</div>
+                                                <div class="game">&nbsp;MBB - Game 28</div>
+                                                <div class="game">&nbsp;MBB - Game 29</div>
+                                                <div class="game">&nbsp;MBB - Game 30</div>
+                                                <div class="game">&nbsp;MBB - Game 31</div>
+                                                <div class="game">&nbsp;MBB - Game 32</div>
+                                                <div class="game">&nbsp;MBB - Game 33</div>
+                                                <div class="game">&nbsp;MBB - Game 34</div>
+                                                <div class="game">&nbsp;MBB - Game 35</div>
+                                                <div class="game">&nbsp;MBB - Game 36</div>
+                                            </div>
+                                            <div class="day">22
+                                                <div class="game">&nbsp;MBB - Game 37</div>
+                                                <div class="game">&nbsp;MBB - Game 38</div>
+                                                <div class="game">&nbsp;MBB - Game 39</div>
+                                                <div class="game">&nbsp;MBB - Game 40</div>
+                                                <div class="game">&nbsp;MBB - Game 41</div>
+                                                <div class="game">&nbsp;MBB - Game 42</div>
+                                                <div class="game">&nbsp;MBB - Game 43</div>
+                                                <div class="game">&nbsp;MBB - Game 44</div>
+                                            </div>
+                                            <div class="day">23
+                                                <div class="game">&nbsp;MBB - Game 45</div>
+                                                <div class="game">&nbsp;MBB - Game 46</div>
+                                                <div class="game">&nbsp;MBB - Game 47</div>
+                                                <div class="game">&nbsp;MBB - Game 48</div>
+                                                <div class="game">&nbsp;MBB - Game 49</div>
+                                                <div class="game">&nbsp;MBB - Game 50</div>
+                                                <div class="game">&nbsp;MBB - Game 51</div>
+                                                <div class="game">&nbsp;MBB - Game 52</div>
+                                            </div>
+                                            <div class="day">24</div>
+                                            <div class="day">25</div>
+                                            <div class="day">26</div>
+                                            <div class="day">27
+                                                <div class="wr">&nbsp;WR - Session I</div>
+                                                <div class="game">&nbsp;MBB - Game 53</div>
+                                                <div class="wr">&nbsp;WR - Session II</div>
+                                                <div class="game">&nbsp;MBB - Game 54</div>
+                                                <div class="game">&nbsp;MBB - Game 55</div>
+                                                <div class="game">&nbsp;MBB - Game 56</div>
+                                            </div>
+                                            <div class="day">28
+                                                <div class="wr">&nbsp;WR - Session III</div>
+                                                <div class="game">&nbsp;MBB - Game 57</div>
+                                                <div class="wr">&nbsp;WR - Session IV</div>
+                                                <div class="game">&nbsp;MBB - Game 58</div>
+                                                <div class="game">&nbsp;MBB - Game 59</div>
+                                                <div class="game">&nbsp;MBB - Game 60</div>
+                                            </div>
+                                            <div class="day">29
+                                                <div class="wr">&nbsp;WR - Session V</div>
+                                                <div class="game">&nbsp;MBB - Game 61</div>
+                                                <div class="wr">&nbsp;WR - Session VI</div>
+                                                <div class="game">&nbsp;MBB - Game 62</div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+    
+                                </div>
+
+
+                            <p>In addition to the Wrestling Championships being better positioned as one of the limited
+                                number of live
+                                sporting events on each of the dates of the event, the Team Wrestling Championships will
+                                also be held on a
+                                date when there are no
+                                NCAA Men's Basketball games due to the postseason structure of men's basketball. The
+                                team championship finals will be held the day following the announcement of the Men's
+                                Basketball Championship field which means teams will be traveling to their postseason
+                                events. It is one of the few days of the year in which no men's college basketball games
+                                are played. This will be wrestling's championship date.</p>
+                            <p>These changes positions wrestling well to benefit from the increase in televised sports
+                                consumption produced
+                                by the cultural impact of March Madness.</p>
+                            <p>As an example of the benefits of spatial proximity in driving sports programing
+                                viewership, we can look to the postseason college
+                                football schedule. As there there are fewer games on each day, the post season continues
+                                to attract fans who
+                                have grown accustomed to watching Saturday sports through the fall. This scheduling
+                                proximity benefitted the 2022 Celebration
+                                Bowl, which drew 2.42 million viewers for the matchup between North Carolina Central
+                                University and
+                                Jackson State University (Showbuzzdaily, n.d.-a). These are teams which rarely attract
+                                rated viewership to their games.</p>
+
+                            <p>This game would not have drawn such strong
+                                viewership if it were positioned within a regular season week with many other games
+                                going on at the same
+                                time. For comparison, in week nine of the college football season, the 7th most watched
+                                game of the week was
+                                Notre Dame
+                                vs Syracuse with 2.34 million viewers (SportsMediaWatch, n.d. -a). The matchup with
+                                North Carolina Central and Jackson State outdrew this matchup by being scheduled at a
+                                time when consumption is high but programing is low. The same structure which the
+                                Cucumber Report is proposing for wrestling.</p>
+
+                            <p>In fact, moving games to April, where there is less competition, did not benefit the 2020
+                                FCS Division I Football Championships.
+                                Following the Covid-19 impacted fall 2020 football season, with the support of the
+                                television networks looking to bolster spring programing, the FCS football championship
+                                was rescheduled to the spring of 2021 when there was significantly less sports
+                                programming to compete for viewersship. However, the spring Championship was only viewed
+                                by 905,000 people (Herder, 2021). A significant decline from the 2.7 million viewers
+                                from the previous year's FCS Championship, despite the previous year's championship
+                                facing competition from the NFL playoffs and college basketball.</p>
+
+                            <p>While the significance of the game did not change, nor did the popularity of the sport,
+                                what changed was the
+                                seasonal viewership of television and the seasonal preference of consumers. Fall is
+                                largely viewed by many
+                                consumers as football season. They associate watching football with the season and the
+                                holidays serving as
+                                the time for championships. This all changed with the shifting of the FCS Division I
+                                football Championship
+                                to the spring season, and the consumers did not respond well. While shifting the
+                                championship to the spring provided more football at a time of year that football fans
+                                don't typically get to watch football. Consumers did not respond. And the same is likely
+                                true for wrestling's identity within the winter season.</p>
+
+                            <p>For this reason, wrestling shifting to the spring is likely to experience a decline in
+                                engagement with their
+                                regular season. While there is competition with high school and youth competitors' own
+                                seasons, which can
+                                limit their ability to attend collegiate competitions, as previously mentioned, it is
+                                precisely because they
+                                are in-season and focused on the sport at that moment within the calendar year that
+                                there is interest in
+                                attending collegiate competitions in the first place. Creating a high-quality
+                                championship for wrestling is
+                                important, but as Seth Duckworth has noted, the success of the NCAA Wrestling
+                                Championship doesn't benefit
+                                individual programs. It is important that the structures utilized within the sport don't
+                                simply continue to
+                                focus on the Championships but work to be a holistic structure that benefits programs of
+                                disparate levels of
+                                investment and performance.</p>
+
+                            <p>Wrestling needs to be able to measure the impact of any changes made. Simply making
+                                changes without
+                                performing a qualitative and quantitative assessment of the changes prevents the
+                                fine-tuning of the
+                                structure.</p>
+
+                            <p>By not making a significant shift to the season, the impact on consumption and engagement
+                                for the new
+                                structure with a separate team and individual championship can be measured. This is
+                                important for any
+                                significant change.</p>
+
+                            <p>While the Blue Ribbon Task Force and this author have independently come to the same
+                                position regarding a
+                                team dual championship, the proposed shift in the season, proposed by the Blue Ribbon
+                                Task Force, introduces
+                                unnecessary risk. It is vital that there be an evaluation and consideration period for
+                                any implemented
+                                structure. The adoption of the proposal herein should be done for a four-year period,
+                                during which there
+                                will be a review of the structure to decide if the implementation shall persist or if
+                                the stakeholders wish
+                                to revert to the previous structure.</p>
+
+                            <p>When making a change in the season structure at the same time as the competition
+                                structure, you introduce
+                                many new variables that can impact the metrics for assessing performance. Does
+                                viewership increase or
+                                decline due to the new format or due to the season shift? Does the season shift impact
+                                student-athletes
+                                positively or negatively, or should that be attributed to the change in the competition
+                                structure?</p>
+
+                            <p>The above-stated considerations were among those that led to the Cucumber Report
+                                producing an alternative
+                                conclusion upon reviewing the recommendations of the Blue Ribbon Task Force.</p>
+
+
+
+                                <ul style="list-style-type: none;">
+                                <p>Citations:</p>
+                                    <li>
+                                        <p>Abbott, G. (2022, March 14). <cite>2021-22 HIGH SCHOOL INDIVIDUAL STATE CHAMPIONS LIST, AS OF MARCH
+                                                13, WRAPPED UP WITH PENNSYLVANIA BOYS & GIRLS AND OHIO BOYS.
+                                            </cite> TeamUSA.org.
+                                            https://www.teamusa.org/USA-Wrestling/Features/2022/March/14/High-School-state-champions-through-March-14.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Barnett George, Chang Hsiu-jung, Fink Edward, & Richards William. (1991). <cite>Seasonality in
+                                                Television Viewing: A Mathematical Model of Cultural Processes. </cite> Communication Research,
+                                            18(6), 755-772.</p>
+                                    </li>
+                                    <li>
+                                        <p>Big Ten. (n.a. -a). <cite>Big Ten Conference, Composite Schedule. </cite> Accessed July 1, 2023.
+                                            https://bigten.org/calendar.aspx</p>
+                                    </li>
+                                    <li>
+                                        <p>Big Ten Network. (2023). <cite>TV Schedule. </cite> Accessed July 1, 2023. https://btn.com/shows/</p>
+                                    </li>
+                                    <li>
+                                        <p>Coatess, A. (2023). <cite>When Does Little League Baseball Start? </cite> Accessed July 2, 2023.
+                                            https://wezen-ball.com/when-does-little-league-baseball-start/</p>
+                                    </li>
+                                    <li>
+                                        <p>Duckworth, Seth. (2023). <cite>The NCAA Wrestling Tournament Isn't Good For a Lot of Wrestling
+                                                Programs. </cite> owrestle.com, Accessed July 2, 2023.
+                                            https://owrestle.com/the-ncaa-wrestling-tournament-isnt-good-for-wrestling-programs/</p>
+                                    </li>
+                                    <li>
+                                        <p>Eisinga, R., Franses, P. H., & Vergeer, M. (2011). <cite>Weather conditions and daily television use
+                                                in the Netherlands, 1996-2005. </cite> International journal of biometeorology, 55(4), 555-564.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Essa, E . L., Hilton, J. M ., & Murray, C. I. (1990). <cite>The relationship between weather and
+                                                preschoolers' behavior. </cite> Children's Environment Quarterly, 7, 32-36</p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>Herder, Sam. (2021, May 11). <cite>TV Viewership For The 2021 FCS Spring Playoffs. </cite> Hero Sports.</p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>Hotelling, Harold. (1929). <cite>"Stability in competition." </cite> Economic Journal, 39(153).</p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>Howard, Bruce. (2016, December 20). <cite>Injury Rates Higher for Athletes Who Specialize in One
+                                                Sport. </cite> National Federation of State High School Associations.
+                                            https://www.nfhs.org/articles/injury-rates-higher-for-athletes-who-specialize-in-one-sport/ </p>
+                                    </li>
+                                    <li>
+                                        <p>Joffe-Walt, Chana & Davidson, Adam. (2009, December 10)<cite>Why Clusters Of Like Businesses Thrive.
+                                            </cite> All Things Considered. NPR. [Audio]
+                                            https://www.npr.org/templates/story/story.php?storyId=121304873</p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>Krantz-Kent, Rachel. (2018, September). <cite>“Television, capturing America's attention at prime
+                                                time and beyond,”</cite> Beyond the Numbers: Special Studies & Research, vol. 7, no. 14 (U.S.
+                                            Bureau of Labor Statistics, September 2018) </p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>Major League Baseball. (2023, March 30). <cite>2023 MLB Opening Day. </cite>
+                                            https://www.mlb.com/news/opening-day-2023-guide</p>
+                                    </li>
+                                    <li>
+                                        <p>McLellan M, Allahabadi S, Pandya NK. (2022). <cite>Youth Sports Specialization and Its Effect on
+                                                Professional, Elite, and Olympic Athlete Performance, Career Longevity, and Injury Rates: A
+                                                Systematic Review. </cite> Orthopaedic Journal of Sports Medicine. 2022;10(11).</p>
+                                    </li>
+                        
+                        
+                        
+                                    <li>
+                                        <p>Michigan Athletics. (2023). <cite>2023 Michigan Baseball Schedule.</cite> Accessed, July 1, 2023.
+                                            https://mgoblue.com/sports/baseball/schedule/2023</p>
+                                    </li>
+                        
+                        
+                                    <li>
+                                        <p>National Basketball Association. (2023). <cite>2023 NBA Playoff Schedule. </cite>. Accessed, July 1,
+                                            2023. https://www.nba.com/news/2023-nba-playoffs-schedule</p>
+                                    </li>
+                                    <li>
+                                        <p>National Collegiate Athletic Association. (2019a). <cite>NCAA Site Selection Process, NCAA Division I
+                                                Wrestling Championships.</cite>
+                                            https://s3.amazonaws.com/ncaaorg/championships/marketing/2019_bids/wrs-d1.pdf</p>
+                                    </li>
+                                    <li>
+                                        <p>National Collegiate Athletic Association. (2023a). <cite>2023 NCAA Division I Men's Wrestling
+                                                Committee, Annual Meeting, April 18-19.</cite>
+                                            </p>
+                                    </li>
+                                    <li>
+                                        <p>National Collegiate Athletic Association. (2023a). <cite>Future Dates and Sites.</cite> Accessed July
+                                            1, 2023. https://www.ncaa.com/mens-final-four/future-info
+                                        </p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>National hockey League. (2023). <cite>2023 NHL Stanly Cup Playoffs Schedule.</cite> Accessed, June
+                                            30, 2023. https://www.nhl.com/stanley-cup-playoffs
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Ohio High School Athletic Association. (2023). <cite>2022-23 OHSAA Ready Reference Calendar - High
+                                                Schools.</cite> https://ohsaaweb.blob.core.windows.net/files/Calendar/CalendarHighSchool.pdf
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Ryu, Y., Kim, K., Paik, J. W., & Cheong, Y. (2019). <cite>Determinants of audience demand for the
+                                                televised professional baseball matches in Korea: An analysis of the post-season matches from
+                                                2008 to 2016.</cite> International Journal of Sports Marketing & Sponsorship, 20(1), 184-202.
+                                        </p>
+                                    </li>
+                        
+                                    <li>
+                                        <p>ShowBuzzDaily, (N.D. -a). <cite>ShowBuzzDaily.com Weekly Sports Top TV Rating Reports
+                                            </cite> ShowBuzzDaily.com.
+                                            https://showbuzzdaily.com/articles/the-sked/tvratings/cableratings.</p>
+                                    </li>
+                                    <li>
+                                        <p>SportMediaWatch, (N.D. -a). <cite>2022 College Football TV Ratings
+                                            </cite> SportsMediaWatch.
+                                            https://www.sportsmediawatch.com/college-football-tv-ratings/.</p>
+                                    </li>
+                        
+                        
+                                    
+                        
+                                    <li>
+                                        <p>Thorne, Heidi. (2022, September 8). <cite>Competitive Advantage: Why It's Good to Be Near
+                                                Competitors.</cite>
+                                            https://toughnickel.com/industries/Competitive-Advantage-Why-Its-Good-to-be-Near-Competitors
+                                        </p>
+                                    </li>
+                        
+                        
+                                    <li>
+                                        <p>Uggetti, Paolo. (2022, December 14). <cite>UC regents approve UCLA's Big Ten move, include
+                                                conditions.</cite> ESPN.
+                                            https://www.espn.com/college-football/story/_/id/35254728/uc-regents-approve-ucla-big-ten-move-include-conditions
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Vachon, J. (1983). <cite>Reliability of undergraduate student in a research on the
+                                                relations between behavior and days of the week or atmospheric
+                                                conditions.</cite> Universite de Moncton. (ERJC Document Reproduction
+                                            Service No. ED 227 81 0)
+                                        </p>
+                                    </li>
+                        
+                        
+                        
+                                    <li>
+                                        <p>Weiner, Dan. (2023, March 22). <cite>Women's NCAA Tournament TV Ratings Are Through The Roof.</cite>
+                                            Bleacher Nation.
+                                            https://www.bleachernation.com/news/2023/03/22/womens-ncaa-tournament-tv-ratings-are-through-the-roof/
+                                        </p>
+                                    </li>
+                        
+                        
+                        
+                                </ul>
+
+                           
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="accordion-item">
+                <!--<div class="accordion-item">
                 <h2 class="accordion-header" id="headingSix">
                     <button onclick="setAndLogURL('Q6');" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
@@ -4987,8 +6074,8 @@
                 newDiv.setAttribute("id", "seasonBasketballGamesChart");
                 newDiv.style.width = "100%";
                 newDiv.style.height = "100%";
-    
-    
+     
+     
                 document.getElementById("basketballSeasonMapAfterThis").insertAdjacentElement('afterend', newDiv);
                 loadBasketballMap();
             }*/
@@ -5156,19 +6243,19 @@
                 versionData = (version == '1') ? v1 : v2;
                 versionName = (version == '1') ? '(Phase 1)' : '(Phase 2)';
                 showAllSeason = document.getElementById("wholeSeason").checked;
-    
-    
+     
+     
                 majDisplay = showAllSeason ? maj : filterSeason(maj);
                 midDisplay = showAllSeason ? mid : filterSeason(mid);
                 majmidDisplay = showAllSeason ? majmid : filterSeason(majmid);
-    
-    
+     
+     
                 buildBasketballSeasonChart();
             }
-    
-    
-    
-    
+     
+     
+     
+     
             function filterSeason(arr) {
                 var seasonToShow = [];
                 for (i = 0; i < arr.length; i++) {
@@ -5178,7 +6265,7 @@
                 }
                 return seasonToShow;
             }
-    
+     
             function buildBasketballSeasonChart() {
                 var bballChart = new CanvasJS.Chart("seasonBasketballGamesChart",
                     {
@@ -5187,14 +6274,14 @@
                             //,
                             //margin: 15
                         },
-    
+     
                         toolTip: {
                             shared: true,
                             reversed: true,
                         },
                         axisX: {
                             valueFormatString: "MMM YY",
-    
+     
                             interval: 1,
                             intervalType: "month",
                             stripLines: versionData
@@ -5203,7 +6290,7 @@
                             gridColor: "grey",
                             gridThickness: -1
                         },
-    
+     
                         legend: {
                             verticalAlign: "bottom",
                             horizontalAlign: "center",
@@ -5217,19 +6304,19 @@
                                 type: "scatter",
                                 color: '#f7e1f6',
                                 dataPoints: [{ x: new Date(2022, 3, 3), y: 0 }]
-    
+     
                             }, {
                                 name: "NCAA Wrestling Team Champoionship",
                                 showInLegend: "true",
                                 type: "scatter",
                                 color: '#e6d6ac',
                                 dataPoints: [{ x: new Date(2022, 3, 3), y: 0 }]
-    
+     
                             },
                             {
                                 type: "stackedColumn",
                                 name: "T6 Conference Tournaments",
-    
+     
                                 showInLegend: "true",
                                 xValueFormatString: "DDD MMM D",
                                 color: '#940a0a',
@@ -5300,14 +6387,14 @@
                                 color: '#03cefc',
                                 dataPoints: midDisplay
                             }
-    
+     
                         ]
                     });
-    
+     
                 bballChart.render();
             }
-    
-    
+     
+     
             function loadVolleyballChart() {
                 var vBallChart = new CanvasJS.Chart("volleyballCompareChart",
                     {
@@ -5328,9 +6415,9 @@
                                 ]
                             }]
                     });
-    
+     
                 vBallChart.render();
-    
+     
                 var vBallChart2 = new CanvasJS.Chart("volleyballCompareChart2",
                     {
                         title: {
@@ -5349,13 +6436,13 @@
                                 ]
                             }]
                     });
-    
+     
                 vBallChart2.render();
             }
-    
-    
-    
-    
+     
+     
+     
+     
             function reloadVolleyballCompare() {
                 var oldDiv = document.getElementById("volleyballCompareChart");
                 if (oldDiv != undefined) {
@@ -5365,8 +6452,8 @@
                 newDiv.setAttribute("id", "volleyballCompareChart");
                 newDiv.style.width = "100%";
                 newDiv.style.height = "50%";
-    
-    
+     
+     
                 document.getElementById("volleyballMatchUpCompare").insertAdjacentElement('afterend', newDiv);
                 loadVolleyballChart();
             }*/
