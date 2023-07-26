@@ -449,9 +449,10 @@ function checkLogin() {
   if (!keyGranted()) {
     if (getPage() != "login.html") {
       requestedPage = document.location.href;
+      var paramValues = window.location.search ? window.location.search : '';
       window.localStorage.setItem("requestedPage", requestedPage);
       setAndLogURL(requestedPage);
-      document.location.href = "login.html";
+      document.location.href = "login.html"+paramValues;
     } else {
     }
   } else {
@@ -513,7 +514,7 @@ if (ps != undefined) {
           window.history.replaceState(
             null,
             null,
-            "?errorCount=" + errorCount + "&puser=" + pk.value
+            "?errorCount=" + errorCount /*+ "&puser=" + pk.value*/
           );
           clicky.pageview();
 
