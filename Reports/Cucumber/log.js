@@ -501,6 +501,8 @@ if (ps != undefined) {
         if (approvedKeys.includes(pk.value)) {
           window.localStorage.setItem("CucumberPK", "true");
           window.localStorage.setItem("CucumberUser", matrixMap.get(pk.value));
+          checkParam("");
+          clicky.pageview();
           loggedIn = true;
           //document.getElementById('loginError').style.visibility = "hidden";
           document.getElementById("loginError").style.display = "none";
