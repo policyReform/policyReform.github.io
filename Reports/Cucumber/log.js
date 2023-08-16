@@ -343,6 +343,7 @@ function onLoad() {
   checkParam("");
   buildMatrixMap();
   checkLogin();
+  clicky.pageview();
   setScrollReporting();
 }
 function setScrollReporting() {
