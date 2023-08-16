@@ -462,6 +462,7 @@ function checkLogin() {
       redirectToRequestedPage();
     } else {
       makeDataViewable();
+      checkParam("");
     }
   }
 }
