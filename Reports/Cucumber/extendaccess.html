@@ -1,0 +1,265 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <meta name=”robots” content=”noindex, follow”>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <title>Cucumber Report</title>
+    <link rel="stylesheet" href="logDesign.css">
+</head>
+
+<style>
+    * {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+</style>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+
+<body>
+    <div id="home" class="page">
+        <div id="breakForm">
+            <p>Unable to display the form.  User not identified.  Please email policyreform@yahoo.com for support.</p>
+        </div>
+        <div id="firstForm">
+        <form class="form-horizontal">
+            <fieldset>
+            
+            <!-- Form Name -->
+            <legend>Extend Access to the Cucumber Report</legend>
+            <br>
+            
+            <!-- Multiple Radios (inline) -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="extend">Would you like to extend access?</label>
+              <div class="col-md-4"> 
+                <label class="radio-inline" for="extend-0">
+                  <input type="radio" name="extend" id="extend-0" value="Yes" checked="checked">
+                  Yes
+                </label> 
+                <label class="radio-inline" for="extend-1">
+                  <input type="radio" name="extend" id="extend-1" value="No">
+                  No
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for=""></label>  
+                <div class="col-md-1">
+                    <input type="hidden" id="uId1" name="uId" value="">
+                  
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for=""></label>  
+                <div class="col-md-1">
+                    <input type="hidden" id="stage" name="stage" value="1">
+                </div>
+              </div>
+            
+            <hr>
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for=""></label>
+              <div class="col-md-4">
+                <button id="firstBtn" name="" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+            
+            </fieldset>
+            </form>
+        </div>
+
+        <div id="secondForm">
+            <form class="form-horizontal novalidate ">
+                <fieldset>
+                
+                <!-- Form Name -->
+                <legend>Access Feedback</legend>
+                
+                <!-- Select Basic -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="reviewStatus">What best describes your status reviewing the report?</label>
+                  <div class="col-md-4">
+                    <select id="reviewStatus" name="reviewStatus" class="form-control" required>
+                      <option selected disabled value="">-- Select Value --</option>
+                      <option value="25">Not started reading report</option>
+                      <option value="50">Read some of the report</option>
+                      <option value="75">Read most of the report</option>
+                      <option value="100">Read all of the report</option>
+                    </select>
+                    
+                </div>
+                <br>
+                <hr>
+                
+                <!-- Multiple Radios (inline) -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="public">Have you heard the Cucumber Report referenced by any other sources, including within personal conversations?</label>
+                  <div class="col-md-4"> 
+                    <label class="radio-inline" for="public-0">
+                      <input type="radio" name="public" id="public-0" value="Yes">
+                      Yes
+                    </label> 
+                    <label class="radio-inline" for="public-1">
+                      <input type="radio" name="public" id="public-1" value="No">
+                      No
+                    </label>
+                  </div>
+                </div>
+                <br>
+                <hr>
+            
+                <!-- Multiple Radios -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="Learn">Would you like to learn more about the Cucumber Report and the Campaign?</label>
+                  <div class="col-md-4">
+                  <div class="radio">
+                    <label for="Learn-0">
+                      <input type="radio" name="Learn" id="Learn-0" value="Yes">
+                      Yes
+                    </label>
+                    </div>
+                  <div class="radio">
+                    <label for="Learn-1">
+                      <input type="radio" name="Learn" id="Learn-1" value="No">
+                      No
+                    </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>  
+                    <div class="col-md-1">
+                        <input type="hidden" id="uId2" name="uId" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>  
+                    <div class="col-md-1">
+                        <input type="hidden" id="stage" name="stage" value="2">
+                      
+                    </div>
+                  </div>
+                <br>
+                <hr>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="comments">Do you have any questions or comments for the campaign facilitator?</label>
+                    <div class="col-md-4">                     
+                      <textarea class="form-control" id="comments" name="comments"></textarea>
+                    </div>
+                  </div>
+                  <br>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for=""></label>
+                  <div class="col-md-4">
+                    <button id="secondBtn" name="" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+                
+                </fieldset>
+                </form>
+                
+        </div> 
+        
+        <div id="thirdForm">
+            <h2>Thank you.</h2>
+            <p>Your access has been extended.</p>
+
+        </div>
+                
+    </div>
+    
+
+    <div id='spin' class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+      <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
+    <script src="log.js"></script>
+    
+        <script>
+            
+            
+            window.onload = function() {
+            //checkAccess()
+            clicky.pageview();
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const uId = urlParams.get('uId');
+
+            var stage = urlParams.get('stage') == undefined ? 0 : urlParams.get('stage'); 
+            console.log(stage);
+            //formStage = stage;
+            console.log('uId',uId);
+            if(uId){
+                console.log(uId);
+                document.getElementById("uId1").value = uId;
+                document.getElementById("uId2").value = uId;
+                if(stage == 0){
+                    showID('spin',false);
+                    showID('home',true);
+                    showID('secondForm',false);
+                    showID('thirdForm',false);
+                    showID('breakForm',false);
+                }else if(stage == 1){
+                    showID('spin',false);
+                    showID('home',true);
+                    showID('firstForm',false);
+                    showID('secondForm',true);
+                    showID('thirdForm',false);
+                    showID('breakForm',false);
+                }else{
+                    showID('spin',false);
+                    showID('home',true);
+                    showID('firstForm',false);
+                    showID('secondForm',false);
+                    showID('thirdForm',true);
+                    showID('breakForm',false);
+                }
+            }else{
+                showID('spin',false);
+                    showID('home',true);
+                    showID('firstForm',false);
+                    showID('secondForm',false);
+                    showID('thirdForm',false);
+                    
+            }
+
+            
+            
+          };
+        
+        </script>
+
+</body>
+
+
+
+
+
+</html>
