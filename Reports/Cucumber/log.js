@@ -336,7 +336,7 @@ var loggedPageTime = Date.now();
 var clicky_custom = clicky_custom || {};
 clicky_custom.pageview_disable = 1;
 
-
+var blackList =["10123","9841","9886","10012","9821","10107","9845","9857","9906","10134","10136","10125","9939","9854","9969","9844","10044","9898","9853","9897","9830","10102"];
 function onLoad() {
   
   clicky.pageview();
@@ -407,6 +407,9 @@ function keyGranted() {
   var x = window.localStorage.getItem("CucumberPK");
   return x == "true";
 }
+function isBlackList(){
+  return blackList.includes(window.localStorage.getItem("CucumberUser"));
+}
 function getPage() {
   var currentPathArray = document.location.href.split("/");
   var p = currentPathArray[currentPathArray.length - 1];
@@ -457,7 +460,11 @@ function checkLogin() {
     } else {
     }
   } else {
-    if (getPage() == "login.html") {
+    if(isBlackList()){
+      window.localStorage.setItem("blacklisted", true);
+      document.location.href = "extendaccess.html"+"?uId="+window.localStorage.getItem("CucumberUser");
+    }
+    else if (getPage() == "login.html") {
       //redirect
       redirectToRequestedPage();
     } else {

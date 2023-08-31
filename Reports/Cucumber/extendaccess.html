@@ -44,6 +44,7 @@
             <p>Unable to display the form.  User not identified.  Please email policyreform@yahoo.com for support.</p>
         </div>
         <div id="firstForm">
+            <h5 id="disableHeader">Account Disabled</h5>
         <form class="form-horizontal">
             <fieldset>
             
@@ -188,11 +189,12 @@
         
         <div id="thirdForm">
             <h2>Thank you.</h2>
-            <p>Your access has been extended.</p>
+            <p>Your access will be extended.</p>
+            <p>If your account was already disabled, an administrator will be reaching out to you using the email address on file.</p>
 
             <br>
             
-                <a href="home.html" class="next">Click Here to Access the Report</a>
+                <a id='homeLink' href="home.html" class="next">Click Here to Access the Report</a>
             
 
         </div>
@@ -256,6 +258,12 @@
                     
             }
 
+            if(window.localStorage.getItem("blacklisted")){
+                showID("homeLink", false);
+                showID('disableHeader',true);
+            }else{
+                showID('disableHeader',true);
+            }
             
             
           };
