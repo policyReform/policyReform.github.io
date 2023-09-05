@@ -516,6 +516,7 @@ var blackList = [
   "9897",
   "9830",
   "10102",
+  "9890",
 ];
 function onLoad() {
   clicky.pageview();
