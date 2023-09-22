@@ -225,7 +225,7 @@
             //formStage = stage;
             console.log('uId',uId);
             if(uId){
-                console.log(uId);
+              window.localStorage.setItem("CucumberUser", uId);
                 document.getElementById("uId1").value = uId;
                 document.getElementById("uId2").value = uId;
                 if(stage == 0){
