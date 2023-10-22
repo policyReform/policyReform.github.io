@@ -546,7 +546,7 @@
 
         <p>This popularity of dual meet competitions between schools created a need to
             adopt standardized rules for competition. Columbia, Pennsylvania,
-            Princeton, and Yale took the initiative to create standards for wrestling in establishing the
+            Princeton, and Yale took the initiative to create standards for wrestling by establishing the
             Eastern Intercollegiate Wrestling Association (EIWA) as the first association to govern intercollegiate
             wrestling
             competition. The EIWA's first championship was held in 1905 with each of the four founding schools competing
@@ -2162,7 +2162,6 @@
                     <br>
                     <div id="top4NCAATeamIndividualEvents" style="width: 80%; height: 70%;"></div>
                 </center>
-
                 <p>This precipitous decline in individual competitions is most noticeable for the programs
                     competing for national titles each year.</p>
                 <center>
@@ -2271,7 +2270,8 @@
                 title="Victimization of high performers: The roles of envy and work group identification.">(Kim & Glomb,
                 2014)</cite>.</p>
         <p>
-            Elite athletes, as alumni, are often less inclined to make donations to their alma mater or former team. They often perceive the success they brought to the school as a substantial contribution in itself <cite
+            Elite athletes, as alumni, are often less inclined to make donations to their alma mater or former team.
+            They often perceive the success they brought to the school as a substantial contribution in itself <cite
                 title="An examination of factors impacting athlete alumni donations to their alma mater: a case study of a U.S. university.">(O'Neil
                 & Schenke, 2007)</cite>. These athletes understand that they could have represented many different
             institutions and the one they chose to represent benefited from their contributions. This feeling
@@ -3591,7 +3591,10 @@
             <p>The at-large team qualification process enables wrestling programs to qualify for the NCAA Wrestling
                 Championships, even if they don't win their conference championship. This opens up opportunities for
                 more programs to achieve success and establish themselves as top contenders nationally by transforming
-                the season into a two-stage championship structure. The regular season marks the initial phase of championship competition, with the primary objective being the qualification for the postseason. It serves to boost motivation and enhance the performance of both programs and competitors throughout the season <cite data-bs-toggle="tooltip"
+                the season into a two-stage championship structure. The regular season marks the initial phase of
+                championship competition, with the primary objective being the qualification for the postseason. It
+                serves to boost motivation and enhance the performance of both programs and competitors throughout the
+                season <cite data-bs-toggle="tooltip"
                     title="Promotions and Incentives: The Case of Multistage Elimination Tournaments.">(Altmann, Falk, &
                     Wibral, 2012)</cite>.
             </p>
@@ -3735,6 +3738,7 @@
                     be second-round opponent.</li>
 
             </ol>
+            
             <br>
             <h5 id="teambracketexample">Bracket Example</h5>
             <div id="bracketExample" class="tabListWrap trackIt">
@@ -4657,6 +4661,7 @@
                 parameters, there is no evidence to conclude that autonomous or non-autonomous conferences would be put
                 at
                 an advantage or disadvantage within a team centric system.</p>
+                
             <div class="chartWrap">
                 <span id="autoAfterThis"></span>
                 <div id="autonomous" style="height: 100%;width: 100%;"></div>
@@ -4675,6 +4680,7 @@
             </div>
 
             <div id="teamStandingQualifiers" class="trackIt"></div>
+            
             <h5>Team Standing by Number of Qualifiers</h5>
             <p>Looking at a comparison in the performance of teams at the NCAA Championships under the current
                 championship format
@@ -5003,6 +5009,11 @@
 
 
     <script>
+        function screenShot(name) {
+            html2canvas(document.querySelector('#'+name)).then(canvas => {
+                document.body.appendChild(canvas)
+            });
+        }
         function top4TeamIndividualEvents() {
             var chart = new CanvasJS.Chart("top4NCAATeamIndividualEvents",
                 {
@@ -5789,7 +5800,7 @@
 
 
 
-
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 
     <script src="log.js"></script>
     <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
