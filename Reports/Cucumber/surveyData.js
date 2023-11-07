@@ -1,779 +1,821 @@
-function loadSurvey() {
-  var bestTeamChart = new CanvasJS.Chart("bestTeamChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For determining the definitive best team in the country…",
-    },
-    axisY: {
-      interval: 10,
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 7, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 0, label: "Tennis" },
-          { y: 4, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 4, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 6, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 1, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 4, label: "Golf" },
-          { y: 4, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 1, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 5, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 14, label: "Golf" },
-          { y: 5, label: "Gymnastics" },
-          { y: 20, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  bestTeamChart.render();
+var bestTeamChart;
+  var currentFanChart;
+  var alumniDonorChart;
+  var adminChart;
+  var expandingFansChart;  
+  var athleteChart  
+  var tvChart;
+  var collegiateChart;
 
-  var currentFanChart = new CanvasJS.Chart("currentFanChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For getting the most engagement from the current fan base…",
-    },
-    axisY: {
-      interval: 10,
+function loadSurvey(chartID) {
+  
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
+  if (chartID == "bestTeamChart") {
+    bestTeamChart = new CanvasJS.Chart("bestTeamChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For determining the definitive best team in the country…",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 0, label: "Wrestling" },
-        ],
+      axisY: {
+        interval: 10,
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 1, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 5, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 4, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 5, label: "Golf" },
-          { y: 4, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 3, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 17, label: "Golf" },
-          { y: 5, label: "Gymnastics" },
-          { y: 16, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  currentFanChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 7, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 0, label: "Tennis" },
+            { y: 4, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 4, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 6, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 1, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 4, label: "Golf" },
+            { y: 4, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 1, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 5, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 14, label: "Golf" },
+            { y: 5, label: "Gymnastics" },
+            { y: 20, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    bestTeamChart.render();
+  } else if (bestTeamChart) {
+    bestTeamChart.destroy();
+  }
 
-  var alumniDonorChart = new CanvasJS.Chart("alumniDonorChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For getting the most engagement from alumni and donors…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "currentFanChart") {
+    currentFanChart = new CanvasJS.Chart("currentFanChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For getting the most engagement from the current fan base…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 0, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 1, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 13, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 7, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 4, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 4, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 13, label: "Golf" },
-          { y: 4, label: "Gymnastics" },
-          { y: 16, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  alumniDonorChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 0, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 1, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 5, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 4, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 5, label: "Golf" },
+            { y: 4, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 3, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 17, label: "Golf" },
+            { y: 5, label: "Gymnastics" },
+            { y: 16, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    currentFanChart.render();
+  } else if (currentFanChart) {
+    currentFanChart.destroy();
+  }
 
-  var adminChart = new CanvasJS.Chart("adminChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For getting the most school administration support…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "alumniDonorChart") {
+    alumniDonorChart = new CanvasJS.Chart("alumniDonorChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For getting the most engagement from alumni and donors…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 0, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 7, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 0, label: "Tennis" },
-          { y: 0, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 13, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 3, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 4, label: "Tennis" },
-          { y: 1, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 4, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 13, label: "Golf" },
-          { y: 6, label: "Gymnastics" },
-          { y: 16, label: "Tennis" },
-          { y: 4, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  adminChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 0, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 1, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 13, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 7, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 4, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 4, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 13, label: "Golf" },
+            { y: 4, label: "Gymnastics" },
+            { y: 16, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    alumniDonorChart.render();
+  } else if (alumniDonorChart) {
+    alumniDonorChart.destroy();
+  }
 
-  var expandingFansChart = new CanvasJS.Chart("expandingFansChart", {
-    animationEnabled: true,
-    theme: "light1", //"light1", "dark1", "dark2"
-    title: {
-      text: "For expanding the fan base…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "adminChart") {
+    adminChart = new CanvasJS.Chart("adminChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For getting the most school administration support…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 2, label: "Tennis" },
-          { y: 1, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 6, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 2, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 6, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 14, label: "Golf" },
-          { y: 6, label: "Gymnastics" },
-          { y: 15, label: "Tennis" },
-          { y: 4, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  expandingFansChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 0, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 7, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 0, label: "Tennis" },
+            { y: 0, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 13, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 3, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 4, label: "Tennis" },
+            { y: 1, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 4, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 13, label: "Golf" },
+            { y: 6, label: "Gymnastics" },
+            { y: 16, label: "Tennis" },
+            { y: 4, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    adminChart.render();
+  } else if (adminChart) {
+    adminChart.destroy();
+  }
 
-  var athleteChart = new CanvasJS.Chart("athleteChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For providing opportunities to the athletes on your roster…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "expandingFansChart") {
+    expandingFansChart = new CanvasJS.Chart("expandingFansChart", {
+      animationEnabled: true,
+      theme: "light1", //"light1", "dark1", "dark2"
+      title: {
+        text: "For expanding the fan base…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 4, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 4, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 1, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 4, label: "Tennis" },
-          { y: 1, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 8, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 5, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 6, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 2, label: "Tennis" },
-          { y: 0, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 3, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 10, label: "Golf" },
-          { y: 5, label: "Gymnastics" },
-          { y: 8, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  athleteChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 2, label: "Tennis" },
+            { y: 1, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 6, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 2, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 6, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 14, label: "Golf" },
+            { y: 6, label: "Gymnastics" },
+            { y: 15, label: "Tennis" },
+            { y: 4, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    expandingFansChart.render();
+  } else if (expandingFansChart) {
+    expandingFansChart.destroy();
+  }
 
-  var tvChart = new CanvasJS.Chart("tvChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For TV Viewership…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "athleteChart") {
+    athleteChart = new CanvasJS.Chart("athleteChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For providing opportunities to the athletes on your roster…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 0, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 4, label: "Fencing" },
-          { y: 3, label: "Golf" },
-          { y: 1, label: "Gymnastics" },
-          { y: 2, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 9, label: "Golf" },
-          { y: 2, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 4, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 14, label: "Golf" },
-          { y: 6, label: "Gymnastics" },
-          { y: 12, label: "Tennis" },
-          { y: 5, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  tvChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 4, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 4, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 1, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 4, label: "Tennis" },
+            { y: 1, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 8, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 5, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 6, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 2, label: "Tennis" },
+            { y: 0, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 3, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 10, label: "Golf" },
+            { y: 5, label: "Gymnastics" },
+            { y: 8, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    athleteChart.render();
+  } else if (athleteChart) {
+    athleteChart.destroy();
+  }
 
-  var collegiateChart = new CanvasJS.Chart("collegiateChart", {
-    animationEnabled: true,
-    theme: "light2", //"light1", "dark1", "dark2"
-    title: {
-      text: "For collegiate competition…",
-    },
-    axisY: {
-      interval: 10,
+  if (chartID == "tvChart") {
+    tvChart = new CanvasJS.Chart("tvChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For TV Viewership…",
+      },
+      axisY: {
+        interval: 10,
 
-      valueFormatString: "0'%'",
-    },
-    axisX: {
-      reversed: true,
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
-      {
-        type: "stackedBar100",
-        toolTipContent: "{label}<br><b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Significantly better",
-        color: "#0924D6",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 1, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
+        valueFormatString: "0'%'",
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Individual Centric Model is Slightly better",
-        color: "#401DA3",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 0, label: "Fencing" },
-          { y: 2, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 1, label: "Tennis" },
-          { y: 2, label: "Wrestling" },
-        ],
+      axisX: {
+        reversed: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "Neutral: Both are Equal",
-        color: "#b1a4bd",
-        dataPoints: [
-          { y: 0, label: "Bowling" },
-          { y: 3, label: "Fencing" },
-          { y: 7, label: "Golf" },
-          { y: 0, label: "Gymnastics" },
-          { y: 3, label: "Tennis" },
-          { y: 6, label: "Wrestling" },
-        ],
+      toolTip: {
+        shared: true,
       },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Slightly better",
-        color: "#AF103C",
-        dataPoints: [
-          { y: 2, label: "Bowling" },
-          { y: 1, label: "Fencing" },
-          { y: 3, label: "Golf" },
-          { y: 4, label: "Gymnastics" },
-          { y: 6, label: "Tennis" },
-          { y: 1, label: "Wrestling" },
-        ],
-      },
-      {
-        type: "stackedBar100",
-        toolTipContent: "<b>{name}:</b> #percent%",
-        showInLegend: true,
-        name: "The Team Centric Model is Significantly better",
-        color: "#e60909",
-        dataPoints: [
-          { y: 4, label: "Bowling" },
-          { y: 2, label: "Fencing" },
-          { y: 17, label: "Golf" },
-          { y: 6, label: "Gymnastics" },
-          { y: 12, label: "Tennis" },
-          { y: 3, label: "Wrestling" },
-        ],
-      },
-    ],
-  });
-  collegiateChart.render();
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 0, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 4, label: "Fencing" },
+            { y: 3, label: "Golf" },
+            { y: 1, label: "Gymnastics" },
+            { y: 2, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 9, label: "Golf" },
+            { y: 2, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 4, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 14, label: "Golf" },
+            { y: 6, label: "Gymnastics" },
+            { y: 12, label: "Tennis" },
+            { y: 5, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    tvChart.render();
+  } else if (tvChart) {
+    tvChart.destroy();
+  }
 
+  if (chartID == "collegiateChart") {
+    collegiateChart = new CanvasJS.Chart("collegiateChart", {
+      animationEnabled: true,
+      theme: "light2", //"light1", "dark1", "dark2"
+      title: {
+        text: "For collegiate competition…",
+      },
+      axisY: {
+        interval: 10,
+
+        valueFormatString: "0'%'",
+      },
+      axisX: {
+        reversed: true,
+      },
+      toolTip: {
+        shared: true,
+      },
+      data: [
+        {
+          type: "stackedBar100",
+          toolTipContent: "{label}<br><b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Significantly better",
+          color: "#0924D6",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 1, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Individual Centric Model is Slightly better",
+          color: "#401DA3",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 0, label: "Fencing" },
+            { y: 2, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 1, label: "Tennis" },
+            { y: 2, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "Neutral: Both are Equal",
+          color: "#b1a4bd",
+          dataPoints: [
+            { y: 0, label: "Bowling" },
+            { y: 3, label: "Fencing" },
+            { y: 7, label: "Golf" },
+            { y: 0, label: "Gymnastics" },
+            { y: 3, label: "Tennis" },
+            { y: 6, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Slightly better",
+          color: "#AF103C",
+          dataPoints: [
+            { y: 2, label: "Bowling" },
+            { y: 1, label: "Fencing" },
+            { y: 3, label: "Golf" },
+            { y: 4, label: "Gymnastics" },
+            { y: 6, label: "Tennis" },
+            { y: 1, label: "Wrestling" },
+          ],
+        },
+        {
+          type: "stackedBar100",
+          toolTipContent: "<b>{name}:</b> #percent%",
+          showInLegend: true,
+          name: "The Team Centric Model is Significantly better",
+          color: "#e60909",
+          dataPoints: [
+            { y: 4, label: "Bowling" },
+            { y: 2, label: "Fencing" },
+            { y: 17, label: "Golf" },
+            { y: 6, label: "Gymnastics" },
+            { y: 12, label: "Tennis" },
+            { y: 3, label: "Wrestling" },
+          ],
+        },
+      ],
+    });
+    collegiateChart.render();
+  } else if (collegiateChart) {
+    collegiateChart.destroy();
+  }
   // var conflictVisionChart = new CanvasJS.Chart("prefChart", {
   //   animationEnabled: true,
   //   title: {

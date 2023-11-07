@@ -614,8 +614,9 @@
             <h3>2. Survey Results by Sport</h3>
 
             <p>Click a question to view the results by sport.</p>
-            <div id="mobileMenuIssueNote"><strong style="color:red">Mobile User:</strong> Charts may be slow to load on mobile and require reloading. <button onclick="document.location.reload()">Reload</button></div>
-            <div class="tabListWrap">
+        <!--    <div id="mobileMenuIssueNote"><strong style="color:red">Mobile User:</strong> Charts may be slow to load on mobile and require reloading. <button onclick="document.location.reload()">Reload</button></div>
+        -->
+        <div class="tabListWrap">
                 <ul class="nav nav-pills nav-fill " id="myTab0" role="tablist">
                     <li class="nav-item" role="presentation" name="bestTeamChart">
                         <button class="nav-link " id="firstSurveyQuestion" data-mdb-toggle="tab"
@@ -780,11 +781,13 @@
             var loadedClick = true;
             function tabClicked(el) {
 
-                //console.log(el);
+                console.log(el);
                 var current = el.parentElement;
                 var nextSibling = current.nextElementSibling;
                 var prevSibling = current.previousElementSibling;
 
+                var cElm = document.getElementById(current.getAttribute('name'));
+                loadSurvey(cElm.id);
                 current.classList.add("active");
 
                 if (loadedClick) {
@@ -793,7 +796,7 @@
                     setAndLogURL(el.id);
                 }
 
-                var cElm = document.getElementById(current.getAttribute('name'));
+                
 
                 cElm.style.display = 'block';
                 cElm.style.visibility = 'visible';
@@ -856,15 +859,16 @@
 
     <script>window.onload = function () {
             onLoad();
-            loadSurvey();
+            //loadSurvey('adminChart');
+            //loadSurvey('bestTeamChart');
             tabClicked(document.getElementById('firstSurveyQuestion'));
-
+    
             //tabClicked(document.getElementById('respondentData'));
             //perfInd();
         };
 
         window.onresize = function () {
-            loadSurvey();
+            //loadSurvey();
         }</script>
 
 </body>
