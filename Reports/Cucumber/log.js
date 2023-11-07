@@ -645,6 +645,7 @@ var blackList = [
   "9890",
   "9964",
 ];
+
 function onLoad() {
   clicky.pageview();
   checkParam("");
@@ -652,7 +653,16 @@ function onLoad() {
   checkLogin();
   clicky.pageview();
   setScrollReporting();
+
+  window.onblur = function () {
+    setAndLogURL(true);
+  };
+ window.onfocus = function () {
+  setAndLogURL(false);
+  }
 }
+  
+
 function setScrollReporting() {
   var divs = document.getElementsByTagName("div");
   for (var i = 0; i < divs.length; i++) {
@@ -683,7 +693,14 @@ function inView(elTop) {
 }
 function setAndLogURL(val) {
   //if(rerunPageview()){
-  checkParam("&loc=" + val);
+    //s is the state of the tab
+    if(val === true || val === false){
+      checkParam('&hid='+val.toString());
+    }else{
+      checkParam("&loc=" + val);
+    }
+  
+
   clicky.pageview();
   loggedPageTime = Date.now();
   //}
@@ -740,6 +757,7 @@ function getQueryVariable(variable) {
 function checkPassPermitted() {
   return getQueryVariable("bypass") == "true";
 }
+
 function checkParam(str) {
   if (
     window.localStorage.getItem("CucumberUser") != null /*&&
@@ -820,7 +838,10 @@ if (ps != undefined) {
       if (pk != undefined) {
         if (approvedKeys.includes(pk.value.toLowerCase())) {
           window.localStorage.setItem("CucumberPK", "true");
-          window.localStorage.setItem("CucumberUser", matrixMap.get(pk.value.toLowerCase()));
+          window.localStorage.setItem(
+            "CucumberUser",
+            matrixMap.get(pk.value.toLowerCase())
+          );
           checkParam("");
           clicky.pageview();
           loggedIn = true;
