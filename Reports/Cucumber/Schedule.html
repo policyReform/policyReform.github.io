@@ -368,6 +368,12 @@
     }
 
     .day-left{
+        border-left: 0.052vw solid rgba(166, 168, 179, 0.12);
+    }
+    .day-right{
+        border-right: 0.052vw solid rgba(166, 168, 179, 0.12);
+        //padding: 0.729vw 1.042vw;
+    }
     .day {
         border-bottom: 0.052vw solid rgba(166, 168, 179, 0.12);
         border-right: 0.052vw solid rgba(166, 168, 179, 0.12);
@@ -3246,12 +3252,11 @@
                         et al., 2016)</cite>. </p>
 
 
-                <p>The team championship serves as a gateway to the individual championship, drawing in potential fans
-                    who have developed an affinity for the participating individuals and teams. Through the school
-                    brands and a simple team competition format, the team championship generates interest in the
+                <p>Through the school brands and a simple team competition format, the team championship generates interest in the
                     individual championship, making it appealing to those who have previously not watched it. After the
                     team competition, viewers will have a desire to see more and will be curious about potential
-                    match-ups that didn't occur during the team competition.
+                    match-ups that didn't occur during the team competition.  The team championship serves as a gateway to the individual championship, drawing in potential fans
+                    who have developed an affinity for the participating individuals and teams. 
                 </p>
 
 
@@ -5714,26 +5719,26 @@
 
 
                             <div class="wrapCalendar">
-                                <div class="calendar-container">
+                                <div id="firstCalendar" class="calendar-container">
                                     <div class="calendar-header">
                                         <h1>
                                             Current March 2025, NCAA Championships Calendar
                                         </h1>
                                         <p></p>
                                     </div>
-                                    <div class="calendarQA"><span class="day-name">Sun</span><span
+                                    <div class="calendarQA"><span class="day-name day-left">Sun</span><span
                                             class="day-name">Mon</span><span class="day-name">Tue</span><span
                                             class="day-name">Wed</span><span class="day-name">Thu</span><span
-                                            class="day-name">Fri</span><span class="day-name">Sat</span>
+                                            class="day-name">Fri</span><span class="day-name day-right">Sat</span>
 
-                                        <div class="day day--disabled">February 23</div>
+                                        <div class="day day--disabled day-left">February 23</div>
                                         <div class="day day--disabled">February 24</div>
                                         <div class="day day--disabled">February 25</div>
                                         <div class="day day--disabled">February 26</div>
                                         <div class="day day--disabled">February 27</div>
                                         <div class="day day--disabled">February 28</div>
-                                        <div class="day">1</div>
-                                        <div class="day">2</div>
+                                        <div class="day day-right">1</div>
+                                        <div class="day day-left">2</div>
                                         <div class="day">3</div>
                                         <div class="day">4</div>
                                         <div class="day">5</div>
@@ -5743,8 +5748,8 @@
                                         <div class="day">7
 
                                         </div>
-                                        <div class="day">8</div>
-                                        <div class="day">9
+                                        <div class="day day-right">8</div>
+                                        <div class="day day-left">9
 
                                         </div>
                                         <div class="day">10
@@ -5758,8 +5763,8 @@
 
                                         </div>
                                         <div class="day">14</div>
-                                        <div class="day">15</div>
-                                        <div class="day">16
+                                        <div class="day day-right">15</div>
+                                        <div class="day day-left">16
 
                                         </div>
                                         <div class="day">17
@@ -5814,7 +5819,7 @@
                                             <div class="game">&nbsp;MBB - Game 35</div>
                                             <div class="game">&nbsp;MBB - Game 36</div>
                                         </div>
-                                        <div class="day">22
+                                        <div class="day day-right">22
                                             <div class="wr">&nbsp;WR - Session V</div>
                                             <div class="game">&nbsp;MBB - Game 37</div>
                                             <div class="game">&nbsp;MBB - Game 38</div>
@@ -5826,7 +5831,7 @@
                                             <div class="game">&nbsp;MBB - Game 43</div>
                                             <div class="game">&nbsp;MBB - Game 44</div>
                                         </div>
-                                        <div class="day">23
+                                        <div class="day day-left">23
                                             <div class="game">&nbsp;MBB - Game 45</div>
                                             <div class="game">&nbsp;MBB - Game 46</div>
                                             <div class="game">&nbsp;MBB - Game 47</div>
@@ -5855,7 +5860,7 @@
                                             <div class="game">&nbsp;MBB - Game 59</div>
                                             <div class="game">&nbsp;MBB - Game 60</div>
                                         </div>
-                                        <div class="day">29
+                                        <div class="day day-right">29
 
                                             <div class="game">&nbsp;MBB - Game 61</div>
 
@@ -5865,7 +5870,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        
 
                             <p>Moving the Individual Wrestling Championship only one week later, when there is
                                 significantly less
@@ -5895,7 +5900,7 @@
                                 championship's consumption--especially for the Session six finals--which will have very
                                 limited competition with the Men's Basketball Championship.
                                 (see below).</p>
-
+                                <div id="secondCalendar">
                             <div class="wrapCalendar">
 
                                 <div class="calendar-container">
@@ -6061,7 +6066,7 @@
                                 </div>
 
                             </div>
-
+                                </div>
 
                             <p>In addition to the Wrestling Championships being better positioned as one of the limited
                                 number of live
@@ -6438,6 +6443,8 @@
 
         </div>
         <element onload="load"></element>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        
         <script src="log.js"></script>
         <script async data-id="101366670" src="https://static.getclicky.com/js"></script>
         <script>
@@ -6511,7 +6518,7 @@
                 loadHSMap();
                 //document.getElementById("v1Checkbox").checked = true;
                 reloadBasketballSeason();
-
+                
                 //tabClicked(document.getElementById('firstSurveyQuestion'));
             };</script>
 
