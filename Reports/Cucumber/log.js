@@ -646,7 +646,7 @@ var matrix = [
 {k: "firebreak".toLowerCase(), id: "13047" },
 {k: "standby".toLowerCase(), id: "13048" },
 {k: "pancake".toLowerCase(), id: "13049" },
-{k: "below".toLowerCase(), id: "13050" },
+{k: "belowwater".toLowerCase(), id: "13050" },
 {k: "grandnephew".toLowerCase(), id: "13051" },
 {k: "pickup".toLowerCase(), id: "13052" },
 {k: "moonlight".toLowerCase(), id: "13053" },
@@ -664,7 +664,7 @@ var matrix = [
 {k: "himself".toLowerCase(), id: "13065" },
 {k: "uptight".toLowerCase(), id: "13066" },
 {k: "forearm".toLowerCase(), id: "13067" },
-{k: "blackmail".toLowerCase(), id: "13068" },
+{k: "redmail".toLowerCase(), id: "13068" },
 ];
 
 var approvedKeys = []; // = ['approve'];
