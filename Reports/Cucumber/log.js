@@ -971,16 +971,14 @@ function requestKey(){
 
 function hideKeyRequest(){
   $('.contain').hide();
+  $('.processedMSG').hide();
 }
 
 function logEmail(){
   var pk = document.getElementById("email");
       if (pk != undefined) {
-       
         logParam("?keyRequest=" + pk.value);
-        document.getElementById("processedMSG").innerText = 'Your request has been processed.  It may take up to 24 hours to get your key.';
-
-        
+        $('.processedMSG').toggle('show');
       }
 }
 
