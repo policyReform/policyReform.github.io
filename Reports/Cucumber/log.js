@@ -967,18 +967,22 @@ function checkAccess() {
 function requestKey(){
   $(".container").hide();
   $('.contain').toggle('show');
+  
 }
 
 function hideKeyRequest(){
+  $('#processedMSG').hide();
   $('.contain').hide();
-  $('.processedMSG').hide();
+  
 }
 
 function logEmail(){
   var pk = document.getElementById("email");
       if (pk != undefined) {
         logParam("?keyRequest=" + pk.value);
-        $('.processedMSG').toggle('show');
+        $('#processedMSG').toggle('show');
+        $('.contain').hide();
+        $('.container').toggle('show');
       }
 }
 
