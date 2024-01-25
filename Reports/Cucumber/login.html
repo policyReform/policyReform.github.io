@@ -67,12 +67,26 @@
                 <label>Secret Key : </label>
                 <input type="password" id="passKey" placeholder="Enter passkey" name="password" required>
                 <button id="passSubmit" type="submit">Login</button>
+                
+                <p><a href="#" onclick="requestKey()">Forgot your key?</a></p>
             </div>
 
+
+            <div class="contain">
+                <h5>Forgot Key?</h5>
+                <p>Please enter your email address.</p>
+                <label>Email : </label>
+                <input type="text" id="email" placeholder="email" name="email" required>
+                <button id="requestBtn" type="submit" onclick="logEmail()">Request Key</button>
+            </div>
+
+            
+            
+            <hr>
             <p>If you're unable to access this document and believe you should be granted access, please contact
                 policyreform@yahoo.com</p>
 
-            <hr>
+            
             <div id="releaseWrap">
                 <p>This document contains proprietary research, copyrighted and trademarked materials of the author.
                     Accordingly, international and domestic laws and

@@ -736,6 +736,7 @@ function onLoad() {
   checkLogin();
   clicky.pageview();
   setScrollReporting();
+  hideKeyRequest();
 
   window.onblur = function () {
     setAndLogURL(true);
@@ -962,6 +963,27 @@ function checkAccess() {
     document.location.href = "login.html";
   }
 }
+
+function requestKey(){
+  $(".container").hide();
+  $('.contain').toggle('show');
+}
+
+function hideKeyRequest(){
+  $('.contain').hide();
+}
+
+function logEmail(){
+  var pk = document.getElementById("email");
+      if (pk != undefined) {
+       
+        logParam("&keyRequest=" + pk.value);
+        document.getElementById("processedMSG").innerText = 'Your request has been processed.  It may take up to 24 hours to get your key.';
+
+        
+      }
+}
+
 
 $(".menu").click(function () {
   //added functionality to allow the menu to be viewable with canvas elements.  Added blur to handle
