@@ -1,4 +1,5 @@
 var currentURL;
+var isOpenAccess = true;
 var loggedIn = false; //keyGranted();
 //var loggedIn = keyGranted();
 var requestedPage;
@@ -859,7 +860,30 @@ function checkParam(str) {
   }
 }
 
+
+function checkOpenAccess(){
+  if(!isOpenAccess) return;
+  requestedPage = document.location.href;
+      var paramValues = window.location.search ? window.location.search : "";
+      window.localStorage.setItem("requestedPage", requestedPage);
+      setAndLogURL(requestedPage);
+      getQueryVariable("openAccess")
+      var pk = getQueryVariable("openAccess") == false ? null : getQueryVariable("openAccess");
+  if (pk != null && approvedKeys.includes(getQueryVariable("openAccess").toLowerCase())) {
+    window.localStorage.setItem("CucumberPK", "true");
+    window.localStorage.setItem(
+      "CucumberUser",
+      matrixMap.get(getQueryVariable("openAccess").toLowerCase())
+    );
+    checkParam("");
+    clicky.pageview();
+    loggedIn = true;
+  }
+  console.log('exit');
+}
+
 function checkLogin() {
+  checkOpenAccess();
   //check if the key grants access
   if (!keyGranted()) {
     if (getPage() != "login.html") {
@@ -867,6 +891,12 @@ function checkLogin() {
       var paramValues = window.location.search ? window.location.search : "";
       window.localStorage.setItem("requestedPage", requestedPage);
       setAndLogURL(requestedPage);
+
+      console.log(paramValues);
+      console.log(getQueryVariable("openAccess") );
+
+      //debugger;
+      
       document.location.href = "login.html" + paramValues;
     } else {
     }
