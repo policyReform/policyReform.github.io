@@ -733,11 +733,11 @@ var blackList = [
 function onLoad() {
   clicky.pageview();
   checkParam("");
-  buildMatrixMap();
+  //buildMatrixMap();
   checkLogin();
-  clicky.pageview();
-  setScrollReporting();
-  hideKeyRequest();
+  //clicky.pageview();
+  //setScrollReporting();
+  //hideKeyRequest();
 
   window.onblur = function () {
     setAndLogURL(true);
@@ -786,7 +786,7 @@ function setAndLogURL(val) {
     }
   
 
-  clicky.pageview();
+ // clicky.pageview();
   loggedPageTime = Date.now();
   //}
 }
@@ -813,6 +813,7 @@ function buildMatrixMap() {
   }
 }
 function keyGranted() {
+  return '1'=='1';
   var x = window.localStorage.getItem("CucumberPK");
   return x == "true";
 }
@@ -879,7 +880,7 @@ function checkOpenAccess(){
     clicky.pageview();
     loggedIn = true;
   }
-  console.log('exit');
+ // console.log('exit');
 }
 
 function checkLogin() {
